@@ -1,4 +1,19 @@
 <!doctype html>
+<style>
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+</style>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,34 +26,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   </head>
-  <style>
-
-</style>
-  <body>
+  <body style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg'); background-repeat: no-repeat; background-size: 100%; padding-bottom: 70px;">
     
     @include('layouts.nav')
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="table-responsive">
+        <main role="main">
             @yield('content')
-          </div>
         </main>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
+   
+            
 
-    <!-- Graphs -->
+ <footer class="footer" style="margin-top:25.3%;">
+      <div class="container">
+        <h3 style="color:white">Copyright: BDAJ Inc</h1>
+      </div>
+    </footer>
   </body>
+
 </html>
