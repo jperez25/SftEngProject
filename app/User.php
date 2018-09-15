@@ -19,6 +19,13 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    const ADMIN_TYPE = '2';
+    const DEFAULT_TYPE = '1';
+    
+    public function isAdmin()    {        
+        return $this->level === self::ADMIN_TYPE;    
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
