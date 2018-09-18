@@ -36,4 +36,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [            
+            'username' => 'required|max:255|unique:users',
+            'password' => 'required|min:8|confirmed',
+        ]);
+    }
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'username' => $data['username'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
 }

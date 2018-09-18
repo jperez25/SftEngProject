@@ -22,15 +22,23 @@ html, body {
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>PlayDates R Us</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   </head>
   <body style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg'); background-repeat: no-repeat; background-size: 100%; padding-bottom: 70px;">
     
     @include('layouts.nav')
+<<<<<<< HEAD
         <main role="main">
             @yield('content')
+=======
+    @yield('content')
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="table-responsive">
+            
+          </div>
+>>>>>>> 1f854603e9e06d31bef7f5146d1b0942a6bc75c6
         </main>
 
     <!-- Bootstrap core JavaScript
