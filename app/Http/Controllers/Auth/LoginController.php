@@ -40,7 +40,7 @@ class LoginController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [            
-            'username' => 'required|max:255|unique:users',
+            'userName' => 'required|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
         ]);
     }
@@ -48,7 +48,7 @@ class LoginController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'username' => $data['username'],
+            'userName' => $data['userName'],
             'password' => bcrypt($data['password']),
         ]);
     }
