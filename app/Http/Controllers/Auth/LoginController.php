@@ -40,7 +40,7 @@ class LoginController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [            
-            'username' => 'required|max:255|unique:users',
+            'userName' => 'required|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
         ]);
     }
@@ -48,8 +48,17 @@ class LoginController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'username' => $data['username'],
+            'userName' => $data['userName'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function authenticated(Request $request, $user)
+    {
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        }
+        return redirect()->intended($this->redirectPath());
     }
 }

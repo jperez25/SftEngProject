@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
 <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container" >
@@ -11,12 +21,12 @@
                             @csrf                        
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">{{ __('Username:') }}</label><br>                                
-                                <input id="username" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                <label for="userName" class="text-info">{{ __('Username:') }}</label><br>                                
+                                <input id="userName" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="userName" value="{{ old('userName') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('userName'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('userName') }}</strong>
                                     </span>
                                 @endif
 
