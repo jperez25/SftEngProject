@@ -89,6 +89,7 @@ class RegisterController extends Controller
             $user = $verifyUser->user;
             if(!$user->verified) {
                 $verifyUser->user->verified = 1;
+                $verifyUser->user->email_verified_at = date("Y-m-d",time());
                 $verifyUser->user->save();
                 $status = "Your e-mail is verified. You can now login.";
             }else{

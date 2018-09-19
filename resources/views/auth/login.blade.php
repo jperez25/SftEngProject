@@ -1,18 +1,19 @@
 @extends('layouts.app')
+@include('layouts.nav')
 
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-@if (session('warning'))
-    <div class="alert alert-warning">
-        {{ session('warning') }}
-    </div>
-@endif
-<div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if (session('warning'))
+        <div class="alert alert-warning">
+            {{ session('warning') }}
+        </div>
+    @endif
+    <div id="login">
+        
         <div class="container" style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg');">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -22,7 +23,7 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="userName" class="text-info">{{ __('Username:') }}</label><br>                                
-                                <input id="userName" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="userName" value="{{ old('userName') }}" required autofocus>
+                                <input id="userName" type="text" class="form-control{{ $errors->has('userName') ? ' is-invalid' : '' }}" name="userName" value="{{ old('userName') }}" required autofocus>
 
                                 @if ($errors->has('userName'))
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +45,7 @@
                             <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" value="{{ old('remember') ? 'checked' : '' }}">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
