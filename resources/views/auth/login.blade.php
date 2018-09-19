@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
 <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container" style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg');">
