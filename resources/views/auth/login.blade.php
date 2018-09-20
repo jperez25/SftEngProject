@@ -28,6 +28,8 @@
                                 @if ($errors->has('userName'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('userName') }}</strong>
+
+                                        
                                     </span>
                                 @endif
 
