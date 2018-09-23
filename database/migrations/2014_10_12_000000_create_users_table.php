@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->text('bio');
+            $table->integer('child_age');
+            $table->string('city');
+            $table->string('state');
+            $table->text('child_bio');
+            $table->integer('parent_age');
         });
     }
 
