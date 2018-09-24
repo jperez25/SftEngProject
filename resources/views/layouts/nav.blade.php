@@ -1,7 +1,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">
-         <h1>Playdates R'Us</h1>
+        <a class="navbar-brand" href="{{ route('index') }}">
+          <h1>Playdates R'Us</h1>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
+              <a class="nav-link" href="{{ route('home') }}">
+                {{ __('Home') }}
               </a>
             </li>
             <li class="nav-item">
@@ -22,6 +22,53 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
+            @guest
+            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+            @else
+            
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu" >
+
+                      <ul>
+                              <li>
+                                  <a class="dropdown-item" href="{{route('cart')}}">
+                                          {{ __('My orders') }}
+                                  </a>
+                              </li>
+
+                              @if(Auth::user()->isAdmin())
+                              <li>
+                                  <a class="dropdown-item" href="{{route('admin')}}">
+                                          {{ __('Admin') }}
+                                  </a>
+                              </li>
+                              @endif
+
+                              <li>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                          onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                          {{ __('Logout') }}
+                                  </a>
+                              </li>
+
+
+                      </ul>
+                      
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                      
+                    </div>
+                </li>
+                <li><a href="{{route('cart')}}"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+            @endguest
           </ul>
         </div>
       </div>
