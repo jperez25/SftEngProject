@@ -21,12 +21,12 @@
                             @csrf                        
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="userName" class="text-info">{{ __('Username:') }}</label><br>                                
-                                <input id="userName" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="userName" value="{{ old('userName') }}" required autofocus>
+                                <label for="email" class="text-info">{{ __('Email:') }}</label><br>                                
+                                <input id="email" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('userName'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('userName') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
 

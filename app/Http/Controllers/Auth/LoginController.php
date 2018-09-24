@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -40,7 +42,7 @@ class LoginController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [            
-            'userName' => 'required|max:255|unique:users',
+            'email' => 'required|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
         ]);
     }
@@ -48,7 +50,7 @@ class LoginController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'userName' => $data['userName'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
