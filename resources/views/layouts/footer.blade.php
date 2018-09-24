@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <p>Your website content here.</p>
+  <div class="push"></div>
+</div>
+<div class="footer">
+  <p>Copyright (c) 2008</p>
+</div>

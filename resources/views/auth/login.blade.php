@@ -2,19 +2,18 @@
 @include('layouts.nav')
 
 @section('content')
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    @if (session('warning'))
-        <div class="alert alert-warning">
-            {{ session('warning') }}
-        </div>
-    @endif
-    <div id="login">
-        
-        <div class="container" style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg');">
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+<div id="login">        
+        <div class="container" >
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
@@ -22,14 +21,12 @@
                             @csrf                        
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="userName" class="text-info">{{ __('Username:') }}</label><br>                                
-                                <input id="userName" type="text" class="form-control{{ $errors->has('userName') ? ' is-invalid' : '' }}" name="userName" value="{{ old('userName') }}" required autofocus>
+                                <label for="email" class="text-info">{{ __('Email:') }}</label><br>                                
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('userName'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('userName') }}</strong>
-
-                                        
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
 

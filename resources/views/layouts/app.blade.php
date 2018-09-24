@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style= "background-image: url('https://nerdymates.com/static/img/regular/family-essay.jpg');background-repeat: no-repeat; background-size: 100%; padding-bottom: 70px;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -74,5 +74,10 @@
             @yield('content')
         </main>
     </div>
+     <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <h3 style="color:white">Copyright: BDAJ Inc</h1>
+      </div>
+    </footer>
 </body>
 </html>
