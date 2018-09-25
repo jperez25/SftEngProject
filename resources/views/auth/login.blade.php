@@ -1,17 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-@if (session('warning'))
-    <div class="alert alert-warning">
-        {{ session('warning') }}
-    </div>
-@endif
-<div id="login">        
+<div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container" >
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -20,8 +11,8 @@
                             @csrf                        
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="email" class="text-info">{{ __('Email:') }}</label><br>                                
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <label for="username" class="text-info">{{ __('Username:') }}</label><br>                                
+                                <input id="username" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
