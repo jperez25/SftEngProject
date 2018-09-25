@@ -35,12 +35,6 @@
                     <div class="dropdown-menu" >
 
                       <ul>
-                              <li>
-                                  <a class="dropdown-item" href="{{route('cart')}}">
-                                          {{ __('My orders') }}
-                                  </a>
-                              </li>
-
                               @if(Auth::user()->isAdmin())
                               <li>
                                   <a class="dropdown-item" href="{{route('admin')}}">
@@ -67,7 +61,6 @@
                       
                     </div>
                 </li>
-                <li><a href="{{route('cart')}}"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
             @endguest
           </ul>
         </div>
