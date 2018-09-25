@@ -11,8 +11,8 @@
                             @csrf                        
                             <div style="text-align: center; margin-top:10%;"><h3>Login</h3></div>
                             <div class="form-group">
-                                <label for="username" class="text-info">{{ __('Username:') }}</label><br>                                
-                                <input id="username" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                <label for="email" class="text-info">{{ __('email:') }}</label><br>                                
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
