@@ -3,14 +3,13 @@
 
 @section('content')
 <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container" >
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form method="POST" action="{{ route('login') }}" id="login-form" class="form" method="post">
                             @csrf                        
-                            <h3 class="text-center text-info">Login</h3>
+                            <div style="text-align: center; margin-top:10%;"><h3>Login</h3></div>
                             <div class="form-group">
                                 <label for="username" class="text-info">{{ __('Username:') }}</label><br>                                
                                 <input id="username" type="text" class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
@@ -40,18 +39,19 @@
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Login') }}
+                                    </button>
+                                </div>
+
+                                
                                 </div>
                             </div>
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-
-                                </div>
 
                                 <div class="col-md-8 offset-md-2">
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
