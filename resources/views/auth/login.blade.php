@@ -31,24 +31,19 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" value="{{ old('remember') ? 'checked' : '' }}">
+                            <div class="form-group">
+                                   <div style="text-align: center;"><input class="form-check-input" type="checkbox" name="remember" id="remember" value="{{ old('remember') ? 'checked' : '' }}">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
-                                    </div>
-                                    <div class="form-check">
-                                    <button type="submit" class="btn btn-primary">
+                                </div>
+                                <div class="form-group">
+                                    <div style="text-align: center;"><button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
-                                    </button>
+                                    </button></div>
                                 </div>
 
-                                
-                                </div>
-                            </div>
                             </div>
 
                             <div class="form-group row mb-0">
