@@ -20,10 +20,10 @@
               <a class="nav-link" href="#">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
-              <li class="nav-item">
-              <a class="nav-link" href="/register">Register</a>
+              <a class="nav-link" href="#">Services</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
             </li>
             @guest
             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
