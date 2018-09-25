@@ -1,4 +1,5 @@
-@extends ('layouts.master')
+@extends ('layouts.app')
+@include('layouts.nav')
 @section ('content')
 <header
   class="background-cover background-center 1"
