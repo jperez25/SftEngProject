@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/profile', 'ProfileController@index');
 
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
