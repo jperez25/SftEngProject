@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.container {
+                position: absolute;
+                top: 10%;
+                bottom: 25%;
+                left: 15%;
+                right: 0;
+                
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+</style>
 <div id="login">
         <div class="container" >
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -8,7 +21,7 @@
                     <div id="login-box" class="col-md-12">
                         <form method="POST" action="{{ route('login') }}" id="login-form" class="form" method="post">
                             @csrf                        
-                            <div style="text-align: center; margin-top:10%;"><h3>Login</h3></div>
+                            <div style="text-align: center; margin-top:10%;"><h1><u>LOGIN<u></h1></div>
                             <div class="form-group">
                                 <label for="email" class="text-info">{{ __('email:') }}</label><br>                                
                                 <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
