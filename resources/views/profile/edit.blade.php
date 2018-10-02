@@ -17,6 +17,12 @@
       <div class="form-group">
         <div class = "row">
           <div class="col-3">
+            <label for="userPicture">Profile Picture</label>
+            <input type="file" name="image" >
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-3">
             Name<input type="text" class="form-control" value="{{Auth::user()->name}}" id="name" name="name" >
           </div>
           <div class="col-3">
