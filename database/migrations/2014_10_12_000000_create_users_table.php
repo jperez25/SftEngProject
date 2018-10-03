@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            //chnage to longblob
             $table->binary('userPicture')->nullable();
             $table->string('userPictureType')->nullable();
             $table->string('name');            
