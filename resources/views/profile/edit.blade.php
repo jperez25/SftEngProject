@@ -12,7 +12,7 @@
     </div>
 @endif
 
-  {{Form::open(array('action' => array('ProfileController@update', $user), 'method' => 'PATCH', 'id' => 'update'))}}
+  {{Form::open(array('action' => array('ProfileController@update', $user), 'method' => 'PATCH', 'files' => true, 'id' => 'update'))}}
     <div class="wrapper container">
       <div class="form-group">
         <div class = "row">

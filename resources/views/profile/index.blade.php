@@ -3,7 +3,7 @@
 
 @section('content')
 <!--img src= "data:image/jpeg;base64,-->
-<div>Picture <{{Auth::user()->userPicture}}"</div>
+<div>Picture {{Auth::user()->userPicture}}"</div>
 <div>Name: {{Auth::user()->name}}</div>
 <div>Bio: {{Auth::user()->bio}}</div>
 <div>Child Bio: {{Auth::user()->child_bio}}</div>

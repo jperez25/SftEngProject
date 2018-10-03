@@ -43,6 +43,7 @@ class ProfileController extends Controller
 
         $request->validate([
                 'name' => 'required',
+                //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'bio' => 'required',
                 'child_bio' => 'required',
                 'parent_age' => 'required',
@@ -54,7 +55,7 @@ class ProfileController extends Controller
         $img_path = $request->file('image');
         $img_data = file_get_contents($img_path);
         $type = pathinfo($img_path, PATHINFO_EXTENSION);
-        $base64 = $base64_encode($img_data);
+        $base64 = base64_encode($img_data);
         $userPicture = $base64;
         $userPictureType = $type;
 
