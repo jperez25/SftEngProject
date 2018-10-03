@@ -49,7 +49,14 @@ class ProfileController extends Controller
                 'city' => 'required',
                 'state' => 'required',
                 'child_age' => 'required',
+                
         ]);
+        $img_path = $request->file('image');
+        $img_data = file_get_contents($img_path);
+        $type = pathinfo($img_path, PATHINFO_EXTENSION);
+        $base64 = $base64_encode($img_data);
+        $userPicture = $base64;
+        $userPictureType = $type;
 
         $name = $request->input('name');
         $bio = $request->input('bio');
@@ -62,13 +69,16 @@ class ProfileController extends Controller
         
         
         DB::table('users')->where('id', $id)->update(
-            ['name' => $name,
-            'bio' => $bio,
-            'child_bio' => $child_bio,
-            'parent_age' => $parent_age,
-            'city' => $city,
-            'state' => $state,
-            'child_age' => $child_age,
+            [
+                'userPicture' => $userPicture,
+                'userPictureType' => $userPictureType,
+                'name' => $name,
+                'bio' => $bio,
+                'child_bio' => $child_bio,
+                'parent_age' => $parent_age,
+                'city' => $city,
+                'state' => $state,
+                'child_age' => $child_age,
             ]
         ); 
        return redirect('/profile');
