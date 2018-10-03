@@ -2,8 +2,11 @@
 
 
 @section('content')
-<img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
-<img src= "data:{{Auth::user()->userPictureType}};base64,{{Auth::user()->userPicture}}" height="100" width="100">
+@if(Auth::user()->userPicture)
+    <img src= "data:{{Auth::user()->userPictureType}};base64,{{Auth::user()->userPicture}}" height="100" width="100">
+@else
+    <img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
+@endif
 <div>Name: {{Auth::user()->name}}</div>
 <div>Bio: {{Auth::user()->bio}}</div>
 <div>Child Bio: {{Auth::user()->child_bio}}</div>
