@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/profile.index';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -70,6 +70,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],            
             'email' => $data['email'],
+            //comment line below out after email verification works
             'verified' => 1,
             'password' => Hash::make($data['password']),
         ]);

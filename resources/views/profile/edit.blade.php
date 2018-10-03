@@ -52,13 +52,13 @@
         <div class="col-3">
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
+      {{Form::close()}}
       <div>
         <div class = "col-3">
-            <a href="{{ route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
+            <a href="{{route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
         </div>
       </div>
-    </div>
-  {{Form::close()}}
+    </div>  
 
 @endsection
 
