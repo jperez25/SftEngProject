@@ -12,9 +12,15 @@
     </div>
 @endif
 
-  {{Form::open(array('action' => array('ProfileController@update', $user), 'method' => 'PATCH', 'id' => 'update'))}}
+  {{Form::open(array('action' => array('ProfileController@update', $user), 'method' => 'PATCH', 'files' => true, 'id' => 'update'))}}
     <div class="wrapper container">
       <div class="form-group">
+        <div class = "row">
+          <div class="col-3">
+            <label for="userPicture">Profile Picture</label>
+            <input type="file" name="image" >
+          </div>
+        </div>
         <div class = "row">
           <div class="col-3">
             Name<input type="text" class="form-control" value="{{Auth::user()->name}}" id="name" name="name" >
@@ -52,13 +58,13 @@
         <div class="col-3">
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
+      {{Form::close()}}
       <div>
         <div class = "col-3">
-            <a href="{{ route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
+            <a href="{{route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
         </div>
       </div>
-    </div>
-  {{Form::close()}}
+    </div>  
 
 @endsection
 
