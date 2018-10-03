@@ -15,7 +15,7 @@
 
     <form method="POST" action="{{ route('login') }}" id="login-form" class="form-signin" method="post">
         @csrf 
-        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <img class="mb-4" src="https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
