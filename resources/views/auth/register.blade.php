@@ -2,20 +2,10 @@
 
 @section('content')
 <style>
-.container {
-                position: absolute;
-                top: 15%;
-                bottom: 25%;
-                left: 13%;
-                right: 0;
-                
-                justify-content: space-around;
-                align-items: center;
-                flex-wrap: wrap;
-            }
+  
 </style>
 
-<div class="container">
+<div class="container-register">
 
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -91,6 +81,9 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <img src="https://nerdymates.com/static/img/regular/family-essay.jpg" height= '100%' width="100%" style="padding-top: 20%">
+        <div>
     </div>
 </div>
 @endsection

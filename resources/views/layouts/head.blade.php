@@ -21,7 +21,7 @@
     <!-- For Welcome page -->
     <link rel="stylesheet" href="{{ URL::asset('css/welcome.css') }}">
     <!-- For Login page -->
-    <link rel="stylesheet" href="{{ URL::asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/login.css') }}">
     
 
     
