@@ -1,6 +1,6 @@
 .form-signin {
-    width: 50%;
-    max-width: 100px;
+    width: 100%;
+    max-width: 50%;
     padding: 15px;
     margin: auto;
   }
@@ -27,3 +27,4 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
