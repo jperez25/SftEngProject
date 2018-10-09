@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -44,12 +45,18 @@
         <div class="col-3">
             City<input type="text" class="form-control" value="{{Auth::user()->city}}" id="city" name="city">
         </div>
+
         </div>
             <div class = "row">
           <div class="col-3">
             State<input type="text" class="form-control" value="{{Auth::user()->state}}" id="state" name="state">
         </div>
+        <!--
         <div class="col-3">
+            City<input type="hidden" class="form-control" value="geocode({{Auth::user()->city}}, {{Auth::user()->state}})" id="lat" name="lat">
+        </div>
+        <div class="col-3">
+        -->
         </div>
         </div>
       </div>
@@ -63,8 +70,11 @@
         <div class = "col-3">
             <a href="{{route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
         </div>
+
       </div>
     </div>  
+
+
 
 @endsection
 
