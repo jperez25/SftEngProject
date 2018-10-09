@@ -72,39 +72,11 @@ class ProfileController extends Controller
         $city = $request->input('city');
         $state = $request->input('state');
         $child_age = $request->input('child_age');
-        $location = $city.' '.$state;    
-         echo "            
-            <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
-         <script>
-          // Call Geocode
-            geocode()
-          function geocode(){
-            var location = $location;
-            alert('location');
-            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-              params:{
-                address:location,
-                key:'AIzaSyCDIsZKQ-JCkOZV83EdiAygW21wAY4nzZA'
-              }
-            })
-            .then(function(response){
-              //Log full response
-              console.log(response)
-
-              //Lat
-
-              var lat = response.data.results[0].geometry.location.lat;
-              console.log(lat)
-              //lng
-            var lng = response.data.results[0].geometry.location.lng;
-              console.log(lng)
-            })
-            .catch(function(error){
-              console.log(error);
-            });
-          }
-        </script>";
-
+        $lat = $request->input('lat');
+        $lng = $request->input('lng'); 
+        
+        //dd($lat);
+         
             
         //$level = 1;        
         
@@ -118,6 +90,8 @@ class ProfileController extends Controller
                 'city' => $city,
                 'state' => $state,
                 'child_age' => $child_age,
+                'lat' => $lat,
+                'lng' => $lng,
                     
             ]
         ); 
