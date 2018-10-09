@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -44,27 +45,69 @@
         <div class="col-3">
             City<input type="text" class="form-control" value="{{Auth::user()->city}}" id="city" name="city">
         </div>
+
         </div>
             <div class = "row">
           <div class="col-3">
             State<input type="text" class="form-control" value="{{Auth::user()->state}}" id="state" name="state">
         </div>
+        
         <div class="col-3">
+            <input type="hidden" class="form-control" value="" id="lat" name="lat">
         </div>
-        </div>
+        <div class="col-3">
+            <input type="hidden" class="form-control" value="" id="lng" name="lng">
+        </div>        
       </div>
 
       <div class = "row">
         <div class="col-3">
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary" onclick="geocode">Update</button>
       </div>
       {{Form::close()}}
       <div>
         <div class = "col-3">
             <a href="{{route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
         </div>
+
       </div>
     </div>  
 
-@endsection
 
+<script>
+          // Call Geocode
+          //geocode()
+          function geocode(city, state){
+            var location = "{{Auth::user()->city}}, {{Auth::user()->state}}";
+            alert(location);
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+              params:{
+                address:location,
+                key:'AIzaSyCDIsZKQ-JCkOZV83EdiAygW21wAY4nzZA'
+              }
+            })
+            .then(function(response){
+              //Log full response
+              //console.log(response)
+
+              //Lat
+
+              var lat = response.data.results[0].geometry.location.lat;
+              //console.log(lat);
+              var cLat = document.getElementById("lat");
+              cLat.value = lat;              
+              
+              //lng
+              var lng = response.data.results[0].geometry.location.lng;
+              //console.log(lng);
+              var cLng = document.getElementById("lng");
+              cLng.value = lng;          
+            })
+            .catch(function(error){
+              console.log(error);
+            });
+            
+          }
+</script>
+
+@endsection

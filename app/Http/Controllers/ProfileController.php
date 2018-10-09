@@ -70,8 +70,14 @@ class ProfileController extends Controller
         $child_bio = $request->input('child_bio');
         $parent_age = $request->input('parent_age');
         $city = $request->input('city');
-        $state = $request->input('bio');
-        $child_age = $request->input('child_age');        
+        $state = $request->input('state');
+        $child_age = $request->input('child_age');
+        $lat = $request->input('lat');
+        $lng = $request->input('lng'); 
+        
+        //dd($lat);
+         
+            
         //$level = 1;        
         
         
@@ -84,6 +90,9 @@ class ProfileController extends Controller
                 'city' => $city,
                 'state' => $state,
                 'child_age' => $child_age,
+                'lat' => $lat,
+                'lng' => $lng,
+                    
             ]
         ); 
        return redirect('/profile');

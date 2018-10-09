@@ -14,7 +14,9 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         DB::statement("ALTER TABLE users
-        ADD userPicture LONGBLOB;");
+        ADD userPicture LONGBLOB,
+        ADD lat decimal(30,20),
+        ADD lng decimal(30,20);");
     }
 
     /**
@@ -24,6 +26,9 @@ class UpdateUsersTable extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("ALTER TABLE users
+        DROP COLUMN userPicture,
+        DROP COLUMN lat,
+        DROP COLUMN lng;");
     }
 }

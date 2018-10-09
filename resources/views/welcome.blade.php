@@ -10,11 +10,19 @@
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{route('register')}}">Sign Up!</a>
             </div>
         </div>
+
+
+
+
+
+
     </header>
 
 @endsection('homePage')
 
 @section ('content')
+
+
 <section class="bg-primary" id="about">
       <div class="container">
         <div class="row">

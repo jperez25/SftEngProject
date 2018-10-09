@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->text('child_bio')->nullable();
             $table->integer('parent_age')->nullable();
+            $table->decimal('lat')->nullable();  
+            $table->decimal('lng')->nullable();
         });
     }
 
