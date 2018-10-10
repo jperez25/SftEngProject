@@ -120,7 +120,7 @@
 
       <div class = "row">
         <div class="col-3">
-          <input type="button" value="Update" class="btn btn-primary" onclick="geocode()"/>          
+          <input type="button" id="updateBtn" value="Save" class="btn btn-primary" onclick="geocode()"/>          
       </div>
       {{Form::close()}}
       <div>
@@ -153,23 +153,26 @@
 
               var lat = response.data.results[0].geometry.location.lat;
               console.log(lat);              
-              var cLat = document.getElementById("lat");
-              cLat.value = lat;     
+              document.getElementById("lat").value = lat;
+                  
               
               //lng
               var lng = response.data.results[0].geometry.location.lng;
               console.log(lng);              
-              var cLng = document.getElementById("lng");              
-              cLng.value = lng;   
+              document.getElementById("lng").value = lng;
+                
 
             })
             .catch(function(error){
               console.log(error);
             });
-
+                        
+            
             if(document.getElementById("lat").value != ""){
               document.getElementById("update").submit();
-            }                     
+            }  
+
+            document.getElementById("updateBtn").value = "Update";                                              
           }
 </script>
 
