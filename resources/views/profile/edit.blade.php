@@ -27,7 +27,7 @@
             Name<input type="text" class="form-control" value="{{Auth::user()->name}}" id="name" name="name" >
           </div>
           <div class="col-3">
-            Bio<textarea class="form-control" value="{{Auth::user()->bio}}" id="bio" name="bio"></textarea>
+            Bio<textarea class="form-control" value="{{Auth::user()->bio}}" id="bio" name="bio">{{Auth::user()->bio}}</textarea>
           </div>
         </div>
         <div class = "row">
@@ -49,7 +49,65 @@
         </div>
             <div class = "row">
           <div class="col-3">
-            State<input type="text" class="form-control" value="{{Auth::user()->state}}" id="state" name="state">
+                State
+                <select class="form-control" id="state" name="state">
+                    @if(Auth::user()->state)
+                    <option value='{{Auth::user()->state}}' selected='selected'>{{Auth::user()->state}}</option>
+                    @else
+                    <option value='IL' selected='selected'>Choose a State</option>
+                    @endif
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
         </div>
         
         <div class="col-3">
@@ -62,7 +120,7 @@
 
       <div class = "row">
         <div class="col-3">
-        <button type="submit" class="btn btn-primary" onclick="geocode">Update</button>
+          <input type="button" value="Update" class="btn btn-primary" onclick="geocode()"/>          
       </div>
       {{Form::close()}}
       <div>
@@ -77,15 +135,16 @@
 <script>
           // Call Geocode
           //geocode()
-          function geocode(city, state){
+          function geocode(){
             var location = "{{Auth::user()->city}}, {{Auth::user()->state}}";
-            alert(location);
+            //alert(location);
             axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
               params:{
                 address:location,
                 key:'AIzaSyCDIsZKQ-JCkOZV83EdiAygW21wAY4nzZA'
               }
             })
+
             .then(function(response){
               //Log full response
               //console.log(response)
@@ -93,20 +152,24 @@
               //Lat
 
               var lat = response.data.results[0].geometry.location.lat;
-              //console.log(lat);
+              console.log(lat);              
               var cLat = document.getElementById("lat");
-              cLat.value = lat;              
+              cLat.value = lat;     
               
               //lng
               var lng = response.data.results[0].geometry.location.lng;
-              //console.log(lng);
-              var cLng = document.getElementById("lng");
-              cLng.value = lng;          
+              console.log(lng);              
+              var cLng = document.getElementById("lng");              
+              cLng.value = lng;   
+
             })
             .catch(function(error){
               console.log(error);
             });
-            
+
+            if(document.getElementById("lat").value != ""){
+              document.getElementById("update").submit();
+            }                     
           }
 </script>
 
