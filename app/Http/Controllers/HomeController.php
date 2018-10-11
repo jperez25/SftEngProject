@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -23,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+
+        $users = DB::table('users')->where([
+            ['lat', '>', '34'],
+            ['lat', '<', '41'],
+        ])->get();
         return view('home.index',compact('users'));
     }
 }

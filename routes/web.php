@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/profile', 'ProfileController@index')->middleware('auth')->name('profile.index');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
