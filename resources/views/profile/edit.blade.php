@@ -141,7 +141,7 @@
             axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
               params:{
                 address:location,
-                key: {{env('GOOGLE_API_KEY')}},
+                key: '{{env('GOOGLE_API_KEY')}}',
               }
             })
 
