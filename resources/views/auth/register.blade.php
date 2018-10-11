@@ -1,12 +1,19 @@
 @extends('layouts.app')
-@include('layouts.nav')
 
 @section('content')
-<div class="container">
+<style>
+  
+</style>
+
+<div class="container-register">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+		     <div style="text-align: center">
+ 	          <h1><u>SIGN UP<u></h1>
+			</div>
+                <div class="card-header">{{ __('') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -19,22 +26,9 @@
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
+                                    
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="userName" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="userName" type="text" class="form-control{{ $errors->has('userName') ? ' is-invalid' : '' }}" value="{{ old('userName') }}" name="userName" required>
-
-                                @if ($errors->has('userName'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('userName') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -87,6 +81,9 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <img src="https://nerdymates.com/static/img/regular/family-essay.jpg" height= '100%' width="100%" style="padding-top: 20%">
+        <div>
     </div>
 </div>
 @endsection

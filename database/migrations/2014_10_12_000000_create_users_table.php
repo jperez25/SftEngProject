@@ -15,8 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('userName')->unique();
+            //change to longblob
+            $table->binary('userPicture')->nullable();
+            $table->string('userPictureType')->nullable();
+            $table->string('name');            
             $table->string('email')->unique();
             $table->boolean('verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
@@ -29,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->text('child_bio')->nullable();
             $table->integer('parent_age')->nullable();
+            $table->decimal('lat')->nullable();  
+            $table->decimal('lng')->nullable();
         });
     }
 

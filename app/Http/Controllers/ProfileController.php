@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use Auth;
+use DB;
+
 class ProfileController extends Controller
 {
     /**
@@ -33,24 +37,70 @@ class ProfileController extends Controller
         return view('profile.edit')->with('user',$user);
     }
 
-    public function update(Request $request)
-    {
-        $user = User::find(Auth::user()->getId());
+    public function update($id, Request $request)
+    {                
+        $user = User::find(Auth::user()->getId());          
 
-                $this->validate($request, [
-            'name' => 'required',
-            'bio' => 'required',
-            'child_bio' => 'required',
-            'parent_age' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'child_age' => 'required',
+        $request->validate([
+                'name' => 'required',
+                //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'bio' => 'required',
+                'child_bio' => 'required',
+                'parent_age' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'child_age' => 'required',
+                
         ]);
+        if($request->hasFile('image')) {
+            $userPicture = base64_encode(file_get_contents($request->file('image')));
+            $userPictureType = $_FILES['image']['type'];
 
-        $input = $request->all();
+            DB::table('users')->where('id', $id)->update(
+                [
+                    'userPicture' => $userPicture,
+                    'userPictureType' => $userPictureType
+                ]
+            );
+        }
+        
 
-        $user->fill($input)->save();
+        $name = $request->input('name');
+        $bio = $request->input('bio');
+        $child_bio = $request->input('child_bio');
+        $parent_age = $request->input('parent_age');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $child_age = $request->input('child_age');
+        $lat = $request->input('lat');
+        $lng = $request->input('lng'); 
+        
+        //dd($lat);
+         
+            
+        //$level = 1;        
+        
+        
+        DB::table('users')->where('id', $id)->update(
+            [
+                'name' => $name,
+                'bio' => $bio,
+                'child_bio' => $child_bio,
+                'parent_age' => $parent_age,
+                'city' => $city,
+                'state' => $state,
+                'child_age' => $child_age,
+                'lat' => $lat,
+                'lng' => $lng,
+                    
+            ]
+        ); 
+       return redirect('/profile');
+
+    }
+
+    public function show()
+    {
         return view('profile.index');
-
     }
 }

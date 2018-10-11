@@ -1,68 +1,63 @@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="{{ route('index') }}">
-          <h1>Playdates R'Us</h1>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ route('index') }}">
+            Playdates R'Us
+      </a>
+    </div>
+
+    <ul class="nav navbar-nav">
+
+    @guest @else
+      <li>
+        <a class="navbar-brand" href="{{ route('profile.index') }}">
+                Home
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ route('home') }}">
-                {{ __('Home') }}
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-            @guest
-            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-            @else
-            
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+      </li>
+    @endguest
 
-                    <div class="dropdown-menu" >
-
-                      <ul>
-                              @if(Auth::user()->isAdmin())
-                              <li>
-                                  <a class="dropdown-item" href="{{route('admin')}}">
-                                          {{ __('Admin') }}
-                                  </a>
-                              </li>
-                              @endif
-
-                              <li>
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
-                                          onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();">
-                                          {{ __('Logout') }}
-                                  </a>
-                              </li>
-
-
-                      </ul>
-                      
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                      
-                    </div>
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{route('profile.index')}}">Profile</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      </ul>
+    <ul class="nav navbar-nav navbar-right">
+      @guest
+        <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> {{ __('Sign up') }}</a></li>
+        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ __('Login') }}</a></li>
+      @else
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              @if(Auth::user()->isAdmin())
+                <li>
+                  <a class="dropdown-item" href="{{route('admin')}}">
+                          {{ __('Admin') }}
+                  </a>
                 </li>
-            @endguest
+              @endif
+              <li>
+                  <a class="dropdown-item" href="{{ route('chat.index') }}">
+                          {{ __('Chat') }}
+                  </a>
+              </li>
+            
+              <li>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+              </li>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form> 
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>
+      @endguest
+    </ul>
+  </div>
+</nav>
