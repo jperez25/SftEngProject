@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
-
+Route::get('/profile/{userID}', 'ProfileController@show');
 Auth::routes(['verify' => true]);
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');

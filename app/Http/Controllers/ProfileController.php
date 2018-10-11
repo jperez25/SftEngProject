@@ -39,68 +39,47 @@ class ProfileController extends Controller
 
     public function update($id, Request $request)
     {                
-        $user = User::find(Auth::user()->getId());          
+        $user = User::find(Auth::user()->getId());        
+
 
         $request->validate([
                 'name' => 'required',
-                //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'bio' => 'required',
                 'child_bio' => 'required',
                 'parent_age' => 'required',
                 'city' => 'required',
                 'state' => 'required',
                 'child_age' => 'required',
-                
         ]);
-        if($request->hasFile('image')) {
-            $userPicture = base64_encode(file_get_contents($request->file('image')));
-            $userPictureType = $_FILES['image']['type'];
-
-            DB::table('users')->where('id', $id)->update(
-                [
-                    'userPicture' => $userPicture,
-                    'userPictureType' => $userPictureType
-                ]
-            );
-        }
-        
 
         $name = $request->input('name');
         $bio = $request->input('bio');
         $child_bio = $request->input('child_bio');
         $parent_age = $request->input('parent_age');
         $city = $request->input('city');
-        $state = $request->input('state');
-        $child_age = $request->input('child_age');
-        $lat = $request->input('lat');
-        $lng = $request->input('lng'); 
-        
-        //dd($lat);
-         
-            
+        $state = $request->input('bio');
+        $child_age = $request->input('child_age');        
         //$level = 1;        
         
         
         DB::table('users')->where('id', $id)->update(
-            [
-                'name' => $name,
-                'bio' => $bio,
-                'child_bio' => $child_bio,
-                'parent_age' => $parent_age,
-                'city' => $city,
-                'state' => $state,
-                'child_age' => $child_age,
-                'lat' => $lat,
-                'lng' => $lng,
-                    
+            ['name' => $name,
+            'bio' => $bio,
+            'child_bio' => $child_bio,
+            'parent_age' => $parent_age,
+            'city' => $city,
+            'state' => $state,
+            'child_age' => $child_age,
             ]
         ); 
        return redirect('/profile');
 
     }
 
-    public function show()
-    {
-        return view('profile.index');
-    }
+    public function show($id)
+        {
+            $user = User::find($id);
+
+            return view('profile.show',compact('user'));
+        }
 }
