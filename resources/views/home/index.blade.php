@@ -25,7 +25,11 @@
                     <td>{{$user->parent_age}}</td>
                     <td>{{$user->child_age}}</td>
                     <td>{{$user->city}}</td>
-                    <td><a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a></td>
+                    <td>
+                      <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a>
+                      <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
+                    
+                    </td>
                   </tr>
               @endforeach
 
