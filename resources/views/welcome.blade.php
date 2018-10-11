@@ -1,6 +1,7 @@
 @extends ('layouts.app')
 
 @section ('homePage')
+
     <!-- Header -->
     <header class="masthead">
         <div class="container" style="background-image:url('https://nerdymates.com/static/img/regular/family-essay.jpg');background-repeat: no-repeat; background-size: 100%; padding-bottom: 70px;">
