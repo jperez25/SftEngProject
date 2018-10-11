@@ -99,8 +99,9 @@ class ProfileController extends Controller
 
     }
 
-    public function show()
+    public function show($userID)
     {
-        return view('profile.index');
+        $user = User::find($userID);
+        return view('profile.show',compact('user'));
     }
 }
