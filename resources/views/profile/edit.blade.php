@@ -147,10 +147,9 @@
 
             .then(function(response){
               //Log full response
-              //console.log(response)
+              console.log(response)
 
               //Lat
-
               var lat = response.data.results[0].geometry.location.lat;
               console.log(lat);              
               document.getElementById("lat").value = lat;              
