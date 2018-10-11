@@ -120,7 +120,7 @@
 
       <div class = "row">
         <div class="col-3">
-          <input type="button" id="updateBtn" value="Save" class="btn btn-primary" onclick="geocode()"/>          
+          <button type="submit" class="btn btn-primary" onclick="geocode()">Update</button>          
       </div>
       {{Form::close()}}
       <div>
