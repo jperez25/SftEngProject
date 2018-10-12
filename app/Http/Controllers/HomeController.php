@@ -28,10 +28,21 @@ class HomeController extends Controller
     public function index()
     {
         //User::all();
-        $users = DB::table('users')->where([
-            ['lat', '>', '34'],
-            ['lat', '<', '41'],
-        ])->get();
+
+        if(is_null(Auth::user()->lat)){
+           return redirect()->intended("/profile/edit");
+        }
+        
+        $lat = Auth::user()->lat;
+        $lng = Auth::user()->lng;
+        $radius = 100;
+        $users = DB::select(DB::raw("SELECT*,
+        ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
+        FROM `users` AS u
+        where u.lng AND u.lat
+        HAVING distance <= {$radius}
+        ORDER BY distance ASC"));          
+                
         return view('home.index',compact('users'));
     }
 
