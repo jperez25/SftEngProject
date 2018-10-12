@@ -13,6 +13,9 @@
         "laravelcollective/html": "^5.7",
         "nahid/talk": "^2.2"
     },
+    "require": {
+    "orangehill/iseed": "dev-master"
+    },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
