@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $users = factory(App\User::class, 100)->create();
-        $friends = factory(App\Friend::class, 300)->create();
-        $chats = factory(App\Chat::class, 500)->create();
+         $this->call(UsersTableSeeder::class);
+         $this->call(FriendsTableSeeder::class);
+         $this->call(ChatsTableSeeder::class);
+        
     }
 }
