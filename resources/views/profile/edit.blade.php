@@ -170,9 +170,7 @@
  
             if(document.getElementById("lat").value != ""){
               document.getElementById("update").submit();
-            }  
-
-            document.getElementById("updateBtn").value = "Update";                                              
+            }                                                           
           }
 </script>
 
