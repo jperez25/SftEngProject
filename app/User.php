@@ -13,7 +13,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const ADMIN_TYPE = '2';
     const DEFAULT_TYPE = '1';
-    
+    protected $primaryKey = 'id';
+
+    public function getId()
+    {
+        return $this->id;
+    }
     public function isAdmin()    {        
         return $this->level === self::ADMIN_TYPE;    
     }
@@ -29,7 +34,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'userName', 'email', 'password',
+        'name', 'email', 'verified', 'password', 'bio', 'child_age', 'city', 'state', 'child_bio', 'parent_age', 
+        'userPicture', 'userPictureType',
     ];
 
     /**

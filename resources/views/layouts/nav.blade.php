@@ -1,18 +1,29 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{{ route('index') }}">
             Playdates R'Us
       </a>
     </div>
+
     <ul class="nav navbar-nav">
-     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+
+    @guest @else
+      <li>
+        <a class="navbar-brand" href="{{ route('home') }}">
+                Home
+        </a>
+      </li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profiles <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="{{route('profile.index')}}">My Profile</a></li>
+          <li><a href="/profile/edit">Edit profile</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Rate</a></li>
         </ul>
       </li>
+    @endguest
       </ul>
     <ul class="nav navbar-nav navbar-right">
       @guest

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use App\User;
+use DB;
 class HomeController extends Controller
 {
+
+    protected $redirectTo = '/home';
     /**
      * Create a new controller instance.
      *
@@ -23,6 +27,35 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //User::all();
+
+        if(is_null(Auth::user()->lat)){
+           return redirect()->intended("/profile/edit");
+        }
+        
+        $user_id = Auth::user()->id;
+        $lat = Auth::user()->lat;
+        $lng = Auth::user()->lng;
+        $radius = 100;
+        $users = DB::select(DB::raw("SELECT*,
+        ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
+        FROM `users` AS u
+        where u.lng AND u.lat and u.id not in 
+                                        (SELECT id FROM `users` as user WHERE user.id = {$user_id})
+        HAVING distance <= {$radius}
+        ORDER BY distance ASC"));          
+                
+        return view('home.index',compact('users'));
+    }
+
+    //move to another controller eventually
+    //change so it sends a request and not just adding friends
+    public function sendFriendReq($id)
+    {
+        $user_id = Auth::user()->id;
+        DB::table('friends')->insert(
+            ['user_id' => $user_id, 'friend_id' => $id]
+        );
+        return redirect()->intended("/home");
     }
 }
