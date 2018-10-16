@@ -49,13 +49,15 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
+        $user_id = Auth::user()->id;
         $radius = (int)$request->input('radius');
         $lat = Auth::user()->lat;
         $lng = Auth::user()->lng;
         $users = DB::select(DB::raw("SELECT*,
         ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
         FROM `users` AS u
-        where u.lng AND u.lat
+        where u.lng AND u.lat and u.id not in 
+                                        (SELECT id FROM `users` as user WHERE user.id = {$user_id})
         HAVING distance <= {$radius}
         ORDER BY distance ASC")); 
 
