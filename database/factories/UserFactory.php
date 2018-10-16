@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
     $city = $faker->city;
     $state = $faker->stateAbbr;
-    $coordinates = geocode($city." ".$state);
+    $coordinates = geocoder($city." ".$state);
 
     return [
         'name' => $faker->name,
@@ -83,4 +83,25 @@ function geocode($address){
         echo "ERROR: {$resp['status']}\n";
         return false;
     }
+}
+
+function geocoder($address)
+{
+    $geocoder = new \OpenCage\Geocoder\Geocoder('8c0bbd03698f4bdaa4e35fe38c30fbd1');
+    $result = $geocoder->geocode($address);
+    $first = $result['results'][0];
+    $lat = $first['geometry']['lat'];
+    $lng = $first['geometry']['lng'];
+
+
+    $data_arr = array();            
+             
+    array_push(
+        $data_arr, 
+            $lati, 
+            $longi, 
+            $formatted_address
+        );
+             
+    return $data_arr;
 }
