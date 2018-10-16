@@ -74,13 +74,58 @@
               <i class="fas fa-4x fa-heart text-primary mb-3 sr-icon-4"></i>
               <h3 class="mb-3">Made with Love</h3>
               <p class="text-muted mb-0">You have to make your websites with love these days!</p>
+              <button type="submit" class="btn btn-primary" onclick="geocode()">Update</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    
+    <script>
+          // Call Geocode
+          //geocode()
+          function geocode(){
+            /*var location = document.getElementById("city").value+" "+document.getElementById("state").value;
+            //alert(location);
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+              params:{
+                address:location,
+                key:: "8c0bbd03698f4bdaa4e35fe38c30fbd1",
+                //key: '{{env('GOOGLE_API_KEY')}}',
+              }
+              */
+              //var location = document.getElementById("city").value+" "+document.getElementById("state").value;
+              axios.get('https://api.opencagedata.com/geocode/v1/json?q=Benton+IL&key=8c0bbd03698f4bdaa4e35fe38c30fbd1')
+            }
+
+            .then(function(response){
+              //Log full response
+              console.log(response)
+
+              //Lat
+              var lat = response.data.results[0].geometry.location.lat;
+              console.log(lat);              
+              document.getElementById("lat").value = lat;              
+                  
+              
+              //lng
+              var lng = response.data.results[0].geometry.location.lng;
+              console.log(lng);              
+              document.getElementById("lng").value = lng;
+                
+
+            })
+            .catch(function(error){
+              console.log(error);
+            });
+                        
+ 
+            if(document.getElementById("lat").value != ""){
+              document.getElementById("update").submit();
+            }                                                           
+          }
+</script>
+
 
     
 

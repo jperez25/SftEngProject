@@ -10,7 +10,7 @@
 
     @guest @else
       <li>
-        <a class="navbar-brand" href="{{ route('profile.index') }}">
+        <a class="navbar-brand" href="{{ route('home') }}">
                 Home
         </a>
       </li>

@@ -36,12 +36,12 @@ class HomeController extends Controller
         $lat = Auth::user()->lat;
         $lng = Auth::user()->lng;
         $radius = 25;
-         $users = DB::select(DB::raw("SELECT*,
+        $users = DB::select(DB::raw("SELECT*,
         ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
         FROM `users` AS u
         where u.lng AND u.lat
         HAVING distance <= {$radius}
-        ORDER BY distance ASC"));      
+        ORDER BY distance ASC"));       
                 
         return view('home.index',compact('users'));
     }
@@ -59,8 +59,7 @@ class HomeController extends Controller
 
         return view('home.index' , compact('users'));
     }
-    //move to another controller eventually
-    //change so it sends a request and not just adding friends
+  
     public function sendFriendReq($id)
     {
         $user_id = Auth::user()->id;
