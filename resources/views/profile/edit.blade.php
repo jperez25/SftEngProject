@@ -125,7 +125,7 @@
       {{Form::close()}}
       <div>
         <div class = "col-3">
-            <a href="{{route('profile.index')}}"><button class="btn btn-danger">Cancel</button></a>
+            <a href="{{route('profile.index')}}"><button type="button" class="btn btn-danger">Cancel</button></a>
         </div>
 
       </div>
