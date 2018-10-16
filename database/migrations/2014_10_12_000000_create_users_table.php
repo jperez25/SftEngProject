@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             //change to longblob
-            $table->binary('userPicture')->nullable();
             $table->string('userPictureType')->nullable();
             $table->string('name');            
             $table->string('email')->unique();
@@ -31,8 +30,6 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->text('child_bio')->nullable();
             $table->integer('parent_age')->nullable();
-            $table->decimal('lat')->nullable();  
-            $table->decimal('lng')->nullable();
         });
     }
 
