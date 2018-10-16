@@ -72,12 +72,11 @@ class ProfileController extends Controller
         $city = $request->input('city');
         $state = $request->input('state');
         $child_age = $request->input('child_age');
-        $lat = $request->input('lat');
-        $lng = $request->input('lng'); 
-        
-        //dd($lat);
-         
-            
+        $geocoder = new \OpenCage\Geocoder\Geocoder('8c0bbd03698f4bdaa4e35fe38c30fbd1');
+        $result = $geocoder->geocode($city . ' ' . $state);
+        $first = $result['results'][0];
+        $lat = $first['geometry']['lat'];
+        $lng = $first['geometry']['lng'];
         //$level = 1;        
         
         

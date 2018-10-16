@@ -120,7 +120,7 @@
 
       <div class = "row">
         <div class="col-3">
-          <button type="submit" class="btn btn-primary" onclick="geocode()">Update</button>          
+          <button type="submit" class="btn btn-primary">Update</button>          
       </div>
       {{Form::close()}}
       <div>
@@ -133,20 +133,18 @@
 
 
 <script>
+  /*
           // Call Geocode
           //geocode()
           function geocode(){
-            /*var location = document.getElementById("city").value+" "+document.getElementById("state").value;
+            var location = document.getElementById("city").value+" "+document.getElementById("state").value;
             //alert(location);
             axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
               params:{
                 address:location,
-                key:: "8c0bbd03698f4bdaa4e35fe38c30fbd1",
-                //key: '{{env('GOOGLE_API_KEY')}}',
+                key: '{{env('GOOGLE_API_KEY')}}',
               }
-              */
               var location = document.getElementById("city").value+" "+document.getElementById("state").value;
-              axios.get('https://api.opencagedata.com/geocode/v1/json?q=' + location +'&key=8c0bbd03698f4bdaa4e35fe38c30fbd1')
             }
 
             .then(function(response){
@@ -163,8 +161,6 @@
               var lng = response.data.results[0].geometry.location.lng;
               console.log(lng);              
               document.getElementById("lng").value = lng;
-                
-
             })
             .catch(function(error){
               console.log(error);
@@ -175,6 +171,7 @@
               document.getElementById("update").submit();
             }                                                           
           }
+          */
 </script>
 
 @endsection
