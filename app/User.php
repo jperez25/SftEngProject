@@ -47,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-        public function friendsOfMine() {
+    public function friendsOfMine() {
         return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
     }
 
