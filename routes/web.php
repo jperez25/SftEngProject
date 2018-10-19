@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', 'Controller@index')->name('index');
 
 Auth::routes(['verify' => true]);
 
@@ -27,6 +25,7 @@ Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
 Route::get('/friendrequest/{userID}', 'HomeController@sendFriendReq');
+Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq');
 Route::post('/home','HomeController@search');
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');

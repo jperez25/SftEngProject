@@ -72,4 +72,13 @@ class HomeController extends Controller
         );
         return redirect()->intended("/home");
     }
+
+    public function acceptFriendReq($id)
+    {
+        $user_id = Auth::user()->id;
+        DB::table('friends')->where(
+            ['user_id' => $id, 'friend_id' => $user_id]
+        )->update(['accepted'=>1]);
+        return redirect()->intended("/home");
+    }
 }

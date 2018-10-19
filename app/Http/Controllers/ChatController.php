@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Chat;
 use App\User;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -16,7 +17,15 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $friends = Auth::user()->friends();
+        //$friends = Auth::user()->friends();
+        $friends = DB::select( '
+            select * from playdates_r_us.users
+            where id in (
+                    select user_id from playdates_r_us.friends
+                    where accepted  = 1 and (user_id  = ' .Auth::user()->id.' or friend_id = ' . Auth::user()->id . ')
+            );
+        ');        
+        
         return view('chat.index')->withFriends($friends);
     }
 

@@ -8,16 +8,22 @@
                 <div class="panel-heading">
                     List of all Friends
                 </div>
-                @forelse ($friends as $friend)
-                    <a href="{{ route('chat.show', $friend->id) }}" class="panel-block" style="justify-content: space-between;">
-                        <div>{{ $friend->name }}</div>
-                        <onlineuser v-bind:friend="{{ $friend }}" v-bind:onlineusers="onlineUsers"></onlineuser>
-                    </a>
-                @empty
+                @if(sizeof($friends))
+                    @forelse ($friends as $friend)
+                        <a href="{{ route('chat.show', $friend->id) }}" class="panel-block" style="justify-content: space-between;">
+                            <div>{{ $friend->name }}</div>
+                            <onlineuser v-bind:friend="{{ $friend->id }}" v-bind:onlineusers="onlineUsers"></onlineuser>                            
+                        </a>
+                    @empty
+                        <div class="panel-block">
+                            You don't have any friends
+                        </div>
+                    @endforelse
+                @else
                     <div class="panel-block">
                         You don't have any friends
                     </div>
-                @endforelse
+                @endif
             </div>
         </div>
     </div>
