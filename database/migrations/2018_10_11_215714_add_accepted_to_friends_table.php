@@ -25,8 +25,6 @@ class AddAcceptedToFriendsTable extends Migration
      */
     public function down()
     {
-        Schema::table('friends', function (Blueprint $table) {
-            //
-        });
+        
     }
 }
