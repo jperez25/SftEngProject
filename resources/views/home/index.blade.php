@@ -7,7 +7,7 @@
                   {{ csrf_field() }}
                 <div>
                   <p>Radius for PlayDates</p>  
-                  <input type="range" min="1" max="100" value="50" id="radius" name="radius">
+                  <input type="range" min="1" max="100" value="{{$radius}}" id="radius" name="radius">
                   <p>Radius: <span id="value"></span></p>
                 </div>
                 <div>
