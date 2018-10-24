@@ -11,24 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', 'Controller@index')->name('index');
 
+#Auth and verification routes
 Auth::routes(['verify' => true]);
-
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-
+#Profile Routes
 Route::get('/profile', 'ProfileController@index')->middleware('auth')->name('profile.index');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::resource('profile', 'ProfileController')->middleware('auth');
-
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
-Route::get('/friendrequest/{userID}', 'HomeController@sendFriendReq');
 
-Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
-Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
-Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
-Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
+#Route::resource('home', 'HomeController')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::post('/home','HomeController@search');
+
+
+#Friend Request Routes
+Route::get('/friendrequest/{userID}', 'HomeController@sendFriendReq');
+Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq');
+
+#Chat Routes
+//Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
+//Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
+//Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
+//Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
+Route::get('/group', 'GroupController@index')->name('group')->middleware('auth');
+Route::resource('groups', 'GroupController');
+Route::resource('conversations', 'ConversationController')->middleware('auth');
+Route::get('/conversation', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');

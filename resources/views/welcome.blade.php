@@ -6,7 +6,7 @@
     <header class="masthead">
         <div class="container" style="background-image:url('https://nerdymates.com/static/img/regular/family-essay.jpg');background-repeat: no-repeat; background-size: 100%; padding-bottom: 70px;">
             <div class="intro-text">
-            <div class="intro-lead-in">Welcome To Our plataform!</div>
+            <div class="intro-lead-in">Welcome To Our Plataform!</div>
             <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{route('register')}}">Sign Up!</a>
             </div>

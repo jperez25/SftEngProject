@@ -13,7 +13,8 @@
         "laravelcollective/html": "^5.7",
         "nahid/talk": "^2.2",
         "opencage/geocode": "^2.0",
-        "orangehill/iseed": "dev-master"
+        "orangehill/iseed": "dev-master",
+        "pusher/pusher-php-server": "^3.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

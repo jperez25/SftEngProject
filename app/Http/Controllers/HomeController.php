@@ -36,26 +36,49 @@ class HomeController extends Controller
         $user_id = Auth::user()->id;
         $lat = Auth::user()->lat;
         $lng = Auth::user()->lng;
-        $radius = 100;
+        $radius = 50;
         $users = DB::select(DB::raw("SELECT*,
         ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
         FROM `users` AS u
         where u.lng AND u.lat and u.id not in 
                                         (SELECT id FROM `users` as user WHERE user.id = {$user_id})
         HAVING distance <= {$radius}
-        ORDER BY distance ASC"));          
+        ORDER BY distance ASC"));       
                 
-        return view('home.index',compact('users'));
+        return view('home.index',compact('users', 'radius'));
     }
+    public function search(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $radius = (int)$request->input('radius');
+        $lat = Auth::user()->lat;
+        $lng = Auth::user()->lng;
+        $users = DB::select(DB::raw("SELECT*,
+        ( 3959 * acos( cos( radians({$lat}) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians({$lng}) ) + sin( radians({$lat}) ) * sin( radians( `lat` ) ) ) ) AS distance
+        FROM `users` AS u
+        where u.lng AND u.lat and u.id not in 
+                                        (SELECT id FROM `users` as user WHERE user.id = {$user_id})
+        HAVING distance <= {$radius}
+        ORDER BY distance ASC")); 
 
-    //move to another controller eventually
-    //change so it sends a request and not just adding friends
+        return view('home.index' , compact('users', 'radius'));
+    }
+  
     public function sendFriendReq($id)
     {
         $user_id = Auth::user()->id;
         DB::table('friends')->insert(
             ['user_id' => $user_id, 'friend_id' => $id]
         );
+        return redirect()->intended("/home");
+    }
+
+    public function acceptFriendReq($id)
+    {
+        $user_id = Auth::user()->id;
+        DB::table('friends')->where(
+            ['user_id' => $id, 'friend_id' => $user_id]
+        )->update(['accepted'=>1]);
         return redirect()->intended("/home");
     }
 }

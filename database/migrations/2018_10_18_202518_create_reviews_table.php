@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFriendsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateFriendsTable extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            //User 1 = user that is sending the friend request
+            //User 1 = reviewer
             $table->integer('user1_id')->unsigned();
             $table->foreign('user1_id')->references('id')->on('users');
-            //User 2 = user that is receiving the friend request
+            //User 2 = User being reviewed
             $table->integer('user2_id')->unsigned();
             $table->foreign('user2_id')->references('id')->on('users');
+            $table->integer('rating');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateFriendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('reviews');
     }
 }
