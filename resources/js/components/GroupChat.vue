@@ -23,7 +23,9 @@
                             </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
-                                    <strong class="primary-font" >{{  conversation.user.name }}</strong>
+                                    <strong v-if= conversation.name class="primary-font" >{{  conversation.name }}</strong>
+
+                                    <strong v-else class="primary-font" >{{  conversation.user.name }}</strong>
                                 </div>
                                 <p>
                                     {{ conversation.message }}
@@ -74,7 +76,7 @@
                 });
             },
             getMessage() {
-                axios.get('/conversation', {message: this.message, group_id: this.group.id})
+                axios.get('/conversation/' + this.group.id, {message: this.message, group_id: this.group.id})
                 .then((response) => {
                     console.log(response.data);
                     this.message = '';
@@ -84,7 +86,7 @@
                             
                             this.conversations.push(response.data[key]);
                         };
-                    console.log(this.conversations);  
+                    //console.log(this.group_id);  
                 });
                 /*$.ajax({
                     headers: {

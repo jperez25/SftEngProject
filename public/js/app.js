@@ -59539,6 +59539,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59570,7 +59572,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMessage: function getMessage() {
             var _this2 = this;
 
-            axios.get('/conversation', { message: this.message, group_id: this.group.id }).then(function (response) {
+            axios.get('/conversation/' + this.group.id, { message: this.message, group_id: this.group.id }).then(function (response) {
                 console.log(response.data);
                 _this2.message = '';
                 for (var key in response.data) {
@@ -59579,7 +59581,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     _this2.conversations.push(response.data[key]);
                 };
-                console.log(_this2.conversations);
+                //console.log(this.group_id);  
             });
             /*$.ajax({
                 headers: {
@@ -59665,9 +59667,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "chat-body clearfix" }, [
                     _c("div", { staticClass: "header" }, [
-                      _c("strong", { staticClass: "primary-font" }, [
-                        _vm._v(_vm._s(conversation.user.name))
-                      ])
+                      conversation.name
+                        ? _c("strong", { staticClass: "primary-font" }, [
+                            _vm._v(_vm._s(conversation.name))
+                          ])
+                        : _c("strong", { staticClass: "primary-font" }, [
+                            _vm._v(_vm._s(conversation.user.name))
+                          ])
                     ]),
                     _vm._v(" "),
                     _c("p", [
