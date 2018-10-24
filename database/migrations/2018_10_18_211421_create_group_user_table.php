@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVerifyUsersTable extends Migration
+class CreateGroupUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateVerifyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('verify_users', function (Blueprint $table) {
-            $table->increments('user_id');
+        Schema::create('group_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('token');
+            $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateVerifyUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('verify_users');
+        Schema::dropIfExists('user_to_groups');
     }
 }

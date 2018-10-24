@@ -40,8 +40,8 @@ class FriendController extends Controller
 
         // add to database
         $friend = new Friend;
-        $friend->user_id = Auth::user()->id;
-        $friend->friend_id = $request->friend_id;
+        $friend->user1_id = Auth::user()->id;
+        $friend->user2_id = $request->user2_id;
         $friend->save();
 
         // success message and return

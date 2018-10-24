@@ -11,7 +11,7 @@
     <!-- Scripts -->    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+    <!--<script src='https://unpkg.com/axios/dist/axios.min.js'></script>-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -24,7 +24,8 @@
     <!-- For Login page -->
     <link rel="stylesheet" href="{{ URL::asset('css/login.css') }}">
     
-
+    <!-- Favicon -->    
+    <link rel="shortcut icon" href="{{ URL::asset('images/PdRUs_Icon.png') }}" >
     
     
 

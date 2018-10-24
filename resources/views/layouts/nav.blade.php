@@ -30,6 +30,43 @@
         <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> {{ __('Sign up') }}</a></li>
         <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ __('Login') }}</a></li>
       @else
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="glyphicon glyphicon-user"></span>
+              <span class="badge">{{sizeof($friendRequests)}}</span>
+          </a>
+
+          <ul class="dropdown-menu">
+            @foreach($friendRequests as $req)            
+              <li>
+                <div class="container">
+                  <div class="col-sm-6">
+                    {{$req->name}}
+                  </div>
+                  <div class="col-sm-4">
+                    <a href="acceptFriendReq/{{$req->id}}"><button type="button" class="btn btn-success">Add friend</button></a> 
+                  </div>             
+                </div>
+              </li>
+            @endforeach
+              
+          </ul>
+
+      </li>
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="glyphicon glyphicon-envelope"></span>
+              <span class="badge">1</span>
+          </a>
+
+          <ul class="dropdown-menu">
+
+          </ul>
+
+      </li>
+
+      </li>
+
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
               @if(Auth::user()->isAdmin())
@@ -40,7 +77,7 @@
                 </li>
               @endif
               <li>
-                  <a class="dropdown-item" href="{{ route('chat.index') }}">
+                  <a class="dropdown-item" href="{{ route('group') }}">
                           {{ __('Chat') }}
                   </a>
               </li>
