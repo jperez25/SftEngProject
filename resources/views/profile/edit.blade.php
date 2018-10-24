@@ -18,7 +18,7 @@
       <div class="form-group">
         <div class = "row">
           <div class="col-3">
-            <label for="userPicture">Profile Picture</label>
+            <label for="user_picture">Profile Picture</label>
             <input type="file" name="image" >
           </div>
         </div>

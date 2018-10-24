@@ -68,7 +68,7 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
         DB::table('friends')->insert(
-            ['user_id' => $user_id, 'friend_id' => $id]
+            ['user1_id' => $user_id, 'user2_id' => $id]
         );
         return redirect()->intended("/home");
     }
@@ -77,7 +77,7 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
         DB::table('friends')->where(
-            ['user_id' => $id, 'friend_id' => $user_id]
+            ['user1_id' => $id, 'user2_id' => $user_id]
         )->update(['accepted'=>1]);
         return redirect()->intended("/home");
     }
