@@ -21,7 +21,7 @@ class GroupController extends Controller
         //$friends = Auth::user()->friends();
         $friends = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
             (SELECT user1_id FROM friends
-             WHERE accepted = 1 AND user1_id = " . Auth::user()->id ." OR user2_id = " . Auth::user()->id . ")"
+             WHERE accepted = 1 AND (user1_id = " . Auth::user()->id ." OR user2_id = " . Auth::user()->id . "))"
          ));       
         
         
