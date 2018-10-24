@@ -11,17 +11,22 @@
             </div>
             <div class="panel-collapse collapse" :id="'collapseOne-' + group.id">
                 <div class="panel-body chat-panel">
-                    <ul class="chat">
-                        <li v-for="conversation in conversations">
-                        <!-- <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                        </span> -->
+                    <ul style="list-style-type:none" class="chat">
+                        <li v-for="conversation in conversations" :key="conversation.id">
+                            <span class="chat-img pull-left">
+                               <!-- @if(Auth::user()->userPicture)
+                                    <img src= "data:{{Auth::user()->userPictureType}};base64,{{Auth::user()->userPicture}}" width="50" height="50" alt="User Avatar" class="img-circle" />
+                                @else
+                                    <img src="{{ URL::to('/') }}/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
+                                @endif-->
+                                <img src="/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
-                                    <strong class="primary-font">{{ conversation.user.name }}</strong>
+                                    <strong class="primary-font" >{{  conversation.user.name }}</strong>
                                 </div>
                                 <p>
-                                    <!--{{ conversation.message }}-->
+                                    {{ conversation.message }}
                                 </p>
                             </div>
                         </li>
@@ -55,22 +60,60 @@
 
         mounted() {
             this.listenForNewMessage();
+
+            this.getMessage();
         },
 
         methods: {
             store() {
                 axios.post('/conversations', {message: this.message, group_id: this.group.id})
                 .then((response) => {
-                console.log(response);
+                    console.log(this.conversations);                   
                     this.message = '';
                     this.conversations.push(response.data);
                 });
             },
-
+            getMessage() {
+                axios.get('/conversation', {message: this.message, group_id: this.group.id})
+                .then((response) => {
+                    console.log(response.data);
+                    this.message = '';
+                    for (var key in response.data) {
+                            //alert(response.data[key]);
+                            
+                            
+                            this.conversations.push(response.data[key]);
+                        };
+                    console.log(this.conversations);  
+                });
+                /*$.ajax({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '/conversation',
+                    dataType : 'json',
+                    type: 'GET',
+                    data: {group_id: this.group.id},
+                    contentType: false,
+                    processData: false,
+                    success:function(response) {
+                        console.log(response);
+                        
+                        for (var data in response) {
+                            alert(this.conversations);
+                            
+                            
+                            //this.conversations.push(data);
+                        };
+                        
+                    }
+                });*/
+            },
+            
             listenForNewMessage() {
                 Echo.private('groups.' + this.group.id)
                     .listen('NewMessage', (e) => {
-                        // console.log(e);
+                        console.log(e);
                         this.conversations.push(e);
                     });
             }

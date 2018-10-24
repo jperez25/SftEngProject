@@ -24,7 +24,8 @@
     <!-- For Login page -->
     <link rel="stylesheet" href="{{ URL::asset('css/login.css') }}">
     
-
+    <!-- Favicon -->    
+    <link rel="shortcut icon" href="{{ URL::asset('images/PdRUs_Icon.png') }}" >
     
     
 

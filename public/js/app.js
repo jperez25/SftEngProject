@@ -13995,7 +13995,6 @@ module.exports = __webpack_require__(52);
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59535,6 +59534,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59548,6 +59552,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.listenForNewMessage();
+
+        this.getMessage();
     },
 
 
@@ -59556,16 +59562,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/conversations', { message: this.message, group_id: this.group.id }).then(function (response) {
+                console.log(_this.conversations);
                 _this.message = '';
                 _this.conversations.push(response.data);
             });
         },
-        listenForNewMessage: function listenForNewMessage() {
+        getMessage: function getMessage() {
             var _this2 = this;
 
+            axios.get('/conversation', { message: this.message, group_id: this.group.id }).then(function (response) {
+                console.log(response.data);
+                _this2.message = '';
+                for (var key in response.data) {
+                    //alert(response.data[key]);
+
+
+                    _this2.conversations.push(response.data[key]);
+                };
+                console.log(_this2.conversations);
+            });
+            /*$.ajax({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/conversation',
+                dataType : 'json',
+                type: 'GET',
+                data: {group_id: this.group.id},
+                contentType: false,
+                processData: false,
+                success:function(response) {
+                    console.log(response);
+                    
+                    for (var data in response) {
+                        alert(this.conversations);
+                        
+                        
+                        //this.conversations.push(data);
+                    };
+                    
+                }
+            });*/
+        },
+        listenForNewMessage: function listenForNewMessage() {
+            var _this3 = this;
+
             Echo.private('groups.' + this.group.id).listen('NewMessage', function (e) {
-                // console.log(e);
-                _this2.conversations.push(e);
+                console.log(e);
+                _this3.conversations.push(e);
             });
         }
     }
@@ -59611,9 +59655,14 @@ var render = function() {
           _c("div", { staticClass: "panel-body chat-panel" }, [
             _c(
               "ul",
-              { staticClass: "chat" },
+              {
+                staticClass: "chat",
+                staticStyle: { "list-style-type": "none" }
+              },
               _vm._l(_vm.conversations, function(conversation) {
-                return _c("li", [
+                return _c("li", { key: conversation.id }, [
+                  _vm._m(0, true),
+                  _vm._v(" "),
                   _c("div", { staticClass: "chat-body clearfix" }, [
                     _c("div", { staticClass: "header" }, [
                       _c("strong", { staticClass: "primary-font" }, [
@@ -59695,7 +59744,24 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "chat-img pull-left" }, [
+      _c("img", {
+        staticClass: "img-circle",
+        attrs: {
+          src: "/images/blankProfile.png",
+          width: "50",
+          height: "50",
+          alt: "User Avatar"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

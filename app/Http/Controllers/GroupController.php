@@ -7,6 +7,7 @@ use App\Group;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use DB;
 
 class GroupController extends Controller
 {
@@ -17,9 +18,21 @@ class GroupController extends Controller
      */
     public function index()
     {
+        //$friends = Auth::user()->friends();
+       $friends = DB::select( '
+            select * from playdates_r_us.users
+            where id in (
+                    select user1_id from playdates_r_us.friends
+                    where accepted  = 1 and (user1_id  = ' .Auth::user()->id.' or user2_id = ' . Auth::user()->id . ')
+            );
+        ');        
+        
+        //return view('chat.index')->withFriends($friends);
+        
         $groups = auth()->user()->groups;
 
-        $users = User::where('id', '!=', Auth::id())->get();
+        $users = collect($friends);
+        
         $user = auth()->user();
 
         return view('group', ['groups' => $groups, 'users' => $users, 'user' => $user]);

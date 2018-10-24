@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Conversation;
 use App\Events\NewMessage;
 use Illuminate\Http\Request;
+use DB;
+use App\User;
 
 class ConversationController extends Controller
 {
@@ -15,9 +17,18 @@ class ConversationController extends Controller
             'group_id' => request('group_id'),
             'user_id' => auth()->user()->id,
         ]);
-
+        
         broadcast(new NewMessage($conversation))->toOthers();
+        
 
         return $conversation->load('user');
+    }
+
+    public function getMessage()
+    {
+        $conversations = Conversation::all();
+        $user = User::all();
+
+        return $conversations->load('user');
     }
 }
