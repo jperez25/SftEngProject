@@ -40,4 +40,4 @@ Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq');
 Route::get('/group', 'GroupController@index')->name('group')->middleware('auth');
 Route::resource('groups', 'GroupController');
 Route::resource('conversations', 'ConversationController')->middleware('auth');
-Route::get('/conversation', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');
+Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');
