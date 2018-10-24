@@ -24,6 +24,7 @@ class GroupController extends Controller
              WHERE accepted = 1 AND user1_id = " . Auth::user()->id ." OR user2_id = " . Auth::user()->id . ")"
          ));       
         
+        
         //return view('chat.index')->withFriends($friends);
         
         $groups = auth()->user()->groups;
