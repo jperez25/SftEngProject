@@ -34,16 +34,13 @@ class AppServiceProvider extends ServiceProvider
             $id = Auth::id();
         }
 
-        $friendRequests = DB::select( '
-            select * from playdates_r_us.users
-            where id in (
-                    select user1_id from playdates_r_us.friends
-                    where accepted  = 0 and user1_id  != ' . $id .
-            ');'
-        );
-
+        $friendRequests = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
+            (SELECT user1_id FROM friends
+             WHERE accepted = 0 AND user1_id != " . $id . ")"
+         )); 
+         
         view()->share('friendRequests', $friendRequests);
-
+        
         
 
         

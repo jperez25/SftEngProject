@@ -14,8 +14,8 @@
                     <ul style="list-style-type:none" class="chat">
                         <li v-for="conversation in conversations" :key="conversation.id">
                             <span class="chat-img pull-left">
-                               <!-- @if(Auth::user()->userPicture)
-                                    <img src= "data:{{Auth::user()->userPictureType}};base64,{{Auth::user()->userPicture}}" width="50" height="50" alt="User Avatar" class="img-circle" />
+                               <!-- @if(Auth::user()->user_picture)
+                                    <img src= "data:{{Auth::user()->user_picture_type}};base64,{{Auth::user()->user_picture}}" width="50" height="50" alt="User Avatar" class="img-circle" />
                                 @else
                                     <img src="{{ URL::to('/') }}/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
                                 @endif-->

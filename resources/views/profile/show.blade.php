@@ -2,8 +2,8 @@
 
 
 @section('content')
-@if($user->userPicture)
-    <img src= "data:{{$user->userPictureType}};base64,{{Auth::user()->userPicture}}" height="100" width="100">
+@if($user->user_picture)
+    <img src= "data:{{$user->user_picture_type}};base64,{{Auth::user()->user_picture}}" height="100" width="100">
 @else
     <img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
 @endif

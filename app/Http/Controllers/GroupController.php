@@ -19,13 +19,10 @@ class GroupController extends Controller
     public function index()
     {
         //$friends = Auth::user()->friends();
-       $friends = DB::select( '
-            select * from playdates_r_us.users
-            where id in (
-                    select user1_id from playdates_r_us.friends
-                    where accepted  = 1 and (user1_id  = ' .Auth::user()->id.' or user2_id = ' . Auth::user()->id . ')
-            );
-        ');        
+        $friends = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
+            (SELECT user1_id FROM friends
+             WHERE accepted = 1 AND user1_id = " . Auth::user()->id ." OR user2_id = " . Auth::user()->id . ")"
+         ));       
         
         //return view('chat.index')->withFriends($friends);
         
