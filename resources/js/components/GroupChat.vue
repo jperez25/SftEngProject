@@ -11,7 +11,7 @@
             </div>
             <div class="panel-collapse collapse" :id="'collapseOne-' + group.id">
                 <div class="panel-body chat-panel">
-                    <ul class="chat">
+                    <ul style="list-style-type:none" class="chat">
                         <li v-for="conversation in conversations" :key="conversation.id">
                             <span class="chat-img pull-left">
                                <!-- @if(Auth::user()->userPicture)

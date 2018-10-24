@@ -59655,7 +59655,10 @@ var render = function() {
           _c("div", { staticClass: "panel-body chat-panel" }, [
             _c(
               "ul",
-              { staticClass: "chat" },
+              {
+                staticClass: "chat",
+                staticStyle: { "list-style-type": "none" }
+              },
               _vm._l(_vm.conversations, function(conversation) {
                 return _c("li", { key: conversation.id }, [
                   _vm._m(0, true),
