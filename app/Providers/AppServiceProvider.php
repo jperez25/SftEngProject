@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
         $friendRequests = DB::select( '
             select * from playdates_r_us.users
             where id in (
-                    select user_id from playdates_r_us.friends
-                    where accepted  = 0 and user_id  != ' . $id .
+                    select user1_id from playdates_r_us.friends
+                    where accepted  = 0 and user1_id  != ' . $id .
             ');'
         );
 

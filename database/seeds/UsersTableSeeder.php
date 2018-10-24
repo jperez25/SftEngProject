@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Delmer Gleason III',
                 'email' => 'rerdman@example.org',
                 'verified' => 1,
@@ -42,8 +42,8 @@ class UsersTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Darrick Cummerata',
                 'email' => 'bergnaum.ted@example.com',
                 'verified' => 1,
@@ -64,8 +64,8 @@ class UsersTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 3,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ceasar Hamill',
                 'email' => 'johnston.johan@example.net',
                 'verified' => 1,
@@ -86,8 +86,8 @@ class UsersTableSeeder extends Seeder
             3 => 
             array (
                 'id' => 4,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Wendell Rice',
                 'email' => 'audra24@example.org',
                 'verified' => 1,
@@ -108,8 +108,8 @@ class UsersTableSeeder extends Seeder
             4 => 
             array (
                 'id' => 5,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Reynold Marquardt III',
                 'email' => 'ifriesen@example.net',
                 'verified' => 1,
@@ -130,8 +130,8 @@ class UsersTableSeeder extends Seeder
             5 => 
             array (
                 'id' => 6,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Alexandrea Emmerich',
                 'email' => 'kihn.bertram@example.com',
                 'verified' => 1,
@@ -152,8 +152,8 @@ class UsersTableSeeder extends Seeder
             6 => 
             array (
                 'id' => 7,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Frankie Buckridge',
                 'email' => 'destini06@example.net',
                 'verified' => 1,
@@ -174,8 +174,8 @@ class UsersTableSeeder extends Seeder
             7 => 
             array (
                 'id' => 8,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Bill Jaskolski IV',
                 'email' => 'ecollier@example.com',
                 'verified' => 1,
@@ -196,8 +196,8 @@ class UsersTableSeeder extends Seeder
             8 => 
             array (
                 'id' => 9,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Miss Laurine Johns Sr.',
                 'email' => 'wlemke@example.org',
                 'verified' => 1,
@@ -218,8 +218,8 @@ class UsersTableSeeder extends Seeder
             9 => 
             array (
                 'id' => 10,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Charlie Kessler',
                 'email' => 'farrell.velva@example.org',
                 'verified' => 1,
@@ -240,8 +240,8 @@ class UsersTableSeeder extends Seeder
             10 => 
             array (
                 'id' => 11,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'King Donnelly MD',
                 'email' => 'srogahn@example.com',
                 'verified' => 1,
@@ -262,8 +262,8 @@ class UsersTableSeeder extends Seeder
             11 => 
             array (
                 'id' => 12,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Kelli Wunsch',
                 'email' => 'owalter@example.net',
                 'verified' => 1,
@@ -284,8 +284,8 @@ class UsersTableSeeder extends Seeder
             12 => 
             array (
                 'id' => 13,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Oswaldo Schmitt DDS',
                 'email' => 'xwindler@example.net',
                 'verified' => 1,
@@ -306,8 +306,8 @@ class UsersTableSeeder extends Seeder
             13 => 
             array (
                 'id' => 14,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Christ Wuckert',
                 'email' => 'carmen.schiller@example.org',
                 'verified' => 1,
@@ -328,8 +328,8 @@ class UsersTableSeeder extends Seeder
             14 => 
             array (
                 'id' => 15,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Antwan Huel',
                 'email' => 'bergstrom.leland@example.net',
                 'verified' => 1,
@@ -350,8 +350,8 @@ class UsersTableSeeder extends Seeder
             15 => 
             array (
                 'id' => 16,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Forest Ruecker',
                 'email' => 'lauretta75@example.net',
                 'verified' => 1,
@@ -372,8 +372,8 @@ class UsersTableSeeder extends Seeder
             16 => 
             array (
                 'id' => 17,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mabel Schamberger MD',
                 'email' => 'elouise29@example.net',
                 'verified' => 1,
@@ -394,8 +394,8 @@ class UsersTableSeeder extends Seeder
             17 => 
             array (
                 'id' => 18,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Malcolm Hudson DDS',
                 'email' => 'alana50@example.net',
                 'verified' => 1,
@@ -416,8 +416,8 @@ class UsersTableSeeder extends Seeder
             18 => 
             array (
                 'id' => 19,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Frieda Lowe',
                 'email' => 'vivienne04@example.org',
                 'verified' => 1,
@@ -438,8 +438,8 @@ class UsersTableSeeder extends Seeder
             19 => 
             array (
                 'id' => 20,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Murl Lang',
                 'email' => 'seth37@example.com',
                 'verified' => 1,
@@ -460,8 +460,8 @@ class UsersTableSeeder extends Seeder
             20 => 
             array (
                 'id' => 21,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Audreanne Johns DVM',
                 'email' => 'angelo.mosciski@example.net',
                 'verified' => 1,
@@ -482,8 +482,8 @@ class UsersTableSeeder extends Seeder
             21 => 
             array (
                 'id' => 22,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Kaley Bernier',
                 'email' => 'jace10@example.org',
                 'verified' => 1,
@@ -504,8 +504,8 @@ class UsersTableSeeder extends Seeder
             22 => 
             array (
                 'id' => 23,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Fausto Berge DDS',
                 'email' => 'hoeger.jerad@example.com',
                 'verified' => 1,
@@ -526,8 +526,8 @@ class UsersTableSeeder extends Seeder
             23 => 
             array (
                 'id' => 24,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Junius Tillman',
                 'email' => 'rippin.kianna@example.org',
                 'verified' => 1,
@@ -548,8 +548,8 @@ class UsersTableSeeder extends Seeder
             24 => 
             array (
                 'id' => 25,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Raul Renner',
                 'email' => 'alec21@example.org',
                 'verified' => 1,
@@ -570,8 +570,8 @@ class UsersTableSeeder extends Seeder
             25 => 
             array (
                 'id' => 26,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Nico Yundt',
                 'email' => 'zmurray@example.com',
                 'verified' => 1,
@@ -592,8 +592,8 @@ class UsersTableSeeder extends Seeder
             26 => 
             array (
                 'id' => 27,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ola Reinger',
                 'email' => 'krista04@example.org',
                 'verified' => 1,
@@ -614,8 +614,8 @@ class UsersTableSeeder extends Seeder
             27 => 
             array (
                 'id' => 28,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Gaylord Jast DVM',
                 'email' => 'zhahn@example.org',
                 'verified' => 1,
@@ -636,8 +636,8 @@ class UsersTableSeeder extends Seeder
             28 => 
             array (
                 'id' => 29,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Solon Veum',
                 'email' => 'graciela.schaefer@example.net',
                 'verified' => 1,
@@ -658,8 +658,8 @@ class UsersTableSeeder extends Seeder
             29 => 
             array (
                 'id' => 30,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Dameon Stanton III',
                 'email' => 'mann.brandy@example.com',
                 'verified' => 1,
@@ -680,8 +680,8 @@ class UsersTableSeeder extends Seeder
             30 => 
             array (
                 'id' => 31,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Lempi Armstrong',
                 'email' => 'neoma77@example.net',
                 'verified' => 1,
@@ -702,8 +702,8 @@ class UsersTableSeeder extends Seeder
             31 => 
             array (
                 'id' => 32,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Audra Kilback',
                 'email' => 'johnathon.thiel@example.net',
                 'verified' => 1,
@@ -724,8 +724,8 @@ class UsersTableSeeder extends Seeder
             32 => 
             array (
                 'id' => 33,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Lane Blick DDS',
                 'email' => 'bernhard.marisol@example.org',
                 'verified' => 1,
@@ -746,8 +746,8 @@ class UsersTableSeeder extends Seeder
             33 => 
             array (
                 'id' => 34,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Cristian Mayer',
                 'email' => 'sschoen@example.net',
                 'verified' => 1,
@@ -768,8 +768,8 @@ class UsersTableSeeder extends Seeder
             34 => 
             array (
                 'id' => 35,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Michelle Larkin MD',
                 'email' => 'vbergstrom@example.org',
                 'verified' => 1,
@@ -790,8 +790,8 @@ class UsersTableSeeder extends Seeder
             35 => 
             array (
                 'id' => 36,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Verna Block I',
                 'email' => 'lurline24@example.org',
                 'verified' => 1,
@@ -812,8 +812,8 @@ class UsersTableSeeder extends Seeder
             36 => 
             array (
                 'id' => 37,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Theodore Olson',
                 'email' => 'xhermiston@example.com',
                 'verified' => 1,
@@ -834,8 +834,8 @@ class UsersTableSeeder extends Seeder
             37 => 
             array (
                 'id' => 38,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Sibyl Stanton',
                 'email' => 'valerie.west@example.net',
                 'verified' => 1,
@@ -856,8 +856,8 @@ class UsersTableSeeder extends Seeder
             38 => 
             array (
                 'id' => 39,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dr. Dustin Shanahan',
                 'email' => 'kale.price@example.net',
                 'verified' => 1,
@@ -878,8 +878,8 @@ class UsersTableSeeder extends Seeder
             39 => 
             array (
                 'id' => 40,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dr. Lupe Feest DVM',
                 'email' => 'madison.monahan@example.net',
                 'verified' => 1,
@@ -900,8 +900,8 @@ class UsersTableSeeder extends Seeder
             40 => 
             array (
                 'id' => 41,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ettie Fay',
                 'email' => 'michele59@example.com',
                 'verified' => 1,
@@ -922,8 +922,8 @@ class UsersTableSeeder extends Seeder
             41 => 
             array (
                 'id' => 42,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dax Lynch',
                 'email' => 'loyal63@example.com',
                 'verified' => 1,
@@ -944,8 +944,8 @@ class UsersTableSeeder extends Seeder
             42 => 
             array (
                 'id' => 43,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Stanley Dach DDS',
                 'email' => 'rick.reichel@example.org',
                 'verified' => 1,
@@ -966,8 +966,8 @@ class UsersTableSeeder extends Seeder
             43 => 
             array (
                 'id' => 44,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dr. Geovany Quigley Jr.',
                 'email' => 'lesley61@example.org',
                 'verified' => 1,
@@ -988,8 +988,8 @@ class UsersTableSeeder extends Seeder
             44 => 
             array (
                 'id' => 45,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dr. Wade Denesik IV',
                 'email' => 'htreutel@example.org',
                 'verified' => 1,
@@ -1010,8 +1010,8 @@ class UsersTableSeeder extends Seeder
             45 => 
             array (
                 'id' => 46,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mrs. Karolann Durgan V',
                 'email' => 'retta.kemmer@example.net',
                 'verified' => 1,
@@ -1032,8 +1032,8 @@ class UsersTableSeeder extends Seeder
             46 => 
             array (
                 'id' => 47,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Lou Prohaska I',
                 'email' => 'ivah.hamill@example.net',
                 'verified' => 1,
@@ -1054,8 +1054,8 @@ class UsersTableSeeder extends Seeder
             47 => 
             array (
                 'id' => 48,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Karlee Sauer',
                 'email' => 'goldner.chloe@example.org',
                 'verified' => 1,
@@ -1076,8 +1076,8 @@ class UsersTableSeeder extends Seeder
             48 => 
             array (
                 'id' => 49,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Orlo Harris I',
                 'email' => 'rahul.conroy@example.com',
                 'verified' => 1,
@@ -1098,8 +1098,8 @@ class UsersTableSeeder extends Seeder
             49 => 
             array (
                 'id' => 50,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Jeremy Schulist',
                 'email' => 'kathryne.boyle@example.org',
                 'verified' => 1,
@@ -1120,8 +1120,8 @@ class UsersTableSeeder extends Seeder
             50 => 
             array (
                 'id' => 51,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mrs. Prudence Frami',
                 'email' => 'elinore.jakubowski@example.com',
                 'verified' => 1,
@@ -1142,8 +1142,8 @@ class UsersTableSeeder extends Seeder
             51 => 
             array (
                 'id' => 52,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Louvenia Lind',
                 'email' => 'lee24@example.net',
                 'verified' => 1,
@@ -1164,8 +1164,8 @@ class UsersTableSeeder extends Seeder
             52 => 
             array (
                 'id' => 53,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Serena Kub',
                 'email' => 'stark.lyda@example.net',
                 'verified' => 1,
@@ -1186,8 +1186,8 @@ class UsersTableSeeder extends Seeder
             53 => 
             array (
                 'id' => 54,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Kristy Bahringer',
                 'email' => 'sienna.medhurst@example.com',
                 'verified' => 1,
@@ -1208,8 +1208,8 @@ class UsersTableSeeder extends Seeder
             54 => 
             array (
                 'id' => 55,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Carissa Breitenberg',
                 'email' => 'kulas.minerva@example.net',
                 'verified' => 1,
@@ -1230,8 +1230,8 @@ class UsersTableSeeder extends Seeder
             55 => 
             array (
                 'id' => 56,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Gonzalo Schmidt I',
                 'email' => 'xokeefe@example.net',
                 'verified' => 1,
@@ -1252,8 +1252,8 @@ class UsersTableSeeder extends Seeder
             56 => 
             array (
                 'id' => 57,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Trey Orn',
                 'email' => 'bertram19@example.com',
                 'verified' => 1,
@@ -1274,8 +1274,8 @@ class UsersTableSeeder extends Seeder
             57 => 
             array (
                 'id' => 58,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mr. Jacey Simonis',
                 'email' => 'utorphy@example.org',
                 'verified' => 1,
@@ -1296,8 +1296,8 @@ class UsersTableSeeder extends Seeder
             58 => 
             array (
                 'id' => 59,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Summer Bradtke',
                 'email' => 'ruby.koch@example.com',
                 'verified' => 1,
@@ -1318,8 +1318,8 @@ class UsersTableSeeder extends Seeder
             59 => 
             array (
                 'id' => 60,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mohammed Pfeffer',
                 'email' => 'corkery.sydney@example.com',
                 'verified' => 1,
@@ -1340,8 +1340,8 @@ class UsersTableSeeder extends Seeder
             60 => 
             array (
                 'id' => 61,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Bennett Zemlak Jr.',
                 'email' => 'owen90@example.org',
                 'verified' => 1,
@@ -1362,8 +1362,8 @@ class UsersTableSeeder extends Seeder
             61 => 
             array (
                 'id' => 62,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Lavada Lakin',
                 'email' => 'taya.armstrong@example.net',
                 'verified' => 1,
@@ -1384,8 +1384,8 @@ class UsersTableSeeder extends Seeder
             62 => 
             array (
                 'id' => 63,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Kacie Zulauf',
                 'email' => 'hortense.goyette@example.com',
                 'verified' => 1,
@@ -1406,8 +1406,8 @@ class UsersTableSeeder extends Seeder
             63 => 
             array (
                 'id' => 64,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ms. Jewel Wuckert',
                 'email' => 'ccarroll@example.net',
                 'verified' => 1,
@@ -1428,8 +1428,8 @@ class UsersTableSeeder extends Seeder
             64 => 
             array (
                 'id' => 65,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mrs. Leda Hahn',
                 'email' => 'delilah03@example.net',
                 'verified' => 1,
@@ -1450,8 +1450,8 @@ class UsersTableSeeder extends Seeder
             65 => 
             array (
                 'id' => 66,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Lola Rempel',
                 'email' => 'mekhi.jacobson@example.com',
                 'verified' => 1,
@@ -1472,8 +1472,8 @@ class UsersTableSeeder extends Seeder
             66 => 
             array (
                 'id' => 67,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Santino Marquardt DDS',
                 'email' => 'kessler.carolyn@example.org',
                 'verified' => 1,
@@ -1494,8 +1494,8 @@ class UsersTableSeeder extends Seeder
             67 => 
             array (
                 'id' => 68,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Antoinette Luettgen MD',
                 'email' => 'pbogisich@example.net',
                 'verified' => 1,
@@ -1516,8 +1516,8 @@ class UsersTableSeeder extends Seeder
             68 => 
             array (
                 'id' => 69,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Carmella Bednar DDS',
                 'email' => 'friesen.faye@example.net',
                 'verified' => 1,
@@ -1538,8 +1538,8 @@ class UsersTableSeeder extends Seeder
             69 => 
             array (
                 'id' => 70,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Vilma Fahey',
                 'email' => 'ckuvalis@example.org',
                 'verified' => 1,
@@ -1560,8 +1560,8 @@ class UsersTableSeeder extends Seeder
             70 => 
             array (
                 'id' => 71,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Miss Shirley Schaefer V',
                 'email' => 'rosalinda89@example.org',
                 'verified' => 1,
@@ -1582,8 +1582,8 @@ class UsersTableSeeder extends Seeder
             71 => 
             array (
                 'id' => 72,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Dr. Glenna Nolan DDS',
                 'email' => 'jason95@example.com',
                 'verified' => 1,
@@ -1604,8 +1604,8 @@ class UsersTableSeeder extends Seeder
             72 => 
             array (
                 'id' => 73,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Jennyfer Gutkowski PhD',
                 'email' => 'etha.ryan@example.com',
                 'verified' => 1,
@@ -1626,8 +1626,8 @@ class UsersTableSeeder extends Seeder
             73 => 
             array (
                 'id' => 74,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Margaret Parisian',
                 'email' => 'ludie03@example.org',
                 'verified' => 1,
@@ -1648,8 +1648,8 @@ class UsersTableSeeder extends Seeder
             74 => 
             array (
                 'id' => 75,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Eugene Simonis',
                 'email' => 'russel82@example.net',
                 'verified' => 1,
@@ -1670,8 +1670,8 @@ class UsersTableSeeder extends Seeder
             75 => 
             array (
                 'id' => 76,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Boris Glover',
                 'email' => 'beatty.abbey@example.com',
                 'verified' => 1,
@@ -1692,8 +1692,8 @@ class UsersTableSeeder extends Seeder
             76 => 
             array (
                 'id' => 77,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Parker Pacocha',
                 'email' => 'eking@example.net',
                 'verified' => 1,
@@ -1714,8 +1714,8 @@ class UsersTableSeeder extends Seeder
             77 => 
             array (
                 'id' => 78,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Etha Carter',
                 'email' => 'madisyn.mraz@example.net',
                 'verified' => 1,
@@ -1736,8 +1736,8 @@ class UsersTableSeeder extends Seeder
             78 => 
             array (
                 'id' => 79,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Elvis Ledner',
                 'email' => 'moses.emmerich@example.com',
                 'verified' => 1,
@@ -1758,8 +1758,8 @@ class UsersTableSeeder extends Seeder
             79 => 
             array (
                 'id' => 80,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Clair Auer III',
                 'email' => 'ariane.gutmann@example.com',
                 'verified' => 1,
@@ -1780,8 +1780,8 @@ class UsersTableSeeder extends Seeder
             80 => 
             array (
                 'id' => 81,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Miss Eleanore Goyette',
                 'email' => 'cmayert@example.org',
                 'verified' => 1,
@@ -1802,8 +1802,8 @@ class UsersTableSeeder extends Seeder
             81 => 
             array (
                 'id' => 82,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Cristopher Mraz',
                 'email' => 'lou.quigley@example.org',
                 'verified' => 1,
@@ -1824,8 +1824,8 @@ class UsersTableSeeder extends Seeder
             82 => 
             array (
                 'id' => 83,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ezra Raynor',
                 'email' => 'kkuvalis@example.com',
                 'verified' => 1,
@@ -1846,8 +1846,8 @@ class UsersTableSeeder extends Seeder
             83 => 
             array (
                 'id' => 84,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Destany Schmeler',
                 'email' => 'bechtelar.henderson@example.net',
                 'verified' => 1,
@@ -1868,8 +1868,8 @@ class UsersTableSeeder extends Seeder
             84 => 
             array (
                 'id' => 85,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Pink Wintheiser',
                 'email' => 'llittle@example.org',
                 'verified' => 1,
@@ -1890,8 +1890,8 @@ class UsersTableSeeder extends Seeder
             85 => 
             array (
                 'id' => 86,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Alivia Keeling',
                 'email' => 'cara.reinger@example.org',
                 'verified' => 1,
@@ -1912,8 +1912,8 @@ class UsersTableSeeder extends Seeder
             86 => 
             array (
                 'id' => 87,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Malinda Nitzsche Jr.',
                 'email' => 'champlin.abbie@example.org',
                 'verified' => 1,
@@ -1934,8 +1934,8 @@ class UsersTableSeeder extends Seeder
             87 => 
             array (
                 'id' => 88,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Susanna Gislason',
                 'email' => 'idella41@example.com',
                 'verified' => 1,
@@ -1956,8 +1956,8 @@ class UsersTableSeeder extends Seeder
             88 => 
             array (
                 'id' => 89,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Orland Grady',
                 'email' => 'alyson.rau@example.com',
                 'verified' => 1,
@@ -1978,8 +1978,8 @@ class UsersTableSeeder extends Seeder
             89 => 
             array (
                 'id' => 90,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Isom Leuschke',
                 'email' => 'khermiston@example.net',
                 'verified' => 1,
@@ -2000,8 +2000,8 @@ class UsersTableSeeder extends Seeder
             90 => 
             array (
                 'id' => 91,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Demetris Nolan',
                 'email' => 'aborer@example.com',
                 'verified' => 1,
@@ -2022,8 +2022,8 @@ class UsersTableSeeder extends Seeder
             91 => 
             array (
                 'id' => 92,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mrs. Retta Wunsch Sr.',
                 'email' => 'jasmin91@example.com',
                 'verified' => 1,
@@ -2044,8 +2044,8 @@ class UsersTableSeeder extends Seeder
             92 => 
             array (
                 'id' => 93,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ericka Torp',
                 'email' => 'shaylee56@example.org',
                 'verified' => 1,
@@ -2066,8 +2066,8 @@ class UsersTableSeeder extends Seeder
             93 => 
             array (
                 'id' => 94,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Ruthe Walter',
                 'email' => 'gerhard55@example.org',
                 'verified' => 1,
@@ -2088,8 +2088,8 @@ class UsersTableSeeder extends Seeder
             94 => 
             array (
                 'id' => 95,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Presley Brakus',
                 'email' => 'freeda87@example.com',
                 'verified' => 1,
@@ -2110,8 +2110,8 @@ class UsersTableSeeder extends Seeder
             95 => 
             array (
                 'id' => 96,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'John Bashirian',
                 'email' => 'annamarie75@example.org',
                 'verified' => 1,
@@ -2132,8 +2132,8 @@ class UsersTableSeeder extends Seeder
             96 => 
             array (
                 'id' => 97,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Brayan Bashirian DVM',
                 'email' => 'lrau@example.net',
                 'verified' => 1,
@@ -2154,8 +2154,8 @@ class UsersTableSeeder extends Seeder
             97 => 
             array (
                 'id' => 98,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Mrs. Mazie Cummerata III',
                 'email' => 'gislason.leonie@example.com',
                 'verified' => 1,
@@ -2176,8 +2176,8 @@ class UsersTableSeeder extends Seeder
             98 => 
             array (
                 'id' => 99,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Casandra Cruickshank',
                 'email' => 'tlemke@example.org',
                 'verified' => 1,
@@ -2198,8 +2198,8 @@ class UsersTableSeeder extends Seeder
             99 => 
             array (
                 'id' => 100,
-                'userPicture' => NULL,
-                'userPictureType' => NULL,
+                'user_picture' => NULL,
+                'user_picture_type' => NULL,
                 'name' => 'Prof. Monroe Hodkiewicz MD',
                 'email' => 'howard33@example.com',
                 'verified' => 1,

@@ -1,9 +1,7 @@
 @extends ('layouts.app')
 
 @section ('content')
-<table class="table table-striped table-sm">
-              <thead>
-                 <form method="post" action="{{ action('HomeController@search') }}">
+<form method="post" action="{{ action('HomeController@search') }}">
                   {{ csrf_field() }}
                 <div>
                   <p>Radius for PlayDates</p>  
@@ -14,9 +12,8 @@
                   <button type="submit" class="btn btn-primary">Search</button>
                 </div>
               </form>
-                </div>
-                </div>
-                </div>
+<table class="table table-striped table-sm">
+              <thead>
                 <tr>
                   <th></th>
                   <th>Name</th>
@@ -32,8 +29,9 @@
               @foreach($users as $user)
                   <tr>
                     <td>
-                      @if($user->userPicture)
-                        <img src= "data:{{Auth::user()->userPictureType}};base64,{{Auth::user()->userPicture}}" height="100" width="100">
+                    
+                      @if($user->user_picture)
+                        <img src= "data:{{Auth::user()->user_picture_type}};base64,{{Auth::user()->user_picture}}" height="100" width="100">
                       @else
                           <img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
                       @endif
@@ -58,7 +56,7 @@ var output = document.getElementById("value");
 output.innerHTML = slider.value;
 
 slider.oninput = function() {
-  output.innerHTML = this.value;
+  output.innerHTML = slider.value;
 }
 </script>
 

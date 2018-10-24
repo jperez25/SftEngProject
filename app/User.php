@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Group;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,8 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'verified', 'password', 'bio', 'child_age', 'city', 'state', 'child_bio', 'parent_age', 
-        'userPicture', 'userPictureType',
+        'name', 'email', 'verified', 'password', 'bio', 'child_age', 'city', 'state', 'child_bio', 
+        'parent_age', 'userPicture', 'userPictureType', 'gender',
     ];
 
     /**
@@ -47,15 +48,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function friendsOfMine() {
-        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+        public function friendsOfMine() {
+        return $this->belongsToMany('App\User', 'friends', 'user1_id', 'user2_id');
     }
 
     public function friendOf() {
-        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
+        return $this->belongsToMany('App\User', 'friends', 'user2_id', 'user1_id');
     }
 
     public function friends() {
         return $this->friendsOfMine->merge($this->friendOf);
+    }
+
+        public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withTimestamps();
     }
 }
