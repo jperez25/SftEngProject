@@ -77,7 +77,7 @@
                 </li>
               @endif
               <li>
-                  <a class="dropdown-item" href="{{ route('chat.index') }}">
+                  <a class="dropdown-item" href="{{ route('group') }}">
                           {{ __('Chat') }}
                   </a>
               </li>
