@@ -19,7 +19,9 @@
                                 @else
                                     <img src="{{ URL::to('/') }}/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
                                 @endif-->
-                                <img src="/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
+                                <img v-if= conversation.user_picture src="/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
+
+                                <img v-else src="/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
                             </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
