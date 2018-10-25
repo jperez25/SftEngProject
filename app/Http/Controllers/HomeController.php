@@ -79,6 +79,6 @@ class HomeController extends Controller
         DB::table('friends')->where(
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->update(['accepted'=>1]);
-        return redirect()->intended("/home");
+        return redirect()->intended("/group");
     }
 }

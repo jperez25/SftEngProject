@@ -59541,6 +59541,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59663,7 +59665,27 @@ var render = function() {
               },
               _vm._l(_vm.conversations, function(conversation) {
                 return _c("li", { key: conversation.id }, [
-                  _vm._m(0, true),
+                  _c("span", { staticClass: "chat-img pull-left" }, [
+                    conversation.user_picture
+                      ? _c("img", {
+                          staticClass: "img-circle",
+                          attrs: {
+                            src: "/images/blankProfile.png",
+                            width: "50",
+                            height: "50",
+                            alt: "User Avatar"
+                          }
+                        })
+                      : _c("img", {
+                          staticClass: "img-circle",
+                          attrs: {
+                            src: "/images/blankProfile.png",
+                            width: "50",
+                            height: "50",
+                            alt: "User Avatar"
+                          }
+                        })
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "chat-body clearfix" }, [
                     _c("div", { staticClass: "header" }, [
@@ -59750,24 +59772,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "chat-img pull-left" }, [
-      _c("img", {
-        staticClass: "img-circle",
-        attrs: {
-          src: "/images/blankProfile.png",
-          width: "50",
-          height: "50",
-          alt: "User Avatar"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

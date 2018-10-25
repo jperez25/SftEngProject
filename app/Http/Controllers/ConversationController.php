@@ -31,8 +31,6 @@ class ConversationController extends Controller
             inner join conversations on user_id = users.id
             where group_id =".$id.";"
         );
-        
-        //$c = Conversation::all();
     
         $conversations = collect($conversation);
 
