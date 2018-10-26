@@ -20,6 +20,15 @@
             </div>
             
         </div>
-        <script src="js/app.js"></script>  
+        <script src="js/app.js"></script>
+        <script>
+            var slider = document.getElementById("radius");
+            var output = document.getElementById("value");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+            output.innerHTML = slider.value;
+            }
+        </script>
     </body>   
 </html>

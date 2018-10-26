@@ -26,6 +26,7 @@ Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
 #Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/home','HomeController@search');
+Route::get('/fetchReqs', 'HomeController@fetchReqs');
 
 
 #Friend Request Routes
