@@ -81,4 +81,14 @@ class HomeController extends Controller
         )->update(['accepted'=>1]);
         return redirect()->intended("/group");
     }
+
+    public function fetchReqs()
+    {
+        $friendRequests = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
+            (SELECT user1_id FROM friends
+             WHERE accepted = 0 AND user1_id != " . Auth::user()->id . ")"
+         ));
+
+         return $friendRequests;
+    }
 }

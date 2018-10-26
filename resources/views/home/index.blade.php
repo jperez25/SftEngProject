@@ -50,14 +50,5 @@
 
               </tbody>
             </table>
-<script>
-var slider = document.getElementById("radius");
-var output = document.getElementById("value");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = slider.value;
-}
-</script>
 
 @endsection
