@@ -14020,6 +14020,18 @@ var app = new Vue({
     el: '#app'
 });
 
+var slider = document.getElementById("radius");
+var output = document.getElementById("value");
+if (slider != null) {
+    output.innerHTML = slider.value;
+}
+
+if (slider != null) {
+    slider.oninput = function () {
+        output.innerHTML = slider.value;
+    };
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59861,6 +59873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
@@ -59938,6 +59951,14 @@ var render = function() {
                   "button",
                   { staticClass: "btn btn-success", attrs: { type: "button" } },
                   [_vm._v("Add friend")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "deleteFriendReq/" + friendReq.id } }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "button" } },
+                  [_vm._v("Decline")]
                 )
               ])
             ])

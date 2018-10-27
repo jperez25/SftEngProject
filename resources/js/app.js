@@ -23,6 +23,18 @@ const app = new Vue({
     el: '#app'
 });
 
+var slider = document.getElementById("radius");
+var output = document.getElementById("value");
+if(slider != null){
+    output.innerHTML = slider.value;
+}
+
+if(slider != null){
+    slider.oninput = function() {
+        output.innerHTML = slider.value;                
+    }
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

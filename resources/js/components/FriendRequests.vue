@@ -14,6 +14,7 @@
                     </div>
                     <div class="col-sm-4">
                         <a :href="'acceptFriendReq/' + friendReq.id" ><button type="button" class="btn btn-success">Add friend</button></a> 
+                        <a :href="'deleteFriendReq/' + friendReq.id" ><button type="button" class="btn btn-success">Decline</button></a> 
                     </div>             
                 </div>
             </li>

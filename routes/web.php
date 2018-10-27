@@ -31,7 +31,8 @@ Route::get('/fetchReqs', 'HomeController@fetchReqs');
 
 #Friend Request Routes
 Route::get('/friendrequest/{userID}', 'HomeController@sendFriendReq');
-Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq');
+Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq'); 
+Route::get('/deleteFriendReq/{userID}', 'HomeController@deleteFriendReq');
 
 #Chat Routes
 //Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
