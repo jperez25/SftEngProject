@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use DB;
+use App\Events\NewRequest;
+
 class HomeController extends Controller
 {
 
@@ -78,7 +80,8 @@ class HomeController extends Controller
                 ['user1_id' => $user_id, 'user2_id' => $id]
             );
         }
-        
+        broadcast(new NewRequest($user_id));
+
         return redirect()->intended("/home");
     }
 
@@ -105,7 +108,7 @@ class HomeController extends Controller
     {
         $friendRequests = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
             (SELECT user1_id FROM friends
-             WHERE accepted = 0 AND user1_id != " . Auth::user()->id . ")"
+             WHERE accepted = 0 AND user2_id = " . Auth::user()->id . ")"
          ));
 
          return $friendRequests;

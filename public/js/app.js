@@ -59878,15 +59878,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
 
+    authEndpoint: "broadcasting/auth",
+
     data: function data() {
         return {
             friendReqs: []
         };
     },
     mounted: function mounted() {
-        //this.listenForReq();
-
         this.getReqs();
+
+        this.listenForRequests();
     },
 
 
@@ -59895,13 +59897,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/fetchReqs').then(function (response) {
-                //console.log(response.data);                    
+                console.log(response.data);
                 for (var key in response.data) {
                     //alert(response.data[key]);
 
 
                     _this.friendReqs.push(response.data[key]);
                 };
+            });
+        },
+        listenForRequests: function listenForRequests() {
+            var _this2 = this;
+
+            Echo.private("Requests").listen('NewRequest', function (e) {
+                console.log(e);
+                //alert(e[1].name);
+                _this2.friendReqs.push(e);
             });
         }
     }
