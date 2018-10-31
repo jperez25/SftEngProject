@@ -47,7 +47,6 @@ class GroupCreated implements ShouldBroadcast
     {
         return [
                 'name' => $this->group->name,
-            ]
-        ];
+            ];
     }
 }

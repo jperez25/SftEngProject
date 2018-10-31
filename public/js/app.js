@@ -14020,6 +14020,18 @@ var app = new Vue({
     el: '#app'
 });
 
+var slider = document.getElementById("radius");
+var output = document.getElementById("value");
+if (slider != null) {
+    output.innerHTML = slider.value;
+}
+
+if (slider != null) {
+    slider.oninput = function () {
+        output.innerHTML = slider.value;
+    };
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59861,9 +59873,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
+
+    authEndpoint: "broadcasting/auth",
 
     data: function data() {
         return {
@@ -59871,9 +59886,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        //this.listenForReq();
-
         this.getReqs();
+
+        this.listenForRequests();
     },
 
 
@@ -59882,13 +59897,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/fetchReqs').then(function (response) {
-                //console.log(response.data);                    
+                console.log(response.data);
                 for (var key in response.data) {
                     //alert(response.data[key]);
 
 
                     _this.friendReqs.push(response.data[key]);
                 };
+            });
+        },
+        listenForRequests: function listenForRequests() {
+            var _this2 = this;
+
+            Echo.private("Requests").listen('NewRequest', function (e) {
+                console.log(e);
+                //alert(e[1].name);
+                _this2.friendReqs.push(e);
             });
         }
     }
@@ -59938,6 +59962,14 @@ var render = function() {
                   "button",
                   { staticClass: "btn btn-success", attrs: { type: "button" } },
                   [_vm._v("Add friend")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "deleteFriendReq/" + friendReq.id } }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "button" } },
+                  [_vm._v("Decline")]
                 )
               ])
             ])

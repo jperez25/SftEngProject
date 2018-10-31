@@ -32,19 +32,17 @@
       @else
         <friend-req></friend-req>
 
-      <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <span class="glyphicon glyphicon-envelope"></span>
-              <span class="badge">1</span>
-          </a>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <span class="badge">1</span>
+            </a>
 
-          <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
 
-          </ul>
+            </ul>
 
-      </li>
-
-      </li>
+        </li>
 
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
