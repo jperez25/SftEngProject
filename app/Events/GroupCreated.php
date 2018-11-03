@@ -46,6 +46,8 @@ class GroupCreated implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
+                //'group' => $this->group,
+                'id' => $this->group->id,
                 'name' => $this->group->name,
             ];
     }

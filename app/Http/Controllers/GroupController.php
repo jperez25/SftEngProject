@@ -60,7 +60,7 @@ class GroupController extends Controller
         $users->push(auth()->user()->id);
 
         $group->users()->attach($users);
-
+        
         broadcast(new GroupCreated($group))->toOthers();
 
         return $group;
