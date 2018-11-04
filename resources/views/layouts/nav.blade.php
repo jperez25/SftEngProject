@@ -30,42 +30,19 @@
         <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> {{ __('Sign up') }}</a></li>
         <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ __('Login') }}</a></li>
       @else
-      <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <span class="glyphicon glyphicon-user"></span>
-              <span class="badge">{{sizeof($friendRequests)}}</span>
-          </a>
+        <friend-req></friend-req>
 
-          <ul class="dropdown-menu">
-            @foreach($friendRequests as $req)            
-              <li>
-                <div class="container">
-                  <div class="col-sm-6">
-                    {{$req->name}}
-                  </div>
-                  <div class="col-sm-4">
-                    <a href="acceptFriendReq/{{$req->id}}"><button type="button" class="btn btn-success">Add friend</button></a> 
-                  </div>             
-                </div>
-              </li>
-            @endforeach
-              
-          </ul>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <span class="badge">1</span>
+            </a>
 
-      </li>
-      <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <span class="glyphicon glyphicon-envelope"></span>
-              <span class="badge">1</span>
-          </a>
+            <ul class="dropdown-menu">
 
-          <ul class="dropdown-menu">
+            </ul>
 
-          </ul>
-
-      </li>
-
-      </li>
+        </li>
 
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
