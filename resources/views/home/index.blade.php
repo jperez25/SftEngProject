@@ -51,9 +51,11 @@
                           @else
                             <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
                           @endif
+                        @else
+                          <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
+                          @continue
                         @endif
                       @endforeach
-                      <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
                     </td>
                   </tr>
               @endforeach
