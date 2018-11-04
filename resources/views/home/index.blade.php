@@ -42,8 +42,18 @@
                     <td>{{$user->city}}</td>
                     <td>
                       <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a>
+                      @foreach($friends as $friend)
+                        @if($user->id == $friend->user2_id)
+                          @if($friend->user2_id == $user->id and $friend->accepted == 0)
+                            <a href="#"><button type="button" class="btn btn-success">Pending</button></a>
+                          @elseif($friend->user2_id == $user->id and $friend->accepted == 1)
+                            <a href="#"><button type="button" class="btn btn-success">You are friends</button></a>
+                          @else
+                            <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
+                          @endif
+                        @endif
+                      @endforeach
                       <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
-                    
                     </td>
                   </tr>
               @endforeach
