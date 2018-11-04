@@ -14032,6 +14032,13 @@ if (slider != null) {
     };
 }
 
+var addFriendBtn = document.getElementById("addFriendBtn");
+var pendingBtn = document.getElementById("pendingBtn");
+
+if (pendingBtn != null) {
+    addFriendBtn.hidden;
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

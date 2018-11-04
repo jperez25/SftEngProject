@@ -48,7 +48,7 @@ class HomeController extends Controller
         ORDER BY distance ASC"));       
                 
         $friends = DB::select(DB::raw(
-            "select * from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
         ));
         
         return view('home.index' , compact('users', 'radius', 'friends'));
@@ -68,7 +68,7 @@ class HomeController extends Controller
         ORDER BY distance ASC")); 
 
         $friends = DB::select(DB::raw(
-            "select * from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
         ));
 
         return view('home.index' , compact('users', 'radius', 'friends'));
