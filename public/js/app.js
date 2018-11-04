@@ -59211,7 +59211,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             Echo.private('users.' + this.user.id).listen('GroupCreated', function (e) {
-                _this2.groups.push(e.group);
+                _this2.groups.push(e);
+                console.log(e);
             });
         }
     }
@@ -59410,13 +59411,17 @@ var render = function() {
               }
             },
             _vm._l(_vm.initialUsers, function(user) {
-              return _c("option", { domProps: { value: user.id } }, [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(user.name) +
-                    "\n                    "
-                )
-              ])
+              return _c(
+                "option",
+                { key: user.id, domProps: { value: user.id } },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(user.name) +
+                      "\n                    "
+                  )
+                ]
+              )
             })
           )
         ])
