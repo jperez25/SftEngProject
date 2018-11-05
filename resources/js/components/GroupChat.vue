@@ -117,7 +117,7 @@
             listenForNewMessage() {
                 Echo.private('groups.' + this.group.id)
                     .listen('NewMessage', (e) => {
-                        console.log(e);
+                        //console.log(e);
                         this.conversations.push(e);
                     });
             }
