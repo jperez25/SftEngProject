@@ -29,7 +29,7 @@
                 Echo.private('users.' + this.user.id)
                     .listen('GroupCreated', (e) => {
                         this.groups.push(e);
-                        console.log(e);
+                        //console.log(e);
                     });
             }
         }
