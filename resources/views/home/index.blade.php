@@ -2,16 +2,16 @@
 
 @section ('content')
 <form method="post" action="{{ action('HomeController@search') }}">
-                  {{ csrf_field() }}
-                <div>
-                  <p>Radius for PlayDates</p>  
-                  <input type="range" min="1" max="100" value="{{$radius}}" id="radius" name="radius">
-                  <p>Radius: <span id="value"></span></p>
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-              </form>
+  {{ csrf_field() }}
+  <div>
+    <p>Radius for PlayDates</p>  
+    <input type="range" min="1" max="100" value="{{$radius}}" id="radius" name="radius">
+    <p>Radius: <span id="value"></span></p>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
 <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -22,16 +22,16 @@
                   <th>City</th>
                   <th></th>
                 </tr>
-                </thead>
+              </thead>
                 
                 
 
-              @foreach($users as $user)
+              @foreach($users as $user)                  
                   <tr>
                     <td>
                     
                       @if($user->user_picture)
-                        <img src= "data:{{Auth::user()->user_picture_type}};base64,{{Auth::user()->user_picture}}" height="100" width="100">
+                        <img src= "data:{{$user->user_picture_type}};base64,{{$user->user_picture}}" height="100" width="100">
                       @else
                           <img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
                       @endif
@@ -42,22 +42,26 @@
                     <td>{{$user->city}}</td>
                     <td>
                       <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a>
-                      <a href="friendrequest/{{$user->id}}"><button type="button" class="btn btn-success">Add friend</button></a>
-                    
+                      <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-success">Add friend</button></a>
+                      @foreach($friends as $friend)                      
+                        @if(in_array($user->id,(array)$friend, true))
+                          @if($user->id == $friend->user2_id and $friend->accepted == 0)
+                            <a href="#" id="pendingBtn"><button type="button" class="btn btn-success">Pending</button></a>
+                            @break
+                          @elseif($user->id == $friend->user2_id and $friend->accepted == 1)
+                            <a href="#" id="pendingBtn"><button type="button" class="btn btn-success">You are friends</button></a>
+                            @break
+                          @endif
+                        @else
+                                                   
+                        @endif
+                      @endforeach
                     </td>
-                  </tr>
+                  </tr>     
+
               @endforeach
 
               </tbody>
             </table>
-<script>
-var slider = document.getElementById("radius");
-var output = document.getElementById("value");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = slider.value;
-}
-</script>
 
 @endsection

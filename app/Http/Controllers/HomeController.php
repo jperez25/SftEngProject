@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use DB;
+use App\Events\NewRequest;
+
 class HomeController extends Controller
 {
 
@@ -45,7 +47,11 @@ class HomeController extends Controller
         HAVING distance <= {$radius}
         ORDER BY distance ASC"));       
                 
-        return view('home.index',compact('users', 'radius'));
+        $friends = DB::select(DB::raw(
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+        ));
+        
+        return view('home.index' , compact('users', 'radius', 'friends'));
     }
     public function search(Request $request)
     {
@@ -61,15 +67,29 @@ class HomeController extends Controller
         HAVING distance <= {$radius}
         ORDER BY distance ASC")); 
 
-        return view('home.index' , compact('users', 'radius'));
+        $friends = DB::select(DB::raw(
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+        ));
+
+        return view('home.index' , compact('users', 'radius', 'friends'));
     }
   
     public function sendFriendReq($id)
     {
         $user_id = Auth::user()->id;
-        DB::table('friends')->insert(
-            ['user_id' => $user_id, 'friend_id' => $id]
-        );
+        $wasReqSent = DB::table('friends')->where(
+            ['user1_id' => $user_id, 'user2_id' => $id]
+        )->get();        
+
+        if ($wasReqSent->count()) {
+            //do nothing, req already sent
+        } else {
+            DB::table('friends')->insert(
+                ['user1_id' => $user_id, 'user2_id' => $id]
+            );
+        }
+        broadcast(new NewRequest($user_id));
+
         return redirect()->intended("/home");
     }
 
@@ -77,8 +97,28 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
         DB::table('friends')->where(
-            ['user_id' => $id, 'friend_id' => $user_id]
+            ['user1_id' => $id, 'user2_id' => $user_id]
         )->update(['accepted'=>1]);
+        return redirect()->intended("/group");
+    }
+
+    public function deleteFriendReq($id)
+    {
+        $user_id = Auth::user()->id;
+        DB::table('friends')->where(
+            ['user1_id' => $id, 'user2_id' => $user_id]
+        )->delete();
+
         return redirect()->intended("/home");
+    }
+
+    public function fetchReqs()
+    {
+        $friendRequests = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
+            (SELECT user1_id FROM friends
+             WHERE accepted = 0 AND user2_id = " . Auth::user()->id . ")"
+         ));
+
+         return $friendRequests;
     }
 }

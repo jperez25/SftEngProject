@@ -53,13 +53,13 @@ class ProfileController extends Controller
                 
         ]);
         if($request->hasFile('image')) {
-            $userPicture = base64_encode(file_get_contents($request->file('image')));
-            $userPictureType = $_FILES['image']['type'];
+            $user_picture = base64_encode(file_get_contents($request->file('image')));
+            $user_picture_type = $_FILES['image']['type'];
 
             DB::table('users')->where('id', $id)->update(
                 [
-                    'userPicture' => $userPicture,
-                    'userPictureType' => $userPictureType
+                    'user_picture' => $user_picture,
+                    'user_picture_type' => $user_picture_type
                 ]
             );
         }

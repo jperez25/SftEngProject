@@ -24,11 +24,16 @@ class ConversationController extends Controller
         return $conversation->load('user');
     }
 
-    public function getMessage()
+    public function getMessage($id)
     {
-        $conversations = Conversation::all();
-        $user = User::all();
+        $conversation = DB::select(
+            "select name, message from users 
+            inner join conversations on user_id = users.id
+            where group_id =".$id.";"
+        );
+    
+        $conversations = collect($conversation);
 
-        return $conversations->load('user');
+        return $conversations;
     }
 }

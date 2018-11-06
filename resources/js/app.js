@@ -17,10 +17,26 @@ window.Bus = new Vue();
 Vue.component('groups', require('./components/Groups.vue'));
 Vue.component('create-group', require('./components/CreateGroup.vue'));
 Vue.component('group-chat', require('./components/GroupChat.vue'));
+Vue.component('friend-req', require('./components/FriendRequests.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
+var slider = document.getElementById("radius");
+var output = document.getElementById("value");
+if(slider != null){
+    output.innerHTML = slider.value;
+}
+
+if(slider != null){
+    slider.oninput = function() {
+        output.innerHTML = slider.value;                
+    }
+}
+
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
