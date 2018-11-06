@@ -3,7 +3,7 @@
 
 @section('content')
 @if($user->user_picture)
-    <img src= "data:{{$user->user_picture_type}};base64,{{Auth::user()->user_picture}}" height="100" width="100">
+    <img src= "data:{{$user->user_picture_type}};base64,{{$user->user_picture_type}}" height="100" width="100">
 @else
     <img src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100">
 @endif
