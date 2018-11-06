@@ -59888,6 +59888,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
@@ -59927,6 +59933,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //console.log(e);
                 //alert(e[1].name);
                 _this2.friendReqs.push(e);
+                var audio = document.getElementById("myAudio");
+                audio.play();
             });
         }
     }
@@ -60008,7 +60016,9 @@ var render = function() {
             ])
           })
         )
-      : _c("ul", { staticClass: "dropdown-menu" }, [_vm._m(0)])
+      : _c("ul", { staticClass: "dropdown-menu" }, [_vm._m(0)]),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -60022,6 +60032,24 @@ var staticRenderFns = [
           _vm._v("\n                    Nothing to show\n                ")
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("audio", { attrs: { id: "myAudio" } }, [
+      _c("source", {
+        attrs: { src: "sounds/exquisite.ogg", type: "audio/mpeg" }
+      }),
+      _vm._v(" "),
+      _c("source", {
+        attrs: { src: "sounds/exquisite.m4r", type: "audio/mpeg" }
+      }),
+      _vm._v(" "),
+      _c("source", {
+        attrs: { src: "sounds/exquisite.mp3", type: "audio/mpeg" }
+      })
     ])
   }
 ]

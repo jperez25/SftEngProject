@@ -28,9 +28,15 @@
                 </div>
             </li>
         </ul>
+        <audio id="myAudio">
+            <source src="sounds/exquisite.ogg" type="audio/mpeg">
+            <source src="sounds/exquisite.m4r" type="audio/mpeg">
+            <source src="sounds/exquisite.mp3" type="audio/mpeg">
+        </audio>
+        
     </li>
     
-    
+
 </template>
 
 <script>
@@ -71,6 +77,8 @@
                         //console.log(e);
                         //alert(e[1].name);
                         this.friendReqs.push(e);
+                        var audio = document.getElementById("myAudio");
+                        audio.play();                        
                     });
             }
         }
