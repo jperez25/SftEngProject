@@ -19,9 +19,15 @@ class GroupController extends Controller
     public function index()
     {
         //$friends = Auth::user()->friends();
-        $friends = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
-            (SELECT user1_id FROM friends
-             WHERE accepted = 1 AND (user1_id = " . Auth::user()->id ." OR user2_id = " . Auth::user()->id . "))"
+        $friends = DB::select(DB::raw("SELECT * FROM users WHERE users.id IN 
+        ( SELECT user1_id as us FROM friends
+            WHERE accepted = 1 AND user2_id = " . Auth::user()->id ."
+        
+            union
+            
+            SELECT user2_id as us FROM friends
+                WHERE accepted = 1 AND user1_id = " . Auth::user()->id ."
+            );"
          ));       
         
         
@@ -60,7 +66,7 @@ class GroupController extends Controller
         $users->push(auth()->user()->id);
 
         $group->users()->attach($users);
-
+        
         broadcast(new GroupCreated($group))->toOthers();
 
         return $group;

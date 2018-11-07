@@ -46,10 +46,10 @@ class ProfileController extends Controller
                 'image' => '|image|mimes:jpeg,png,jpg,svg|max:2048',
                 'bio' => 'required',
                 'child_bio' => 'required',
-                'parent_age' => 'required',
+                'parent_age' => 'required|integer|min:18',
                 'city' => 'required',
                 'state' => 'required',
-                'child_age' => 'required',
+                'child_age' => 'required|integer|between:1,8',
                 
         ]);
         if($request->hasFile('image')) {

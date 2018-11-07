@@ -59211,7 +59211,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             Echo.private('users.' + this.user.id).listen('GroupCreated', function (e) {
-                _this2.groups.push(e.group);
+                _this2.groups.push(e);
+                //console.log(e);
             });
         }
     }
@@ -59410,13 +59411,17 @@ var render = function() {
               }
             },
             _vm._l(_vm.initialUsers, function(user) {
-              return _c("option", { domProps: { value: user.id } }, [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(user.name) +
-                    "\n                    "
-                )
-              ])
+              return _c(
+                "option",
+                { key: user.id, domProps: { value: user.id } },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(user.name) +
+                      "\n                    "
+                  )
+                ]
+              )
             })
           )
         ])
@@ -59625,7 +59630,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             Echo.private('groups.' + this.group.id).listen('NewMessage', function (e) {
-                console.log(e);
+                //console.log(e);
                 _this3.conversations.push(e);
             });
         }
@@ -59874,6 +59879,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
@@ -59910,9 +59930,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             Echo.private("Requests").listen('NewRequest', function (e) {
-                console.log(e);
+                //console.log(e);
                 //alert(e[1].name);
                 _this2.friendReqs.push(e);
+                var audio = document.getElementById("myAudio");
+                audio.play();
             });
         }
     }
@@ -59936,50 +59958,101 @@ var render = function() {
       [
         _c("span", { staticClass: "glyphicon glyphicon-user" }),
         _vm._v(" "),
-        _c("span", { staticClass: "badge" }, [
-          _vm._v(_vm._s(_vm.friendReqs.length))
-        ])
+        _vm.friendReqs.length
+          ? _c("span", { staticClass: "badge" }, [
+              _vm._v(_vm._s(_vm.friendReqs.length))
+            ])
+          : _vm._e()
       ]
     ),
     _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "dropdown-menu" },
-      _vm._l(_vm.friendReqs, function(friendReq) {
-        return _c("li", { key: friendReq.id }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(friendReq.name) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("a", { attrs: { href: "acceptFriendReq/" + friendReq.id } }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-success", attrs: { type: "button" } },
-                  [_vm._v("Add friend")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "deleteFriendReq/" + friendReq.id } }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-success", attrs: { type: "button" } },
-                  [_vm._v("Decline")]
-                )
+    _vm.friendReqs.length
+      ? _c(
+          "ul",
+          { staticClass: "dropdown-menu" },
+          _vm._l(_vm.friendReqs, function(friendReq) {
+            return _c("li", { key: friendReq.id }, [
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "col-sm-6" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(friendReq.name) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c(
+                    "a",
+                    { attrs: { href: "acceptFriendReq/" + friendReq.id } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Add friend")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { attrs: { href: "deleteFriendReq/" + friendReq.id } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Decline")]
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
-          ])
-        ])
-      })
-    )
+          })
+        )
+      : _c("ul", { staticClass: "dropdown-menu" }, [_vm._m(0)]),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "col-sm-6" }, [
+          _vm._v("\n                    Nothing to show\n                ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("audio", { attrs: { id: "myAudio" } }, [
+      _c("source", {
+        attrs: { src: "sounds/exquisite.ogg", type: "audio/mpeg" }
+      }),
+      _vm._v(" "),
+      _c("source", {
+        attrs: { src: "sounds/exquisite.m4r", type: "audio/mpeg" }
+      }),
+      _vm._v(" "),
+      _c("source", {
+        attrs: { src: "sounds/exquisite.mp3", type: "audio/mpeg" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
