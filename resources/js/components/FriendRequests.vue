@@ -3,10 +3,10 @@
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <span class="glyphicon glyphicon-user"></span>
-            <span class="badge">{{ friendReqs.length }}</span>
+            <span class="badge" v-if="friendReqs.length">{{ friendReqs.length }}</span>
         </a>
 
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" v-if="friendReqs.length">
             <li v-for="friendReq in friendReqs" :key="friendReq.id">
                 <div class="container">
                     <div class="col-sm-6" >
@@ -19,9 +19,24 @@
                 </div>
             </li>
         </ul>
+        <ul class="dropdown-menu" v-else>
+            <li>
+                <div class="container">
+                    <div class="col-sm-6" >
+                        Nothing to show
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <audio id="myAudio">
+            <source src="sounds/exquisite.ogg" type="audio/mpeg">
+            <source src="sounds/exquisite.m4r" type="audio/mpeg">
+            <source src="sounds/exquisite.mp3" type="audio/mpeg">
+        </audio>
+        
     </li>
     
-    
+
 </template>
 
 <script>
@@ -59,9 +74,11 @@
             listenForRequests() {
                 Echo.private("Requests")
                     .listen('NewRequest', (e) => {
-                        console.log(e);
+                        //console.log(e);
                         //alert(e[1].name);
                         this.friendReqs.push(e);
+                        var audio = document.getElementById("myAudio");
+                        audio.play();                        
                     });
             }
         }

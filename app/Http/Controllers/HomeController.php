@@ -47,7 +47,11 @@ class HomeController extends Controller
         HAVING distance <= {$radius}
         ORDER BY distance ASC"));       
                 
-        return view('home.index',compact('users', 'radius'));
+        $friends = DB::select(DB::raw(
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+        ));
+        
+        return view('home.index' , compact('users', 'radius', 'friends'));
     }
     public function search(Request $request)
     {
@@ -63,7 +67,11 @@ class HomeController extends Controller
         HAVING distance <= {$radius}
         ORDER BY distance ASC")); 
 
-        return view('home.index' , compact('users', 'radius'));
+        $friends = DB::select(DB::raw(
+            "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
+        ));
+
+        return view('home.index' , compact('users', 'radius', 'friends'));
     }
   
     public function sendFriendReq($id)
