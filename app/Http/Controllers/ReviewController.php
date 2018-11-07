@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Auth;
+use App\Review;
+use DB;
 class ReviewController extends Controller
 {
     /**
@@ -21,9 +24,10 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = User::find($request->input('userid'));
+        return view('ratings.create',compact('user'));
     }
 
     /**
@@ -34,7 +38,17 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, [
+            'rating' => 'required',
+            'description' => 'required',
+            'user2_id' => 'required',
+            'user1_id' => 'required',
+        ]);
+        $input = $request->all();
+        Review::create($input);
+        $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
+        $user = User::find($request->input('user2_id'));
+        return view('ratings.show',compact('user', 'reviews'));
     }
 
     /**
@@ -43,9 +57,11 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($userID)
     {
-        //
+        $reviews = Review::where('user2_id', 'LIKE' , $userID)->get();
+        $user = User::find($userID);
+        return view('ratings.show',compact('user', 'reviews'));
     }
 
     /**
