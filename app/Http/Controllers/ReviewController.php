@@ -16,7 +16,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::where('user2_id', 'LIKE' , Auth::User()->id)->get();
+        return view('ratings.index', compact('reviews'));
     }
 
     /**

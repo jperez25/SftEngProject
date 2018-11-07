@@ -14,4 +14,5 @@
 <div>Child Age: {{$user->child_age}}</div>
 <div>City: {{$user->city}}</div>
 <div>State: {{$user->state}}</div>
+<a href="/ratings/{{$user->id}}"><button type="submit" class="btn btn-primary">View Users Ratings</button></a>
 @endsection
