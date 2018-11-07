@@ -23,6 +23,11 @@ Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::resource('profile', 'ProfileController')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
 
+#Ratings Routes
+Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
+Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
+Route::resource('/ratings', 'ReviewController')->middleware('auth');
+
 #Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/home','HomeController@search');
