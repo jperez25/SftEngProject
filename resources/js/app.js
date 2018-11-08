@@ -35,7 +35,9 @@ if(slider != null){
     }
 }
 
-
+$(document).on('ready', function(){
+    $('#rating').rating();
+});
 
 
 /**

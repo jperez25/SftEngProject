@@ -2,8 +2,6 @@
 
 @section ('content')
 <h3>Rating for: {{$user->name}}</h3>
-{{$user->id}} 
-{{Auth::user()->id}}
 <form method="POST" action="/ratings/">
 	{{ csrf_field() }}
     <div class="wrapper container">
@@ -11,11 +9,10 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="form-group">
         <div class = "row">
-          <div class="col-3">
-           <p>Select a rating</p>  
-                  <input type="range" min="1" max="5" value="1" id="rating" name="rating">
-                  <p>Rating: <span id="value"></span></p>
-        </div>
+            <div class="col-3">
+                <p>Give your rating</p>  
+                <input id="rating" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+            </div>
         <div class="col-3">
             Comment<textarea class="form-control" value="Enter your rating here" id="description" name="description" style="min-height:200px;"></textarea>
         </div>
