@@ -19,6 +19,8 @@
 
     <!-- Styles -->    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+
     <!-- For Welcome page -->
     <link rel="stylesheet" href="{{ URL::asset('css/welcome.css') }}">
     <!-- For Login page -->
@@ -26,8 +28,9 @@
     
     <!-- Favicon -->    
     <link rel="shortcut icon" href="{{ URL::asset('images/PdRUs_Icon.png') }}" >
-    
-    
 
-    
+    <script src="{{ URL::asset('js/star-rating.js') }}"></script>
+    <link  href="{{ URL::asset('css/star-rating.css') }}" media="all" rel="stylesheet" type="text/css" >
+
+
 </head>
