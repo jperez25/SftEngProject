@@ -4,6 +4,7 @@
       <a class="navbar-brand" href="{{ route('index') }}">
             Playdates R'Us
       </a>
+      <input type="hidden" id="user_id" name="user_id" value={{Auth::user()->id}}>
     </div>
 
     <ul class="nav navbar-nav">

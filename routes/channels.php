@@ -20,7 +20,7 @@ Broadcast::channel('groups.{group}', function ($user, Group $group) {
         return $group->hasUser($user->id);
     });
 
-Broadcast::channel('Requests', function ($user) {    
+Broadcast::channel('Requests.{userId}', function ($user) {    
         return $user->id === Auth::user()->id;
     });
 

@@ -47,11 +47,13 @@
 
         data() {
             return {
-                friendReqs: []
+                friendReqs: [],
+                user_id: document.getElementById('user_id').value
             }
         },
 
         mounted() {
+
             this.getReqs();
 
             this.listenForRequests();
@@ -72,9 +74,9 @@
             )},
 
             listenForRequests() {
-                Echo.private("Requests")
+                Echo.private("Requests." + this.user_id)
                     .listen('NewRequest', (e) => {
-                        //console.log(e);
+                        console.log(e);
                         //alert(e[1].name);
                         this.friendReqs.push(e);
                         var audio = document.getElementById("myAudio");

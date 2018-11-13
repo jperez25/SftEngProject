@@ -14032,13 +14032,6 @@ if (slider != null) {
     };
 }
 
-// With JQuery
-$('#ex1').slider({
-    formatter: function formatter(value) {
-        return 'Current value: ' + value;
-    }
-});
-
 $(document).on('ready', function () {
     $('#rating').rating();
 });
@@ -59734,7 +59727,9 @@ var render = function() {
                       ? _c("img", {
                           staticClass: "img-circle",
                           attrs: {
-                            src: "/images/blankProfile.png",
+                            src:
+                              "data:conversation.user_picture_type;base64," +
+                              conversation.user_picture,
                             width: "50",
                             height: "50",
                             alt: "User Avatar"
@@ -59961,10 +59956,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            friendReqs: []
+            friendReqs: [],
+            user_id: document.getElementById('user_id').value
         };
     },
     mounted: function mounted() {
+
         this.getReqs();
 
         this.listenForRequests();
@@ -59976,6 +59973,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/fetchReqs').then(function (response) {
+                console.log('Requests.' + _this.user_id);
                 console.log(response.data);
                 for (var key in response.data) {
                     //alert(response.data[key]);
@@ -59985,13 +59983,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 };
             });
         },
-        listenForRequests: function listenForRequests() {
+        getUserId: function getUserId() {
             var _this2 = this;
 
-            Echo.private("Requests").listen('NewRequest', function (e) {
-                //console.log(e);
+            axios.get('/getUserId').then(function (response) {
+                _this2.user_id = response.data;
+            });
+        },
+        listenForRequests: function listenForRequests() {
+            var _this3 = this;
+
+            Echo.private("Requests." + this.user_id).listen('NewRequest', function (e) {
+                console.log(e);
                 //alert(e[1].name);
-                _this2.friendReqs.push(e);
+                _this3.friendReqs.push(e);
                 var audio = document.getElementById("myAudio");
                 audio.play();
             });

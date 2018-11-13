@@ -17,18 +17,21 @@ class NewRequest implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $request;
+    public $reciever;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($sender_id)
+    public function __construct($sender_id, $id)
     {
         $this->request = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
             (SELECT user1_id FROM friends
              WHERE accepted = 0 AND user2_id = " . $sender_id . ")"
          ));
+
+         $this->reciever = $id;
 
     }
 
@@ -39,19 +42,14 @@ class NewRequest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('Requests');
+        return new PrivateChannel('Requests.'. $this->reciever);
     }
 
     public function broadcastWith()
     {
         return [
-            'message' => $this->request,
             'id' => Auth::user()->id,
-            'name' => Auth::user()->name,
-            'user' => [
-                'id' => 1,
-                'name' => "Jovanny",
-            ]
+            'name' => Auth::user()->name
         ];
     }
 }

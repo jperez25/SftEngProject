@@ -88,7 +88,7 @@ class HomeController extends Controller
                 ['user1_id' => $user_id, 'user2_id' => $id]
             );
         }
-        broadcast(new NewRequest($user_id));
+        broadcast(new NewRequest($user_id, $id));
 
         return redirect()->intended("/home");
     }
