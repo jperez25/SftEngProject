@@ -12,8 +12,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
 
-    const ADMIN_TYPE = '2';
-    const DEFAULT_TYPE = '1';
+    const ADMIN_TYPE = 2;
+    const DEFAULT_TYPE = 1;
     protected $primaryKey = 'id';
 
     public function getId()
@@ -48,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-        public function friendsOfMine() {
+    public function friendsOfMine() {
         return $this->belongsToMany('App\User', 'friends', 'user1_id', 'user2_id');
     }
 
@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->friendsOfMine->merge($this->friendOf);
     }
 
-        public function groups()
+    public function groups()
     {
         return $this->belongsToMany(Group::class)->withTimestamps();
     }

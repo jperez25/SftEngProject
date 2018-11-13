@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'verified' => "1",        
+        'verified' => "0",        
         'password' => bcrypt('password'),
         'remember_token' => str_random(10),
         'bio' => $faker->text,
@@ -33,6 +33,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'state'=> $state,
         'lat' => $coordinates[0],
         'lng' => $coordinates[1],
+        'level' => 1
     ];
 });
 

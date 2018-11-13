@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+#Root
 Route::get('/', 'Controller@index')->name('index');
 
 #Auth and verification routes
@@ -28,6 +28,7 @@ Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
 Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
 Route::resource('/ratings', 'ReviewController')->middleware('auth');
 
+#Search Users Routes
 #Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/home','HomeController@search');
@@ -49,3 +50,6 @@ Route::get('/group', 'GroupController@index')->name('group')->middleware('auth')
 Route::resource('groups', 'GroupController');
 Route::resource('conversations', 'ConversationController')->middleware('auth');
 Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');
+
+#Admin Routes
+Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
