@@ -27,7 +27,7 @@ class ConversationController extends Controller
     public function getMessage($id)
     {
         $conversation = DB::select(
-            "select name, message from users 
+            "select name, message, user_picture, user_picture_type from users 
             inner join conversations on user_id = users.id
             where group_id =".$id.";"
         );

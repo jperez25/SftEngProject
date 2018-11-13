@@ -35,6 +35,7 @@
         </ul>
         <div class="card-body">
           <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a>
+          <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-success">Add friend</button></a>
           @foreach($friends as $friend)                      
             @if(in_array($user->id,(array)$friend, true))
               @if($user->id == $friend->user2_id and $friend->accepted == 0)
