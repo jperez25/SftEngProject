@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'name' => $data['name'],            
             'email' => $data['email'],
             //comment line below out after email verification works
-            'verified' => 1,
+            'verified' => 0,
             'password' => Hash::make($data['password']),
         ]);
         $verifyUser = VerifyUser::create([
