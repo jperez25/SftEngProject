@@ -4,7 +4,6 @@
       <a class="navbar-brand" href="{{ route('index') }}">
             Playdates R'Us
       </a>
-      <input type="hidden" id="user_id" name="user_id" value={{Auth::user()->id}}>
     </div>
 
     <ul class="nav navbar-nav">
@@ -23,6 +22,7 @@
         <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> {{ __('Sign up') }}</a></li>
         <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ __('Login') }}</a></li>
       @else
+        <input type="hidden" id="user_id" name="user_id" value={{Auth::user()->id}}>
         <friend-req></friend-req>
 
         <li>
