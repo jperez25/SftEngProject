@@ -7,8 +7,20 @@
                     <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion-" :href="'#collapseOne-' + group.id">
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
+                    <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion-" :href="'#menu-' + group.id">
+                        <span class="options"></span>
+                    </a>
                 </div>
             </div>
+            <div class="panel-collapse collapse" :id="'menu-' + group.id">
+                <ul>
+                    <li>delete X</li>
+                    <li>add +</li>
+                    <li>leave -></li>
+                </ul>
+            </div>
+
+            
             <div class="panel-collapse collapse" :id="'collapseOne-' + group.id">
                 <div class="panel-body chat-panel">
                     <ul style="list-style-type:none" class="chat">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{{ route('index') }}">
@@ -11,18 +11,10 @@
     @guest @else
       <li>
         <a class="navbar-brand" href="{{ route('home') }}">
-                Home
+                Search
         </a>
       </li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="{{route('profile.index')}}">My Profile</a></li>
-          <li><a href="/profile/edit">Edit profile</a></li>
-          <li><a href="#">Search</a></li>
-          <li><a href="#">Rate</a></li>
-        </ul>
-      </li>
     @endguest
       </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -32,15 +24,10 @@
       @else
         <friend-req></friend-req>
 
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="glyphicon glyphicon-envelope"></span>
-                <span class="badge">1</span>
-            </a>
-
-            <ul class="dropdown-menu">
-
-            </ul>
+        <li>
+          <a href="{{ route('group') }}">
+              <span class="glyphicon glyphicon-envelope"></span>
+          </a>
 
         </li>
 
@@ -57,6 +44,10 @@
                   <a class="dropdown-item" href="{{ route('group') }}">
                           {{ __('Chat') }}
                   </a>
+              </li>
+
+              <li>
+                <a href="{{route('profile.index')}}">My Profile</a>
               </li>
             
               <li>

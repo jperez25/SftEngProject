@@ -17,6 +17,7 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::where('user2_id', 'LIKE' , Auth::User()->id)->get();
+
         return view('ratings.index', compact('reviews'));
     }
 
@@ -28,6 +29,7 @@ class ReviewController extends Controller
     public function create(Request $request)
     {
         $user = User::find($request->input('userid'));
+        
         return view('ratings.create',compact('user'));
     }
 
@@ -49,6 +51,7 @@ class ReviewController extends Controller
         Review::create($input);
         $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
         $user = User::find($request->input('user2_id'));
+        dd($user);
         return view('ratings.show',compact('user', 'reviews'));
     }
 
@@ -62,6 +65,8 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('user2_id', 'LIKE' , $userID)->get();
         $user = User::find($userID);
+        
+        
         return view('ratings.show',compact('user', 'reviews'));
     }
 

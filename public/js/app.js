@@ -14032,6 +14032,17 @@ if (slider != null) {
     };
 }
 
+// With JQuery
+$('#ex1').slider({
+    formatter: function formatter(value) {
+        return 'Current value: ' + value;
+    }
+});
+
+$(document).on('ready', function () {
+    $('#rating').rating();
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59561,6 +59572,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59663,9 +59686,32 @@ var render = function() {
               }
             },
             [_c("span", { staticClass: "glyphicon glyphicon-chevron-down" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default btn-xs",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-parent": "#accordion-",
+                href: "#menu-" + _vm.group.id
+              }
+            },
+            [_c("span", { staticClass: "options" })]
           )
         ])
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "panel-collapse collapse",
+          attrs: { id: "menu-" + _vm.group.id }
+        },
+        [_vm._m(0)]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -59790,7 +59836,20 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [_vm._v("delete X")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("add +")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("leave ->")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

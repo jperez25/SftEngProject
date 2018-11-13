@@ -131,47 +131,4 @@
       </div>
     </div>  
 
-
-<script>
-  /*
-          // Call Geocode
-          //geocode()
-          function geocode(){
-            var location = document.getElementById("city").value+" "+document.getElementById("state").value;
-            //alert(location);
-            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-              params:{
-                address:location,
-                key: '{{env('GOOGLE_API_KEY')}}',
-              }
-              var location = document.getElementById("city").value+" "+document.getElementById("state").value;
-            }
-
-            .then(function(response){
-              //Log full response
-              console.log(response)
-
-              //Lat
-              var lat = response.data.results[0].geometry.location.lat;
-              console.log(lat);              
-              document.getElementById("lat").value = lat;              
-                  
-              
-              //lng
-              var lng = response.data.results[0].geometry.location.lng;
-              console.log(lng);              
-              document.getElementById("lng").value = lng;
-            })
-            .catch(function(error){
-              console.log(error);
-            });
-                        
- 
-            if(document.getElementById("lat").value != ""){
-              document.getElementById("update").submit();
-            }                                                           
-          }
-          */
-</script>
-
 @endsection
