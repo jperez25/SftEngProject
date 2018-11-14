@@ -18,7 +18,7 @@
 <div class='row' style = "padding: 5%">
   @foreach($users as $user)
     <div class='col-sm-4'>
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem; padding-bottom: 2em">
         @if($user->user_picture)
             <img class="card-img-top" src="data:{{$user->user_picture_type}};base64,{{$user->user_picture}}" height="100" width="100" alt="Card image cap">
         @else
@@ -26,7 +26,9 @@
         @endif
         <div class="card-body">
           <h5 class="card-title">{{$user->name}}</h5>
-          <p class="card-text">{{$user->bio}}</p>
+          <div class = "cad-text scroll">
+              {{$user->bio}}
+          </div>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Age: {{$user->parent_age}}</li>
