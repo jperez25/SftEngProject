@@ -41,6 +41,7 @@ Route::post('/addFriends', 'HomeController@addFriends')->middleware('auth');
 Route::post('/deleteGroupMembers', 'HomeController@deleteGroupMembers')->middleware('auth');
 Route::get('//getMembersOfGroup/{group_id}', 'HomeController@getMembersOfGroup')->middleware('auth');
 Route::get('/delete_group/{group_id}', 'GroupController@delete_group')->middleware('auth');
+Route::get('/getCurrentUser', 'HomeController@getCurrentUser')->middleware('auth');
 
 
 #Friend Request Routes

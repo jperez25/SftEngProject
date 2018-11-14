@@ -154,4 +154,8 @@ class HomeController extends Controller
         
          return $groupMem;
     }
+    public function getCurrentUser()
+    {
+        return Auth::user();
+    }
 }

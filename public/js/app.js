@@ -59647,7 +59647,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             membersOfGroup: [],
             message: '',
             group_id: this.group.id,
-            group_owner: ""
+            group_owner: "",
+            current_user: ""
         };
     },
     mounted: function mounted() {
@@ -59656,6 +59657,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getMessage();
 
         this.getOwner();
+
+        this.getUser();
     },
 
 
@@ -59721,28 +59724,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.group_owner = response.data[0].user_id;
             });
         },
-        getFriends: function getFriends() {
+        getUser: function getUser() {
             var _this4 = this;
+
+            axios.get('/getCurrentUser').then(function (response) {
+                _this4.current_user = response.data.id;
+            });
+        },
+        getFriends: function getFriends() {
+            var _this5 = this;
 
             axios.get('/getFriends').then(function (response) {
                 //console.log(response.data);
-                _this4.friends = [];
+                _this5.friends = [];
                 for (var key in response.data) {
                     //alert(response.data[key]);
-                    _this4.friends.push(response.data[key]);
+                    _this5.friends.push(response.data[key]);
                 }
             });
         },
         getMembersOfGroup: function getMembersOfGroup() {
-            var _this5 = this;
+            var _this6 = this;
 
             axios.get('/getMembersOfGroup/' + this.group_id).then(function (response) {
                 //console.log(response.data);
-                _this5.membersOfGroup = [];
+                _this6.membersOfGroup = [];
                 for (var key in response.data) {
                     //alert(response.data[key]);
                     //console.log(response.data[key]);
-                    _this5.membersOfGroup.push(response.data[key]);
+                    _this6.membersOfGroup.push(response.data[key]);
                 }
             });
         },
@@ -59753,11 +59763,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/deleteGroupMembers', { group_id: this.group_id, friends: this.friends }).then(function (response) {});
         },
         listenForNewMessage: function listenForNewMessage() {
-            var _this6 = this;
+            var _this7 = this;
 
             Echo.private('groups.' + this.group.id).listen('NewMessage', function (e) {
                 //console.log(e);
-                _this6.conversations.push(e);
+                _this7.conversations.push(e);
             });
         }
     }
@@ -59825,17 +59835,23 @@ var render = function() {
         },
         [
           _c("ul", { staticStyle: { "list-style-type": "none" } }, [
-            _vm.group_owner
+            _vm.group_owner == _vm.current_user
               ? _c("li", [
                   _c(
                     "a",
-                    { attrs: { href: "/delete_group/" + _vm.group_id } },
+                    {
+                      attrs: {
+                        href: "/delete_group/" + _vm.group_id,
+                        onclick:
+                          "return confirm('Are you sure you want to delete this group?');"
+                      }
+                    },
                     [_vm._v("Delete group")]
                   )
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.group_owner
+            _vm.group_owner == _vm.current_user
               ? _c("li", [
                   _c(
                     "a",
@@ -59856,7 +59872,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.group_owner
+            _vm.group_owner == _vm.current_user
               ? _c("li", [
                   _c(
                     "a",
@@ -59877,7 +59893,9 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            !_vm.group_owner ? _c("li", [_c("a", [_vm._v("Leave")])]) : _vm._e()
+            _vm.group_owner != _vm.current_user
+              ? _c("li", [_c("a", [_vm._v("Leave")])])
+              : _vm._e()
           ])
         ]
       ),

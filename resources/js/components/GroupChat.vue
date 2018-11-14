@@ -15,10 +15,10 @@
             
             <div class="panel-collapse collapse" :id="'menu-' + group.id">
                 <ul style="list-style-type:none">
-                    <li v-if= group_owner><a :href="'/delete_group/'+ group_id">Delete group</a></li>
-                    <li v-if= group_owner><a data-toggle="modal" data-target="#exampleModalCenter"  @click.prevent="getFriends()">Add more members</a></li>
-                    <li v-if= group_owner><a data-toggle="modal" data-target="#Delete_Friends" @click.prevent="getMembersOfGroup()">Delete members</a></li>
-                    <li v-if= !group_owner><a>Leave</a></li>
+                    <li v-if= "group_owner == current_user"><a :href="'/delete_group/'+ group_id" onclick="return confirm('Are you sure you want to delete this group?');">Delete group</a></li>
+                    <li v-if= "group_owner == current_user"><a data-toggle="modal" data-target="#exampleModalCenter"  @click.prevent="getFriends()">Add more members</a></li>
+                    <li v-if= "group_owner == current_user"><a data-toggle="modal" data-target="#Delete_Friends" @click.prevent="getMembersOfGroup()">Delete members</a></li>
+                    <li v-if= "group_owner != current_user"><a>Leave</a></li>
                 </ul>
             </div>
 
@@ -129,6 +129,7 @@
                 message: '',
                 group_id: this.group.id,
                 group_owner: "",
+                current_user: "",
             }
         },
 
@@ -137,7 +138,9 @@
 
             this.getMessage();  
             
-            this.getOwner();          
+            this.getOwner();   
+            
+            this.getUser();
         },
 
         methods: {
@@ -198,6 +201,12 @@
                 axios.get('/getOwner/' + this.group.id )
                 .then((response) => {
                     this.group_owner = response.data[0].user_id;                    
+                });
+            },
+            getUser() {
+                axios.get('/getCurrentUser' )
+                .then((response) => {                    
+                    this.current_user = response.data.id;                    
                 });
             },
             getFriends() {
