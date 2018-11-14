@@ -41,7 +41,8 @@ Route::get('/friendrequest/{userID}', 'HomeController@sendFriendReq')->middlewar
 Route::get('/acceptFriendReq/{userID}', 'HomeController@acceptFriendReq')->middleware('auth'); 
 Route::get('/deleteFriendReq/{userID}', 'HomeController@deleteFriendReq')->middleware('auth');
 //Route::get('/friendRequestEvent/{userID}', 'HomeController@friendRequestEvent');
-
+#Friend List
+Route::get('/friend', 'FriendController@index')->name('friend')->middleware('auth');
 #Chat Routes
 //Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 //Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');

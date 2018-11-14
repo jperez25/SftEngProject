@@ -46,6 +46,9 @@
                           {{ __('Chat') }}
                   </a>
               </li>
+              <li>
+                <a href="{{route('friend')}}">Friends</a>
+              </li>
 
               <li>
                 <a href="{{route('profile.index')}}">My Profile</a>

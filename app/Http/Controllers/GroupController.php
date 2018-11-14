@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\GroupCreated;
+use App\Events\GroupDeleted;
 use App\Group;
 use Illuminate\Http\Request;
 use App\User;
@@ -119,6 +120,7 @@ class GroupController extends Controller
 
     public function delete_group($group_id)
     {
+        $group = Group::find($group_id);
         DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
          ));  
 
@@ -128,6 +130,9 @@ class GroupController extends Controller
          DB::select(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
          ));
 
-         return redirect()->intended("/group");
+        broadcast(new GroupDeleted($group))->toOthers();
+
+        return redirect()->intended("/group");
+         
     }
 }

@@ -23,12 +23,21 @@
             });
 
             this.listenForNewGroups();
+            this.listenForDeletedGroups();
         },
 
         methods: {
             listenForNewGroups() {
                 Echo.private('users.' + this.user.id)
                     .listen('GroupCreated', (e) => {
+                        this.groups.push(e);
+                        //console.log(e);
+                    });
+            },
+
+            listenForDeletedGroups() {
+                Echo.private('users.' + this.user.id)
+                    .listen('GroupDeleted', (e) => {
                         this.groups.push(e);
                         //console.log(e);
                     });

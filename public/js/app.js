@@ -59208,6 +59208,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         this.listenForNewGroups();
+        this.listenForDeletedGroups();
     },
 
 
@@ -59217,6 +59218,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Echo.private('users.' + this.user.id).listen('GroupCreated', function (e) {
                 _this2.groups.push(e);
+                //console.log(e);
+            });
+        },
+        listenForDeletedGroups: function listenForDeletedGroups() {
+            var _this3 = this;
+
+            Echo.private('users.' + this.user.id).listen('GroupDeleted', function (e) {
+                _this3.groups.push(e);
                 //console.log(e);
             });
         }

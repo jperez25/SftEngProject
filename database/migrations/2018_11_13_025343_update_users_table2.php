@@ -15,7 +15,7 @@ class UpdateUsersTable2 extends Migration
     {
         //
         DB::statement("ALTER TABLE users
-        ADD level int
+        ADD level int,
         add flags tinyint;");
         
     }
