@@ -59578,6 +59578,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59585,6 +59643,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             conversations: [],
+            friends: [],
+            membersOfGroup: [],
             message: '',
             group_id: this.group.id,
             group_owner: ""
@@ -59661,12 +59721,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.group_owner = response.data[0].user_id;
             });
         },
-        listenForNewMessage: function listenForNewMessage() {
+        getFriends: function getFriends() {
             var _this4 = this;
+
+            axios.get('/getFriends').then(function (response) {
+                //console.log(response.data);
+                _this4.friends = [];
+                for (var key in response.data) {
+                    //alert(response.data[key]);
+                    _this4.friends.push(response.data[key]);
+                }
+            });
+        },
+        getMembersOfGroup: function getMembersOfGroup() {
+            var _this5 = this;
+
+            axios.get('/getMembersOfGroup/' + this.group_id).then(function (response) {
+                //console.log(response.data);
+                _this5.membersOfGroup = [];
+                for (var key in response.data) {
+                    //alert(response.data[key]);
+                    //console.log(response.data[key]);
+                    _this5.membersOfGroup.push(response.data[key]);
+                }
+            });
+        },
+        addFriends: function addFriends() {
+            axios.post('/addFriends', { group_id: this.group_id, friends: this.friends }).then(function (response) {});
+        },
+        deleteGroupMembers: function deleteGroupMembers() {
+            axios.post('/deleteGroupMembers', { group_id: this.group_id, friends: this.friends }).then(function (response) {});
+        },
+        listenForNewMessage: function listenForNewMessage() {
+            var _this6 = this;
 
             Echo.private('groups.' + this.group.id).listen('NewMessage', function (e) {
                 //console.log(e);
-                _this4.conversations.push(e);
+                _this6.conversations.push(e);
             });
         }
     }
@@ -59745,15 +59836,205 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.group_owner
-              ? _c("li", [_c("a", [_vm._v("Add more members")])])
+              ? _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#exampleModalCenter"
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.getFriends()
+                        }
+                      }
+                    },
+                    [_vm._v("Add more members")]
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             _vm.group_owner
-              ? _c("li", [_c("a", [_vm._v("Delete members")])])
+              ? _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#Delete_Friends"
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.getMembersOfGroup()
+                        }
+                      }
+                    },
+                    [_vm._v("Delete members")]
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             !_vm.group_owner ? _c("li", [_c("a", [_vm._v("Leave")])]) : _vm._e()
           ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "exampleModalCenter",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalCenterTitle",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("form", [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "select",
+                        { attrs: { multiple: "", id: "friends" } },
+                        _vm._l(_vm.friends, function(user) {
+                          return _c(
+                            "option",
+                            { key: user.id, domProps: { value: user.id } },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(user.name) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.addFriends()
+                        }
+                      }
+                    },
+                    [_vm._v("Save changes")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "Delete_Friends",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalCenterTitle",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("form", [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "select",
+                        { attrs: { multiple: "", id: "Members" } },
+                        _vm._l(_vm.membersOfGroup, function(user) {
+                          return _c(
+                            "option",
+                            { key: user.id, domProps: { value: user.id } },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(user.name) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.deleteGroupMemebers()
+                        }
+                      }
+                    },
+                    [_vm._v("Save changes")]
+                  )
+                ])
+              ])
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -59889,7 +60170,58 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Add more friends to this group")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Delete Members of this Group")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

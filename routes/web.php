@@ -33,7 +33,14 @@ Route::resource('/ratings', 'ReviewController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/home','HomeController@search')->middleware('auth');
 Route::get('/fetchReqs', 'HomeController@fetchReqs')->middleware('auth');
+
+#Group options Routes
 Route::get('/getOwner/{group_id}', 'HomeController@getOwner')->middleware('auth');
+Route::get('/getFriends', 'HomeController@getFriends')->middleware('auth');
+Route::post('/addFriends', 'HomeController@addFriends')->middleware('auth');
+Route::post('/deleteGroupMembers', 'HomeController@deleteGroupMembers')->middleware('auth');
+Route::get('//getMembersOfGroup/{group_id}', 'HomeController@getMembersOfGroup')->middleware('auth');
+Route::get('/delete_group/{group_id}', 'GroupController@delete_group')->middleware('auth');
 
 
 #Friend Request Routes
@@ -49,7 +56,6 @@ Route::get('/deleteFriendReq/{userID}', 'HomeController@deleteFriendReq')->middl
 //Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 Route::get('/group', 'GroupController@index')->name('group')->middleware('auth');
 Route::resource('groups', 'GroupController')->middleware('auth');
-Route::get('/delete_group/{group_id}', 'GroupController@delete_group')->middleware('auth');
 Route::resource('conversations', 'ConversationController')->middleware('auth');
 Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');
 

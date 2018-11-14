@@ -16,10 +16,68 @@
             <div class="panel-collapse collapse" :id="'menu-' + group.id">
                 <ul style="list-style-type:none">
                     <li v-if= group_owner><a :href="'/delete_group/'+ group_id">Delete group</a></li>
-                    <li v-if= group_owner><a>Add more members</a></li>
-                    <li v-if= group_owner><a>Delete members</a></li>
+                    <li v-if= group_owner><a data-toggle="modal" data-target="#exampleModalCenter"  @click.prevent="getFriends()">Add more members</a></li>
+                    <li v-if= group_owner><a data-toggle="modal" data-target="#Delete_Friends" @click.prevent="getMembersOfGroup()">Delete members</a></li>
                     <li v-if= !group_owner><a>Leave</a></li>
                 </ul>
+            </div>
+
+            <!-- Modal for Add friends -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add more friends to this group</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <select multiple id="friends">
+                                    <option v-for="user in friends" :value="user.id" :key="user.id">
+                                        {{ user.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" @click.prevent="addFriends()" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Delete Friends -->
+            <div class="modal fade" id="Delete_Friends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Members of this Group</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <select multiple id="Members">
+                                    <option v-for="user in membersOfGroup" :value="user.id" :key="user.id">
+                                        {{ user.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit"  @click.prevent="deleteGroupMemebers()" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
             </div>
 
             
@@ -61,14 +119,16 @@
 
 <script>
     export default {
-        props: ['group'],
+        props: ['group',],
 
         data() {
             return {
                 conversations: [],
+                friends: [],
+                membersOfGroup: [],
                 message: '',
                 group_id: this.group.id,
-                group_owner: ""
+                group_owner: "",
             }
         },
 
@@ -140,7 +200,41 @@
                     this.group_owner = response.data[0].user_id;                    
                 });
             },
-
+            getFriends() {
+                axios.get('/getFriends')
+                .then((response) => {
+                    //console.log(response.data);
+                    this.friends = [];
+                    for (var key in response.data) {
+                            //alert(response.data[key]);
+                            this.friends.push(response.data[key]);
+                    }
+                });
+            },
+            getMembersOfGroup() {
+                axios.get('/getMembersOfGroup/' + this.group_id)
+                .then((response) => {
+                    //console.log(response.data);
+                    this.membersOfGroup = [];
+                    for (var key in response.data) {
+                            //alert(response.data[key]);
+                            //console.log(response.data[key]);
+                            this.membersOfGroup.push(response.data[key]);
+                    }
+                });
+            },
+            addFriends() {
+                axios.post('/addFriends', {group_id: this.group_id, friends: this.friends})
+                .then((response) => {
+                                       
+                });
+            },
+             deleteGroupMembers() {
+                axios.post('/deleteGroupMembers', {group_id: this.group_id, friends: this.friends})
+                .then((response) => {
+                                       
+                });
+            },
             listenForNewMessage() {
                 Echo.private('groups.' + this.group.id)
                     .listen('NewMessage', (e) => {
