@@ -59206,8 +59206,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Bus.$on('groupCreated', function (group) {
             _this.groups.push(group);
         });
+        Bus.$on('groupDeleted', function (group) {
+            _this.groups.splice(group, 1);
+        });
 
         this.listenForNewGroups();
+        this.listenForDeletedGroups();
     },
 
 
@@ -59217,7 +59221,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Echo.private('users.' + this.user.id).listen('GroupCreated', function (e) {
                 _this2.groups.push(e);
-                //console.log(e);
+            });
+        },
+        listenForDeletedGroups: function listenForDeletedGroups() {
+            var _this3 = this;
+
+            Echo.private('users.' + this.user.id).listen('GroupDeleted', function (e) {
+                _this3.groups.splice(e, 1);
             });
         }
     }

@@ -108,6 +108,9 @@ class HomeController extends Controller
         DB::table('friends')->where(
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->delete();
+        DB::table('friends')->where(
+            ['user2_id' => $id, 'user1_id' => $user_id]
+        )->delete();
 
         return redirect()->back();
     }
