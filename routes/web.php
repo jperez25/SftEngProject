@@ -28,11 +28,12 @@ Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
 Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
 Route::resource('/ratings', 'ReviewController')->middleware('auth');
 
-#Search Users Routes
+#Search Users and others Routes
 #Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::post('/home','HomeController@search');
-Route::get('/fetchReqs', 'HomeController@fetchReqs');
+Route::post('/home','HomeController@search')->middleware('auth');
+Route::get('/fetchReqs', 'HomeController@fetchReqs')->middleware('auth');
+Route::get('/getOwner/{group_id}', 'HomeController@getOwner')->middleware('auth');
 
 
 #Friend Request Routes
@@ -47,9 +48,11 @@ Route::get('/deleteFriendReq/{userID}', 'HomeController@deleteFriendReq')->middl
 //Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 //Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 Route::get('/group', 'GroupController@index')->name('group')->middleware('auth');
-Route::resource('groups', 'GroupController');
+Route::resource('groups', 'GroupController')->middleware('auth');
+Route::get('/delete_group/{group_id}', 'GroupController@delete_group')->middleware('auth');
 Route::resource('conversations', 'ConversationController')->middleware('auth');
 Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('conversations.getMessage')->middleware('auth');
+
 
 #Admin Routes
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');

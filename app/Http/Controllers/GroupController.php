@@ -116,4 +116,18 @@ class GroupController extends Controller
     {
         //
     }
+
+    public function delete_group($group_id)
+    {
+        DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
+         ));  
+
+         DB::select(DB::raw("DELETE FROM groups WHERE id = {$group_id};"
+         ));
+         
+         DB::select(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
+         ));
+
+         return redirect()->intended("/group");
+    }
 }

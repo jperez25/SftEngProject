@@ -4,33 +4,30 @@
             <div class="panel-heading" id="accordion">
                 <span class="glyphicon glyphicon-comment"></span> {{ group.name }}
                 <div class="btn-group pull-right">
-                    <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion-" :href="'#collapseOne-' + group.id">
+                    <a type="button" class="btn btn-default btn-xs" @click.prevent="setMessagesAtBottom()" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" :href="'#collapseOne-' + group.id">
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
-                    <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion-" :href="'#menu-' + group.id">
+                    <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" :href="'#menu-' + group.id">
                         <span class="options"></span>
                     </a>
                 </div>
             </div>
+            
             <div class="panel-collapse collapse" :id="'menu-' + group.id">
-                <ul>
-                    <li>delete X</li>
-                    <li>add +</li>
-                    <li>leave -></li>
+                <ul style="list-style-type:none">
+                    <li v-if= group_owner><a :href="'/delete_group/'+ group_id">Delete group</a></li>
+                    <li v-if= group_owner><a>Add more members</a></li>
+                    <li v-if= group_owner><a>Delete members</a></li>
+                    <li v-if= !group_owner><a>Leave</a></li>
                 </ul>
             </div>
 
             
             <div class="panel-collapse collapse" :id="'collapseOne-' + group.id">
-                <div class="panel-body chat-panel">
+                <div class="panel-body chat-panel scroll scroll-chat" id="chatBox">
                     <ul style="list-style-type:none" class="chat">
                         <li v-for="conversation in conversations" :key="conversation.id">
                             <span class="chat-img pull-left">
-                               <!-- @if(Auth::user()->user_picture)
-                                    <img src= "data:{{Auth::user()->user_picture_type}};base64,{{Auth::user()->user_picture}}" width="50" height="50" alt="User Avatar" class="img-circle" />
-                                @else
-                                    <img src="{{ URL::to('/') }}/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
-                                @endif-->
                                 <img v-if= conversation.user_picture :src= "'data:conversation.user_picture_type;base64,'+conversation.user_picture" width="50" height="50" alt="User Avatar" class="img-circle" />
 
                                 <img v-else src="/images/blankProfile.png" width="50" height="50" alt="User Avatar" class="img-circle" />
@@ -70,14 +67,17 @@
             return {
                 conversations: [],
                 message: '',
-                group_id: this.group.id
+                group_id: this.group.id,
+                group_owner: ""
             }
         },
 
         mounted() {
             this.listenForNewMessage();
 
-            this.getMessage();
+            this.getMessage();  
+            
+            this.getOwner();          
         },
 
         methods: {
@@ -125,7 +125,22 @@
                     }
                 });*/
             },
-            
+            setMessagesAtBottom(){
+                var messageBody = document.getElementById('chatBox');
+                if (messageBody.scrollHeight === 0) {
+                    messageBody.scrollTop = 314;
+                } else {
+                    messageBody.scrollTop = messageBody.scrollHeight;
+                }                
+            },
+
+            getOwner() {
+                axios.get('/getOwner/' + this.group.id )
+                .then((response) => {
+                    this.group_owner = response.data[0].user_id;                    
+                });
+            },
+
             listenForNewMessage() {
                 Echo.private('groups.' + this.group.id)
                     .listen('NewMessage', (e) => {

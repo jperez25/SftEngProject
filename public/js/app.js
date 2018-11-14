@@ -59195,6 +59195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             groups: []
+
         };
     },
     mounted: function mounted() {
@@ -59233,7 +59234,10 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.groups, function(group) {
-      return _c("group-chat", { key: group.id, attrs: { group: group } })
+      return _c("group-chat", {
+        key: group.id,
+        attrs: { group: group, id: group.id }
+      })
     })
   )
 }
@@ -59574,9 +59578,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59585,13 +59586,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             conversations: [],
             message: '',
-            group_id: this.group.id
+            group_id: this.group.id,
+            group_owner: ""
         };
     },
     mounted: function mounted() {
         this.listenForNewMessage();
 
         this.getMessage();
+
+        this.getOwner();
     },
 
 
@@ -59642,12 +59646,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });*/
         },
-        listenForNewMessage: function listenForNewMessage() {
+        setMessagesAtBottom: function setMessagesAtBottom() {
+            var messageBody = document.getElementById('chatBox');
+            if (messageBody.scrollHeight === 0) {
+                messageBody.scrollTop = 314;
+            } else {
+                messageBody.scrollTop = messageBody.scrollHeight;
+            }
+        },
+        getOwner: function getOwner() {
             var _this3 = this;
+
+            axios.get('/getOwner/' + this.group.id).then(function (response) {
+                _this3.group_owner = response.data[0].user_id;
+            });
+        },
+        listenForNewMessage: function listenForNewMessage() {
+            var _this4 = this;
 
             Echo.private('groups.' + this.group.id).listen('NewMessage', function (e) {
                 //console.log(e);
-                _this3.conversations.push(e);
+                _this4.conversations.push(e);
             });
         }
     }
@@ -59674,8 +59693,16 @@ var render = function() {
               attrs: {
                 type: "button",
                 "data-toggle": "collapse",
-                "data-parent": "#accordion-",
+                "data-parent": "#accordion",
+                "aria-expanded": "false",
+                "aria-controls": "collapseOne",
                 href: "#collapseOne-" + _vm.group.id
+              },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.setMessagesAtBottom()
+                }
               }
             },
             [_c("span", { staticClass: "glyphicon glyphicon-chevron-down" })]
@@ -59688,7 +59715,9 @@ var render = function() {
               attrs: {
                 type: "button",
                 "data-toggle": "collapse",
-                "data-parent": "#accordion-",
+                "data-parent": "#accordion",
+                "aria-expanded": "false",
+                "aria-controls": "collapseOne",
                 href: "#menu-" + _vm.group.id
               }
             },
@@ -59703,7 +59732,29 @@ var render = function() {
           staticClass: "panel-collapse collapse",
           attrs: { id: "menu-" + _vm.group.id }
         },
-        [_vm._m(0)]
+        [
+          _c("ul", { staticStyle: { "list-style-type": "none" } }, [
+            _vm.group_owner
+              ? _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/delete_group/" + _vm.group_id } },
+                    [_vm._v("Delete group")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.group_owner
+              ? _c("li", [_c("a", [_vm._v("Add more members")])])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.group_owner
+              ? _c("li", [_c("a", [_vm._v("Delete members")])])
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.group_owner ? _c("li", [_c("a", [_vm._v("Leave")])]) : _vm._e()
+          ])
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -59713,62 +59764,69 @@ var render = function() {
           attrs: { id: "collapseOne-" + _vm.group.id }
         },
         [
-          _c("div", { staticClass: "panel-body chat-panel" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "chat",
-                staticStyle: { "list-style-type": "none" }
-              },
-              _vm._l(_vm.conversations, function(conversation) {
-                return _c("li", { key: conversation.id }, [
-                  _c("span", { staticClass: "chat-img pull-left" }, [
-                    conversation.user_picture
-                      ? _c("img", {
-                          staticClass: "img-circle",
-                          attrs: {
-                            src:
-                              "data:conversation.user_picture_type;base64," +
-                              conversation.user_picture,
-                            width: "50",
-                            height: "50",
-                            alt: "User Avatar"
-                          }
-                        })
-                      : _c("img", {
-                          staticClass: "img-circle",
-                          attrs: {
-                            src: "/images/blankProfile.png",
-                            width: "50",
-                            height: "50",
-                            alt: "User Avatar"
-                          }
-                        })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "chat-body clearfix" }, [
-                    _c("div", { staticClass: "header" }, [
-                      conversation.name
-                        ? _c("strong", { staticClass: "primary-font" }, [
-                            _vm._v(_vm._s(conversation.name))
-                          ])
-                        : _c("strong", { staticClass: "primary-font" }, [
-                            _vm._v(_vm._s(conversation.user.name))
-                          ])
+          _c(
+            "div",
+            {
+              staticClass: "panel-body chat-panel scroll scroll-chat",
+              attrs: { id: "chatBox" }
+            },
+            [
+              _c(
+                "ul",
+                {
+                  staticClass: "chat",
+                  staticStyle: { "list-style-type": "none" }
+                },
+                _vm._l(_vm.conversations, function(conversation) {
+                  return _c("li", { key: conversation.id }, [
+                    _c("span", { staticClass: "chat-img pull-left" }, [
+                      conversation.user_picture
+                        ? _c("img", {
+                            staticClass: "img-circle",
+                            attrs: {
+                              src:
+                                "data:conversation.user_picture_type;base64," +
+                                conversation.user_picture,
+                              width: "50",
+                              height: "50",
+                              alt: "User Avatar"
+                            }
+                          })
+                        : _c("img", {
+                            staticClass: "img-circle",
+                            attrs: {
+                              src: "/images/blankProfile.png",
+                              width: "50",
+                              height: "50",
+                              alt: "User Avatar"
+                            }
+                          })
                     ]),
                     _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(conversation.message) +
-                          "\n                            "
-                      )
+                    _c("div", { staticClass: "chat-body clearfix" }, [
+                      _c("div", { staticClass: "header" }, [
+                        conversation.name
+                          ? _c("strong", { staticClass: "primary-font" }, [
+                              _vm._v(_vm._s(conversation.name))
+                            ])
+                          : _c("strong", { staticClass: "primary-font" }, [
+                              _vm._v(_vm._s(conversation.user.name))
+                            ])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(conversation.message) +
+                            "\n                            "
+                        )
+                      ])
                     ])
                   ])
-                ])
-              })
-            )
-          ]),
+                })
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "panel-footer" }, [
             _c("div", { staticClass: "input-group" }, [
@@ -59831,20 +59889,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", [
-      _c("li", [_vm._v("delete X")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("add +")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("leave ->")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -59973,8 +60018,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/fetchReqs').then(function (response) {
-                console.log('Requests.' + _this.user_id);
-                console.log(response.data);
+                //console.log(response.data);                    
                 for (var key in response.data) {
                     //alert(response.data[key]);
 
@@ -59983,20 +60027,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 };
             });
         },
-        getUserId: function getUserId() {
+        listenForRequests: function listenForRequests() {
             var _this2 = this;
 
-            axios.get('/getUserId').then(function (response) {
-                _this2.user_id = response.data;
-            });
-        },
-        listenForRequests: function listenForRequests() {
-            var _this3 = this;
-
             Echo.private("Requests." + this.user_id).listen('NewRequest', function (e) {
-                console.log(e);
+                //console.log(e);
                 //alert(e[1].name);
-                _this3.friendReqs.push(e);
+                _this2.friendReqs.push(e);
                 var audio = document.getElementById("myAudio");
                 audio.play();
             });

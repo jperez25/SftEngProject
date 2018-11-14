@@ -1,6 +1,6 @@
 <template>
     <div>
-        <group-chat v-for="group in groups" :group="group" :key="group.id"></group-chat>
+        <group-chat v-for="group in groups" :group="group" :key="group.id" :id="group.id"></group-chat>
     </div>
 </template>
 
@@ -10,7 +10,8 @@
 
         data() {
             return {
-                groups: []
+                groups: [],
+                
             }
         },
 
@@ -31,7 +32,7 @@
                         this.groups.push(e);
                         //console.log(e);
                     });
-            }
+            },
         }
     }
 </script>

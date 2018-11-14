@@ -121,4 +121,13 @@ class HomeController extends Controller
 
          return $friendRequests;
     }
+
+    public function getOwner($group_id)
+    {
+        $owner = DB::select(DB::raw("SELECT user_id FROM 
+                    group_user WHERE group_id = ".$group_id." ORDER BY group_user.id DESC LIMIT 1;"
+         ));
+        
+         return $owner;
+    }
 }
