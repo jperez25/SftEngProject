@@ -109,7 +109,7 @@ class HomeController extends Controller
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->delete();
 
-        return redirect()->intended("/home");
+        return redirect()->back();
     }
 
     public function fetchReqs()
@@ -129,5 +129,29 @@ class HomeController extends Controller
          ));
         
          return $owner;
+    }
+    public function getFriends()
+    {
+        $friends = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
+            (SELECT user1_id FROM friends
+            WHERE accepted = 1 AND (user1_id = ". Auth::user()->id ." or user2_id = " . Auth::user()->id . "))"
+        ));
+        
+         return $friends;
+    }
+    public function addFriends(Request $request)
+    {
+        dd($request);
+    }
+    public function deleteGroupMembers($group_id)
+    {
+        
+    }
+    public function getMembersOfGroup($group_id)
+    {
+        $groupMem = DB::select(DB::raw("SELECT * FROM users WHERE id IN
+        (select user_id from group_user where group_id = {$group_id})"));
+        
+         return $groupMem;
     }
 }

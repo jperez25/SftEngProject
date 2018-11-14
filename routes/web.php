@@ -33,7 +33,13 @@ Route::resource('/ratings', 'ReviewController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/home','HomeController@search')->middleware('auth');
 Route::get('/fetchReqs', 'HomeController@fetchReqs')->middleware('auth');
+
+#Group options Routes
 Route::get('/getOwner/{group_id}', 'HomeController@getOwner')->middleware('auth');
+Route::get('/getFriends', 'HomeController@getFriends')->middleware('auth');
+Route::post('/addFriends', 'HomeController@addFriends')->middleware('auth');
+Route::post('/deleteGroupMembers', 'HomeController@deleteGroupMembers')->middleware('auth');
+Route::get('//getMembersOfGroup/{group_id}', 'HomeController@getMembersOfGroup')->middleware('auth');
 
 
 #Friend Request Routes
