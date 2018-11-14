@@ -121,6 +121,9 @@ class GroupController extends Controller
     public function delete_group($group_id)
     {
         $group = Group::find($group_id);
+
+        broadcast(new GroupDeleted($group))->toOthers();
+
         DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
          ));  
 
@@ -129,10 +132,10 @@ class GroupController extends Controller
          
          DB::select(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
          ));
-
-        broadcast(new GroupDeleted($group))->toOthers();
+        
 
         return redirect()->intended("/group");
+        
          
     }
 }

@@ -21,6 +21,9 @@
             Bus.$on('groupCreated', (group) => {
                 this.groups.push(group);
             });
+            Bus.$on('groupDeleted', (group) => {
+                this.groups.splice(group, 1);
+            });
 
             this.listenForNewGroups();
             this.listenForDeletedGroups();
@@ -31,15 +34,13 @@
                 Echo.private('users.' + this.user.id)
                     .listen('GroupCreated', (e) => {
                         this.groups.push(e);
-                        //console.log(e);
                     });
             },
 
             listenForDeletedGroups() {
                 Echo.private('users.' + this.user.id)
                     .listen('GroupDeleted', (e) => {
-                        this.groups.push(e);
-                        //console.log(e);
+                        this.groups.splice(e, 1);
                     });
             },
         }
