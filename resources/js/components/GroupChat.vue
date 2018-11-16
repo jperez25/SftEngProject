@@ -15,12 +15,16 @@
             
             <div class="panel-collapse collapse" :id="'menu-' + group.id">
                 <ul style="list-style-type:none">
-                    <li v-if= "group_owner == current_user"><a :href="'/delete_group/'+ group_id" onclick="return confirm('Are you sure you want to delete this group?');">Delete group</a></li>
-                    <li v-if= "group_owner == current_user"><a data-toggle="modal" data-target="#exampleModalCenter"  @click.prevent="getFriends()">Add more members</a></li>
-                    <li v-if= "group_owner == current_user"><a data-toggle="modal" data-target="#Delete_Friends" @click.prevent="getMembersOfGroup()">Delete members</a></li>
+                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', false, 'Are you sure you want to delete this group?', 'delete_group')">Delete group</a></li>
+                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Add more friends', true, '', 'add_members')">Add more members</a></li>
+                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', true, '', 'delete_members')">Delete members</a></li>
                     <li v-if= "group_owner != current_user"><a>Leave</a></li>
                 </ul>
             </div>
+
+            <modal-box v-if="showModal" @close="showModal = false" ref="myModalRef" :title="title" :group_id="group.id"  :displaySelect="dselect" :body_text="body_text" :action="action">
+                
+            </modal-box>
 
             <!-- Modal for Add friends -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -50,36 +54,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal for Delete Friends -->
-            <div class="modal fade" id="Delete_Friends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Members of this Group</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <select multiple id="Members">
-                                    <option v-for="user in membersOfGroup" :value="user.id" :key="user.id">
-                                        {{ user.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit"  @click.prevent="deleteGroupMemebers()" class="btn btn-primary">Save changes</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
-
             
             <div class="panel-collapse collapse" :id="'collapseOne-' + group.id">
                 <div class="panel-body chat-panel scroll scroll-chat" id="chatBox">
@@ -119,7 +93,7 @@
 
 <script>
     export default {
-        props: ['group',],
+        props: ['group'],
 
         data() {
             return {
@@ -127,18 +101,24 @@
                 friends: [],
                 membersOfGroup: [],
                 message: '',
-                group_id: this.group.id,
                 group_owner: "",
-                current_user: "",
+                current_user: "", 
+                
+                title: "",
+                body_text: "",
+                action: "",
+                dselect: "",
+                showModal: false,        
             }
         },
 
         mounted() {
+            this.getOwner();   
+            
             this.listenForNewMessage();
 
             this.getMessage();  
             
-            this.getOwner();   
             
             this.getUser();
         },
@@ -155,7 +135,7 @@
             getMessage() {
                 axios.get('/conversation/' + this.group.id, {message: this.message, group_id: this.group.id})
                 .then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     this.message = '';
                     for (var key in response.data) {
                             //alert(response.data[key]);
@@ -165,28 +145,6 @@
                         };
                     //console.log(this.group_id);  
                 });
-                /*$.ajax({
-                    headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: '/conversation',
-                    dataType : 'json',
-                    type: 'GET',
-                    data: {group_id: this.group.id},
-                    contentType: false,
-                    processData: false,
-                    success:function(response) {
-                        console.log(response);
-                        
-                        for (var data in response) {
-                            alert(this.conversations);
-                            
-                            
-                            //this.conversations.push(data);
-                        };
-                        
-                    }
-                });*/
             },
             setMessagesAtBottom(){
                 var messageBody = document.getElementById('chatBox');
@@ -194,54 +152,24 @@
                     messageBody.scrollTop = 314;
                 } else {
                     messageBody.scrollTop = messageBody.scrollHeight;
-                }                
+                }    
             },
-
+            setValues(tit, dsel, txt, act){
+                this.title = tit;
+                this.dselect = dsel;
+                this.body_text = txt;
+                this.action = act;
+            },
             getOwner() {
                 axios.get('/getOwner/' + this.group.id )
                 .then((response) => {
-                    this.group_owner = response.data[0].user_id;                    
+                    this.group_owner = response.data[0].user_id;                 
                 });
             },
             getUser() {
                 axios.get('/getCurrentUser' )
                 .then((response) => {                    
                     this.current_user = response.data.id;                    
-                });
-            },
-            getFriends() {
-                axios.get('/getFriends')
-                .then((response) => {
-                    //console.log(response.data);
-                    this.friends = [];
-                    for (var key in response.data) {
-                            //alert(response.data[key]);
-                            this.friends.push(response.data[key]);
-                    }
-                });
-            },
-            getMembersOfGroup() {
-                axios.get('/getMembersOfGroup/' + this.group_id)
-                .then((response) => {
-                    //console.log(response.data);
-                    this.membersOfGroup = [];
-                    for (var key in response.data) {
-                            //alert(response.data[key]);
-                            //console.log(response.data[key]);
-                            this.membersOfGroup.push(response.data[key]);
-                    }
-                });
-            },
-            addFriends() {
-                axios.post('/addFriends', {group_id: this.group_id, friends: this.friends})
-                .then((response) => {
-                                       
-                });
-            },
-             deleteGroupMembers() {
-                axios.post('/deleteGroupMembers', {group_id: this.group_id, friends: this.friends})
-                .then((response) => {
-                                       
                 });
             },
             listenForNewMessage() {

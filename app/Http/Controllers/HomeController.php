@@ -142,18 +142,32 @@ class HomeController extends Controller
         
          return $friends;
     }
-    public function addFriends(Request $request)
+    public function addFriends()
     {
-        dd($request);
+        $group_id = request('group_id');
+        $friends = request('friends');
+
+        foreach ($friends as $array => $id) {
+            DB::select(DB::raw("INSERT into group_user (user_id, group_id) values ({$id}, {$group_id});"
+         ));
+        }
     }
-    public function deleteGroupMembers($group_id)
+    public function deleteGroupMembers()
     {
-        
+        $group_id = request('group_id');
+        $friends = request('friends');
+
+        foreach ($friends as $array => $id) {
+            DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$id};"
+         ));
+        }
+
+
     }
     public function getMembersOfGroup($group_id)
     {
         $groupMem = DB::select(DB::raw("SELECT * FROM users WHERE id IN
-        (select user_id from group_user where group_id = {$group_id})"));
+        (select user_id from group_user where group_id = {$group_id} and user_id != " . Auth::user()->id. ");"));
         
          return $groupMem;
     }

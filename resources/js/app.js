@@ -18,6 +18,7 @@ Vue.component('groups', require('./components/Groups.vue'));
 Vue.component('create-group', require('./components/CreateGroup.vue'));
 Vue.component('group-chat', require('./components/GroupChat.vue'));
 Vue.component('friend-req', require('./components/FriendRequests.vue'));
+Vue.component('modal-box', require('./components/ModalBox.vue'));
 
 const app = new Vue({
     el: '#app'
