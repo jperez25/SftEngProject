@@ -144,7 +144,7 @@ class HomeController extends Controller
     }
     public function addFriends(Request $request)
     {
-        dd($request);
+        
     }
     public function deleteGroupMembers($group_id)
     {
