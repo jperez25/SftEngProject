@@ -22,7 +22,7 @@
                 </ul>
             </div>
 
-            <modal-box v-if="showModal" @close="showModal = false" :title="title" :group_id="group.id"  :displaySelect="dselect" :body_text="body_text" :action="action">
+            <modal-box v-if="showModal" @close="showModal = false" ref="myModalRef" :title="title" :group_id="group.id"  :displaySelect="dselect" :body_text="body_text" :action="action">
                 
             </modal-box>
 

@@ -59883,6 +59883,7 @@ var render = function() {
         _vm._v(" "),
         _vm.showModal
           ? _c("modal-box", {
+              ref: "myModalRef",
               attrs: {
                 title: _vm.title,
                 group_id: _vm.group.id,
@@ -60534,6 +60535,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group_id', 'title', 'displaySelect', 'body_text', 'action'],
@@ -60541,7 +60549,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             friends: [],
-            membersOfGroup: []
+            membersOfGroup: [],
+
+            selected_friends: []
         };
     },
     mounted: function mounted() {
@@ -60576,11 +60586,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
-        addFriends: function addFriends() {
-            axios.post('/addFriends', { group_id: this.group_id, friends: this.friends }).then(function (response) {});
+        getSelectedFriends: function getSelectedFriends() {
+            //console.log(this.selected_friends);
+        },
+        add_members: function add_members() {
+            axios.post('/addFriends', { group_id: this.group_id, friends: this.selected_friends }).then(function (response) {
+                location.reload(true);
+            });
         },
         deleteGroupMembers: function deleteGroupMembers() {
-            axios.post('/deleteGroupMembers', { group_id: this.group_id, friends: this.friends }).then(function (response) {});
+            axios.post('/deleteGroupMembers', { group_id: this.group_id, friends: this.selected_friends }).then(function (response) {
+                //console.log(response);
+                location.reload(true);
+            });
         },
         deleteGroup: function deleteGroup() {
             var _this3 = this;
@@ -60648,25 +60666,113 @@ var render = function() {
             _vm._t("body", [
               _vm.displaySelect
                 ? _c("form", [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c(
-                        "select",
-                        { attrs: { multiple: "", id: "Members" } },
-                        _vm._l(_vm.membersOfGroup, function(user) {
-                          return _c(
-                            "option",
-                            { key: user.id, domProps: { value: user.id } },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(user.name) +
-                                  "\n                        "
+                    _vm.action === "add_members"
+                      ? _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selected_friends,
+                                  expression: "selected_friends"
+                                }
+                              ],
+                              attrs: { multiple: "", id: "friends" },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_friends = $event.target
+                                      .multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.getSelectedFriends()
+                                  }
+                                ]
+                              }
+                            },
+                            _vm._l(_vm.friends, function(user) {
+                              return _c(
+                                "option",
+                                { key: user.id, domProps: { value: user.id } },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(user.name) +
+                                      "\n                        "
+                                  )
+                                ]
                               )
-                            ]
+                            })
                           )
-                        })
-                      )
-                    ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.action === "delete_members"
+                      ? _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selected_friends,
+                                  expression: "selected_friends"
+                                }
+                              ],
+                              attrs: { multiple: "", id: "members" },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_friends = $event.target
+                                      .multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.getSelectedFriends()
+                                  }
+                                ]
+                              }
+                            },
+                            _vm._l(_vm.membersOfGroup, function(user) {
+                              return _c(
+                                "option",
+                                { key: user.id, domProps: { value: user.id } },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(user.name) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            })
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _c("p", [_vm._v(_vm._s(_vm.body_text))])
             ])
@@ -60719,7 +60825,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          _vm.deleteGroupMembers()
+                          _vm.add_members()
                         }
                       }
                     },

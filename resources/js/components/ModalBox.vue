@@ -15,8 +15,15 @@
           <div class="modal-body">
             <slot name="body">
                 <form v-if="displaySelect">
-                    <div class="form-group">
-                        <select multiple id="Members">
+                    <div v-if="action === 'add_members'" class="form-group">
+                        <select multiple id="friends" v-model="selected_friends" @change="getSelectedFriends()">
+                            <option v-for="user in friends" :value="user.id" :key="user.id">
+                                {{ user.name }}
+                            </option>
+                        </select>
+                    </div>
+                     <div v-if="action === 'delete_members'" class="form-group">
+                        <select multiple id="members" v-model="selected_friends" @change="getSelectedFriends()">
                             <option v-for="user in membersOfGroup" :value="user.id" :key="user.id">
                                 {{ user.name }}
                             </option>
@@ -32,7 +39,7 @@
               
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$emit('close')">Close</button>
                 <button v-if="action === 'delete_group'" type="submit"  @click.prevent="deleteGroup()" class="btn btn-primary">Yes!</button>
-                <button v-if="action === 'add_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Save Changes</button>
+                <button v-if="action === 'add_members'" type="submit"  @click.prevent="add_members()" class="btn btn-primary">Save Changes</button>
                 <button v-if="action === 'delete_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Save Changes</button>
             </slot>
           </div>
@@ -49,6 +56,8 @@
             return {
                 friends: [],
                 membersOfGroup: [],
+
+                selected_friends: [],
             }              
         },
 
@@ -81,16 +90,20 @@
                     }
                 });
             },
-            addFriends() {
-                axios.post('/addFriends', {group_id: this.group_id, friends: this.friends})
+            getSelectedFriends(){
+                //console.log(this.selected_friends);
+            },
+            add_members() {
+                axios.post('/addFriends', {group_id: this.group_id, friends: this.selected_friends})
                 .then((response) => {
-                                       
+                    location.reload(true);
                 });
             },
              deleteGroupMembers() {
-                axios.post('/deleteGroupMembers', {group_id: this.group_id, friends: this.friends})
+                axios.post('/deleteGroupMembers', {group_id: this.group_id, friends: this.selected_friends})
                 .then((response) => {
-                           
+                        //console.log(response);
+                        location.reload(true);
                 });
             },
             deleteGroup() {
