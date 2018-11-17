@@ -17,7 +17,7 @@
                 <ul style="list-style-type:none">
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', false, 'Are you sure you want to delete this group?', 'delete_group')">Delete group</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Add more friends', true, '', 'add_members')">Add more members</a></li>
-                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', true, '', 'delete_members')">Delete members</a></li>
+                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Members', true, '', 'delete_members')">Delete members</a></li>
                     <li v-if= "group_owner != current_user"><a>Leave</a></li>
                 </ul>
             </div>
@@ -101,7 +101,7 @@
                 friends: [],
                 membersOfGroup: [],
                 message: '',
-                group_owner: "",
+                group_owner: 0,
                 current_user: "", 
                 
                 title: "",
@@ -119,7 +119,6 @@
 
             this.getMessage();  
             
-            
             this.getUser();
         },
 
@@ -127,7 +126,7 @@
             store() {
                 axios.post('/conversations', {message: this.message, group_id: this.group.id})
                 .then((response) => {
-                    console.log(this.conversations);                   
+                    //console.log(this.conversations);                   
                     this.message = '';
                     this.conversations.push(response.data);
                 });
@@ -163,7 +162,8 @@
             getOwner() {
                 axios.get('/getOwner/' + this.group.id )
                 .then((response) => {
-                    this.group_owner = response.data[0].user_id;                 
+                    this.group_owner = response.data[0].user_id;
+                    //console.log(response);                
                 });
             },
             getUser() {

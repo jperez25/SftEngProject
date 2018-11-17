@@ -127,16 +127,21 @@ class HomeController extends Controller
 
     public function getOwner($group_id)
     {
-        $owner = DB::select(DB::raw("SELECT user_id FROM group_user WHERE group_id = " . $group_id .  "AND is_group_leader = 1;"
-         ));
-        
+        $owner = DB::select(DB::raw("SELECT user_id FROM group_user WHERE group_id = " . $group_id .  " AND is_group_leader = 1;"
+         ));         
+
          return $owner;
     }
     public function getFriends()
     {
-        $friends = DB::select(DB::raw("SELECT * FROM users WHERE id IN 
-            (SELECT user1_id FROM friends
-            WHERE accepted = 1 AND (user1_id = ". Auth::user()->id ." or user2_id = " . Auth::user()->id . "))"
+        /* Alternative query
+        select * from users, (
+            SELECT user1_id, user2_id FROM friends
+                WHERE accepted = 1 AND (user1_id = 1 or user2_id = 1)) as frienships where (id = frienships.user1_id or id = frienships.user2_id) and id <> 1;
+        */
+        $friends = DB::select(DB::raw("SELECT DISTINCT users.* FROM friends 
+        JOIN users ON friends.user1_id = users.id OR friends.user2_id = users.id 
+                where friends.accepted = ". Auth::user()->id." AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id.";"
         ));
         
          return $friends;
