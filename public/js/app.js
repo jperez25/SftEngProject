@@ -13988,7 +13988,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(55);
+module.exports = __webpack_require__(58);
 
 
 /***/ }),
@@ -14015,7 +14015,7 @@ Vue.component('groups', __webpack_require__(43));
 Vue.component('create-group', __webpack_require__(46));
 Vue.component('group-chat', __webpack_require__(49));
 Vue.component('friend-req', __webpack_require__(52));
-Vue.component('modal-box', __webpack_require__(78));
+Vue.component('modal-box', __webpack_require__(55));
 
 var app = new Vue({
     el: '#app'
@@ -59632,7 +59632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             friends: [],
             membersOfGroup: [],
             message: '',
-            group_owner: "",
+            group_owner: 0,
             current_user: "",
 
             title: "",
@@ -59697,6 +59697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/getOwner/' + this.group.id).then(function (response) {
                 _this3.group_owner = response.data[0].user_id;
+                console.log(response);
             });
         },
         getUser: function getUser() {
@@ -59860,7 +59861,7 @@ var render = function() {
                             function($event) {
                               $event.preventDefault()
                               _vm.setValues(
-                                "Delete Group",
+                                "Delete Members",
                                 true,
                                 "",
                                 "delete_members"
@@ -60413,42 +60414,14 @@ if (false) {
 
 /***/ }),
 /* 55 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(79)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(80)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -60487,12 +60460,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -60613,7 +60585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -60846,7 +60818,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Save Changes")]
+                    [_vm._v("Confirm")]
                   )
                 : _vm._e()
             ])
@@ -60866,6 +60838,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-75bd336e", module.exports)
   }
 }
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

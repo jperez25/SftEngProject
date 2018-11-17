@@ -36,11 +36,10 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$emit('close')">Close</button>
                 <button v-if="action === 'delete_group'" type="submit"  @click.prevent="deleteGroup()" class="btn btn-primary">Yes!</button>
                 <button v-if="action === 'add_members'" type="submit"  @click.prevent="add_members()" class="btn btn-primary">Save Changes</button>
-                <button v-if="action === 'delete_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Save Changes</button>
+                <button v-if="action === 'delete_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Confirm</button>
             </slot>
           </div>
         </div>
