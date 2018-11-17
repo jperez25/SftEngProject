@@ -67,6 +67,9 @@ class GroupController extends Controller
         $users->push(auth()->user()->id);
 
         $group->users()->attach($users);
+
+        $group->users()->updateExistingPivot(Auth::user()->id, 
+        ['is_group_leader' => 1]);
         
         broadcast(new GroupCreated($group))->toOthers();
 

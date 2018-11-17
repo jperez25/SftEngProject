@@ -11,7 +11,10 @@ class Group extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class)
+        ->withPivot('is_group_leader')
+        ->withTimestamps();
+
     }
 
     public function hasUser($user_id)

@@ -127,8 +127,7 @@ class HomeController extends Controller
 
     public function getOwner($group_id)
     {
-        $owner = DB::select(DB::raw("SELECT user_id FROM 
-                    group_user WHERE group_id = ".$group_id." ORDER BY group_user.id DESC LIMIT 1;"
+        $owner = DB::select(DB::raw("SELECT user_id FROM group_user WHERE group_id = " . $group_id .  "AND is_group_leader = 1;"
          ));
         
          return $owner;
