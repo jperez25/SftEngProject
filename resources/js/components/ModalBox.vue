@@ -16,18 +16,28 @@
             <slot name="body">
                 <form v-if="displaySelect">
                     <div v-if="action === 'add_members'" class="form-group">
-                        <select multiple id="friends" v-model="selected_friends" @change="getSelectedFriends()">
+                        <select v-if="friends.length > 0" multiple id="friends" v-model="selected_friends" @change="getSelectedFriends()">
                             <option v-for="user in friends" :value="user.id" :key="user.id">
                                 {{ user.name }}
                             </option>
                         </select>
+                        <div v-else>
+                            <p>
+                                You have no friends
+                            </p>
+                        </div>
                     </div>
                      <div v-if="action === 'delete_members'" class="form-group">
-                        <select multiple id="members" v-model="selected_friends" @change="getSelectedFriends()">
+                        <select v-if="membersOfGroup.length > 0" multiple id="members" v-model="selected_friends" @change="getSelectedFriends()">
                             <option v-for="user in membersOfGroup" :value="user.id" :key="user.id">
                                 {{ user.name }}
                             </option>
                         </select>
+                        <div v-else>
+                            <p>
+                                You are the only one in this group
+                            </p>
+                        </div>
                     </div>
                 </form>
                 <p v-else>{{body_text}}</p>
@@ -74,6 +84,7 @@
                     this.friends = [];
                     for (var key in response.data) {
                             //alert(response.data[key]);
+                            console.log(response.data[key]);
                             this.friends.push(response.data[key]);
                     } 
                 });
@@ -84,7 +95,7 @@
                     //console.log(response.data);
                     this.membersOfGroup = [];
                     for (var key in response.data) {
-                            //alert(response.data[key]);
+                            //alert(response.data[key]);                            
                             this.membersOfGroup.push(response.data[key]);
                     }
                 });
@@ -108,9 +119,9 @@
             deleteGroup() {
                 axios.post('/delete_group/' + this.group_id)
                 .then((response) => {
-                    console.log(this.group_id); 
-                    console.log(response.data);
-                    //location.reload(true);          
+                    //console.log(this.group_id); 
+                    //console.log(response.data);
+                    location.reload(true);          
                 });
             },
             

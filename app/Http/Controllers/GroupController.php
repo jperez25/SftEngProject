@@ -126,18 +126,17 @@ class GroupController extends Controller
         $group = Group::find($group_id);
         
 
-
         broadcast(new GroupDeleted($group))->toOthers();
 
-        DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
+        DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
          ));  
 
-         DB::select(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
+         DB::statement(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
          ));
 
-         DB::select(DB::raw("DELETE FROM groups WHERE id = {$group_id};"
+         DB::statement(DB::raw("DELETE FROM groups WHERE id = {$group_id};"
          ));
          
-         return redirect()->intended("/group");
+         //return redirect()->intended("/group");
     }
 }
