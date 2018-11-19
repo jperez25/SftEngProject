@@ -16,24 +16,24 @@
             <slot name="body">
                 <form v-if="displaySelect">
                     <div v-if="action === 'add_members'" class="form-group">
-                        <select v-if="friends.size != 0" multiple id="friends" v-model="selected_friends" @change="getSelectedFriends()">
+                        <select v-if="friends.length > 0" multiple id="friends" v-model="selected_friends" @change="getSelectedFriends()">
                             <option v-for="user in friends" :value="user.id" :key="user.id">
                                 {{ user.name }}
                             </option>
                         </select>
-                        <div v-if="friends.size == 0">
+                        <div v-else>
                             <p>
                                 You have no friends
                             </p>
                         </div>
                     </div>
                      <div v-if="action === 'delete_members'" class="form-group">
-                        <select v-if="membersOfGroup.size != 0" multiple id="members" v-model="selected_friends" @change="getSelectedFriends()">
+                        <select v-if="membersOfGroup.length > 0" multiple id="members" v-model="selected_friends" @change="getSelectedFriends()">
                             <option v-for="user in membersOfGroup" :value="user.id" :key="user.id">
                                 {{ user.name }}
                             </option>
                         </select>
-                        <div v-if="membersOfGroup.size == 0">
+                        <div v-else>
                             <p>
                                 You are the only one in this group
                             </p>
@@ -95,7 +95,7 @@
                     //console.log(response.data);
                     this.membersOfGroup = [];
                     for (var key in response.data) {
-                            //alert(response.data[key]);
+                            //alert(response.data[key]);                            
                             this.membersOfGroup.push(response.data[key]);
                     }
                 });

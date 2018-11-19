@@ -60564,7 +60564,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //console.log(response.data);
                 _this2.membersOfGroup = [];
                 for (var key in response.data) {
-                    //alert(response.data[key]);
+                    //alert(response.data[key]);                            
                     _this2.membersOfGroup.push(response.data[key]);
                 }
             });
@@ -60649,7 +60649,7 @@ var render = function() {
                 ? _c("form", [
                     _vm.action === "add_members"
                       ? _c("div", { staticClass: "form-group" }, [
-                          _vm.friends.size != 0
+                          _vm.friends.length > 0
                             ? _c(
                                 "select",
                                 {
@@ -60704,23 +60704,19 @@ var render = function() {
                                   )
                                 })
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.friends.size == 0
-                            ? _c("div", [
+                            : _c("div", [
                                 _c("p", [
                                   _vm._v(
                                     "\n                            You have no friends\n                        "
                                   )
                                 ])
                               ])
-                            : _vm._e()
                         ])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.action === "delete_members"
                       ? _c("div", { staticClass: "form-group" }, [
-                          _vm.membersOfGroup.size != 0
+                          _vm.membersOfGroup.length > 0
                             ? _c(
                                 "select",
                                 {
@@ -60775,17 +60771,13 @@ var render = function() {
                                   )
                                 })
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.membersOfGroup.size == 0
-                            ? _c("div", [
+                            : _c("div", [
                                 _c("p", [
                                   _vm._v(
                                     "\n                            You are the only one in this group\n                        "
                                   )
                                 ])
                               ])
-                            : _vm._e()
                         ])
                       : _vm._e()
                   ])
