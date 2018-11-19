@@ -90,7 +90,7 @@ class HomeController extends Controller
         }
         broadcast(new NewRequest($user_id, $id));
 
-        return redirect()->intended("/home");
+        return redirect()->back();
     }
 
     public function acceptFriendReq($id)
@@ -99,7 +99,8 @@ class HomeController extends Controller
         DB::table('friends')->where(
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->update(['accepted'=>1]);
-        return redirect()->intended("/group");
+
+        return redirect()->back();
     }
 
     public function deleteFriendReq($id)
@@ -152,7 +153,7 @@ class HomeController extends Controller
         $friends = request('friends');
 
         foreach ($friends as $array => $id) {
-            DB::select(DB::raw("INSERT into group_user (user_id, group_id) values ({$id}, {$group_id});"
+            DB::statement(DB::raw("INSERT into group_user (user_id, group_id) values ({$id}, {$group_id});"
          ));
         }
     }
@@ -162,7 +163,7 @@ class HomeController extends Controller
         $friends = request('friends');
 
         foreach ($friends as $array => $id) {
-            DB::select(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$id};"
+            DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$id};"
          ));
         }
 

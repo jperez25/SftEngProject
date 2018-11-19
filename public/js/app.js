@@ -59658,7 +59658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/conversations', { message: this.message, group_id: this.group.id }).then(function (response) {
-                console.log(_this.conversations);
+                //console.log(this.conversations);                   
                 _this.message = '';
                 _this.conversations.push(response.data);
             });
@@ -59697,7 +59697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/getOwner/' + this.group.id).then(function (response) {
                 _this3.group_owner = response.data[0].user_id;
-                console.log(response);
+                //console.log(response);                
             });
         },
         getUser: function getUser() {
@@ -60514,6 +60514,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group_id', 'title', 'displaySelect', 'body_text', 'action'],
@@ -60542,6 +60552,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.friends = [];
                 for (var key in response.data) {
                     //alert(response.data[key]);
+                    console.log(response.data[key]);
                     _this.friends.push(response.data[key]);
                 }
             });
@@ -60573,12 +60584,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         deleteGroup: function deleteGroup() {
-            var _this3 = this;
-
             axios.post('/delete_group/' + this.group_id).then(function (response) {
-                console.log(_this3.group_id);
-                console.log(response.data);
-                //location.reload(true);          
+                //console.log(this.group_id); 
+                //console.log(response.data);
+                location.reload(true);
             });
         }
     }
@@ -60640,109 +60649,143 @@ var render = function() {
                 ? _c("form", [
                     _vm.action === "add_members"
                       ? _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
+                          _vm.friends.size != 0
+                            ? _c(
+                                "select",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.selected_friends,
-                                  expression: "selected_friends"
-                                }
-                              ],
-                              attrs: { multiple: "", id: "friends" },
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.selected_friends = $event.target
-                                      .multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  function($event) {
-                                    _vm.getSelectedFriends()
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.selected_friends,
+                                      expression: "selected_friends"
+                                    }
+                                  ],
+                                  attrs: { multiple: "", id: "friends" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.selected_friends = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      function($event) {
+                                        _vm.getSelectedFriends()
+                                      }
+                                    ]
                                   }
-                                ]
-                              }
-                            },
-                            _vm._l(_vm.friends, function(user) {
-                              return _c(
-                                "option",
-                                { key: user.id, domProps: { value: user.id } },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(user.name) +
-                                      "\n                        "
+                                },
+                                _vm._l(_vm.friends, function(user) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: user.id,
+                                      domProps: { value: user.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(user.name) +
+                                          "\n                        "
+                                      )
+                                    ]
                                   )
-                                ]
+                                })
                               )
-                            })
-                          )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.friends.size == 0
+                            ? _c("div", [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                            You have no friends\n                        "
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.action === "delete_members"
                       ? _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
+                          _vm.membersOfGroup.size != 0
+                            ? _c(
+                                "select",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.selected_friends,
-                                  expression: "selected_friends"
-                                }
-                              ],
-                              attrs: { multiple: "", id: "members" },
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.selected_friends = $event.target
-                                      .multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  function($event) {
-                                    _vm.getSelectedFriends()
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.selected_friends,
+                                      expression: "selected_friends"
+                                    }
+                                  ],
+                                  attrs: { multiple: "", id: "members" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.selected_friends = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      function($event) {
+                                        _vm.getSelectedFriends()
+                                      }
+                                    ]
                                   }
-                                ]
-                              }
-                            },
-                            _vm._l(_vm.membersOfGroup, function(user) {
-                              return _c(
-                                "option",
-                                { key: user.id, domProps: { value: user.id } },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(user.name) +
-                                      "\n                        "
+                                },
+                                _vm._l(_vm.membersOfGroup, function(user) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: user.id,
+                                      domProps: { value: user.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(user.name) +
+                                          "\n                        "
+                                      )
+                                    ]
                                   )
-                                ]
+                                })
                               )
-                            })
-                          )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.membersOfGroup.size == 0
+                            ? _c("div", [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                            You are the only one in this group\n                        "
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e()
                   ])
