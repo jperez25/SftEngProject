@@ -59658,7 +59658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/conversations', { message: this.message, group_id: this.group.id }).then(function (response) {
-                console.log(_this.conversations);
+                //console.log(this.conversations);                   
                 _this.message = '';
                 _this.conversations.push(response.data);
             });
@@ -59697,7 +59697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/getOwner/' + this.group.id).then(function (response) {
                 _this3.group_owner = response.data[0].user_id;
-                console.log(response);
+                //console.log(response);                
             });
         },
         getUser: function getUser() {
