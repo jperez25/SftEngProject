@@ -22,6 +22,7 @@
         <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> {{ __('Sign up') }}</a></li>
         <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ __('Login') }}</a></li>
       @else
+        <input type="hidden" id="user_id" name="user_id" value={{Auth::user()->id}}>
         <friend-req></friend-req>
 
         <li>
@@ -44,6 +45,9 @@
                   <a class="dropdown-item" href="{{ route('group') }}">
                           {{ __('Chat') }}
                   </a>
+              </li>
+              <li>
+                <a href="{{route('friend')}}">Friends</a>
               </li>
 
               <li>

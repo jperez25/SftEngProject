@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Friend;
 use Auth;
 use Illuminate\Http\Request;
+use DB;
 
 class FriendController extends Controller
 {
@@ -15,7 +16,28 @@ class FriendController extends Controller
      */
     public function index()
     {
-        //
+        //$friends = Auth::user()->friends();
+        $friends = DB::select(DB::raw("SELECT * FROM users WHERE users.id IN 
+        ( SELECT user1_id as us FROM friends
+            WHERE accepted = 1 AND user2_id = " . Auth::user()->id ."
+        
+            union
+            
+            SELECT user2_id as us FROM friends
+                WHERE accepted = 1 AND user1_id = " . Auth::user()->id ."
+            );"
+         ));       
+        
+        
+        //return view('chat.index')->withFriends($friends);
+        
+        $groups = auth()->user()->groups;
+
+        $users = collect($friends);
+        
+        $user = auth()->user();
+
+        return view('friend', ['users' => $users, 'user' => $user]);
     }
 
     /**

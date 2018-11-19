@@ -14,7 +14,7 @@
                 <input id="rating" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
             </div>
         <div class="col-3">
-            Comment<textarea class="form-control" value="Enter your rating here" id="description" name="description" style="min-height:200px;" require></textarea>
+            Comment<textarea class="form-control" value="Enter your rating here" id="description" name="description" style="min-height:200px;" required></textarea>
         </div>
 
         </div>

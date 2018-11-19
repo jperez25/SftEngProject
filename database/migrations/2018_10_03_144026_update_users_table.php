@@ -14,7 +14,6 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         DB::statement("ALTER TABLE users
-        ADD level int,
         ADD user_picture LONGBLOB,
         ADD lat decimal(30,20),
         ADD lng decimal(30,20);");

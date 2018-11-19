@@ -88,9 +88,9 @@ class HomeController extends Controller
                 ['user1_id' => $user_id, 'user2_id' => $id]
             );
         }
-        broadcast(new NewRequest($user_id));
+        broadcast(new NewRequest($user_id, $id));
 
-        return redirect()->intended("/home");
+        return redirect()->back();
     }
 
     public function acceptFriendReq($id)
@@ -99,7 +99,8 @@ class HomeController extends Controller
         DB::table('friends')->where(
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->update(['accepted'=>1]);
-        return redirect()->intended("/group");
+
+        return redirect()->back();
     }
 
     public function deleteFriendReq($id)
@@ -108,8 +109,11 @@ class HomeController extends Controller
         DB::table('friends')->where(
             ['user1_id' => $id, 'user2_id' => $user_id]
         )->delete();
+        DB::table('friends')->where(
+            ['user2_id' => $id, 'user1_id' => $user_id]
+        )->delete();
 
-        return redirect()->intended("/home");
+        return redirect()->back();
     }
 
     public function fetchReqs()
@@ -120,5 +124,60 @@ class HomeController extends Controller
          ));
 
          return $friendRequests;
+    }
+
+    public function getOwner($group_id)
+    {
+        $owner = DB::select(DB::raw("SELECT user_id FROM group_user WHERE group_id = " . $group_id .  " AND is_group_leader = 1;"
+         ));         
+
+         return $owner;
+    }
+    public function getFriends()
+    {
+        /* Alternative query
+        select * from users, (
+            SELECT user1_id, user2_id FROM friends
+                WHERE accepted = 1 AND (user1_id = 1 or user2_id = 1)) as frienships where (id = frienships.user1_id or id = frienships.user2_id) and id <> 1;
+        */
+        $friends = DB::select(DB::raw("SELECT DISTINCT users.* FROM friends 
+        JOIN users ON friends.user1_id = users.id OR friends.user2_id = users.id 
+                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id.";"
+        ));
+        
+         return $friends;
+    }
+    public function addFriends()
+    {
+        $group_id = request('group_id');
+        $friends = request('friends');
+
+        foreach ($friends as $array => $id) {
+            DB::statement(DB::raw("INSERT into group_user (user_id, group_id) values ({$id}, {$group_id});"
+         ));
+        }
+    }
+    public function deleteGroupMembers()
+    {
+        $group_id = request('group_id');
+        $friends = request('friends');
+
+        foreach ($friends as $array => $id) {
+            DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$id};"
+         ));
+        }
+
+
+    }
+    public function getMembersOfGroup($group_id)
+    {
+        $groupMem = DB::select(DB::raw("SELECT * FROM users WHERE id IN
+        (select user_id from group_user where group_id = {$group_id} and user_id != " . Auth::user()->id. ");"));
+        
+         return $groupMem;
+    }
+    public function getCurrentUser()
+    {
+        return Auth::user();
     }
 }

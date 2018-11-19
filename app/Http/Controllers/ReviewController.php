@@ -51,7 +51,7 @@ class ReviewController extends Controller
         Review::create($input);
         $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
         $user = User::find($request->input('user2_id'));
-        dd($user);
+        
         return view('ratings.show',compact('user', 'reviews'));
     }
 

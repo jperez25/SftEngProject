@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\GroupCreated;
+use App\Events\GroupDeleted;
 use App\Group;
 use Illuminate\Http\Request;
 use App\User;
@@ -66,6 +67,9 @@ class GroupController extends Controller
         $users->push(auth()->user()->id);
 
         $group->users()->attach($users);
+
+        $group->users()->updateExistingPivot(Auth::user()->id, 
+        ['is_group_leader' => 1]);
         
         broadcast(new GroupCreated($group))->toOthers();
 
@@ -115,5 +119,24 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete_group($group_id)
+    {
+        $group = Group::find($group_id);
+        
+
+        broadcast(new GroupDeleted($group))->toOthers();
+
+        DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id};"
+         ));  
+
+         DB::statement(DB::raw("DELETE FROM conversations WHERE group_id = {$group_id};"
+         ));
+
+         DB::statement(DB::raw("DELETE FROM groups WHERE id = {$group_id};"
+         ));
+         
+         //return redirect()->intended("/group");
     }
 }

@@ -99,9 +99,8 @@ function geocoder($address)
              
     array_push(
         $data_arr, 
-            $lati, 
-            $longi, 
-            $formatted_address
+        $lat, 
+        $lng
         );
              
     return $data_arr;

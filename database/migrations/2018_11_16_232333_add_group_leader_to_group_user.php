@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUsersTable2 extends Migration
+class AddGroupLeaderToGroupUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class UpdateUsersTable2 extends Migration
      */
     public function up()
     {
-        //
-        DB::statement("ALTER TABLE users
-        ADD level int default 1,
-        add flags tinyint default 0");
+        
+        DB::statement("ALTER TABLE group_user
+        ADD is_group_leader tinyint default 0");
         
     }
 
@@ -27,6 +26,6 @@ class UpdateUsersTable2 extends Migration
      */
     public function down()
     {
-        //
+       
     }
 }

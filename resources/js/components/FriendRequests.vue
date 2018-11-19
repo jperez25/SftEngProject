@@ -47,11 +47,13 @@
 
         data() {
             return {
-                friendReqs: []
+                friendReqs: [],
+                user_id: document.getElementById('user_id').value
             }
         },
 
         mounted() {
+
             this.getReqs();
 
             this.listenForRequests();
@@ -61,7 +63,7 @@
             getReqs(){
                 axios.get('/fetchReqs')
                 .then((response) => {
-                    console.log(response.data);                    
+                    //console.log(response.data);                    
                     for (var key in response.data) {
                             //alert(response.data[key]);
                             
@@ -72,7 +74,7 @@
             )},
 
             listenForRequests() {
-                Echo.private("Requests")
+                Echo.private("Requests." + this.user_id)
                     .listen('NewRequest', (e) => {
                         //console.log(e);
                         //alert(e[1].name);
