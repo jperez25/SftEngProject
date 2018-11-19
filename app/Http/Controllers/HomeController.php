@@ -142,7 +142,7 @@ class HomeController extends Controller
         */
         $friends = DB::select(DB::raw("SELECT DISTINCT users.* FROM friends 
         JOIN users ON friends.user1_id = users.id OR friends.user2_id = users.id 
-                where friends.accepted = ". Auth::user()->id." AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id.";"
+                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id.";"
         ));
         
          return $friends;
