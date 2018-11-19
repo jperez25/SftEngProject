@@ -78,7 +78,7 @@
 
         methods: {
             getFriends() {
-                axios.get('/getFriends')
+                axios.get('/getFriends', {group_id: this.group_id})
                 .then((response) => {
                     //console.log(response.data);
                     this.friends = [];
