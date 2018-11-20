@@ -80,7 +80,7 @@
             getFriends() {
                 axios.get('/getFriends?', {params: {group_id: this.group_id}})
                 .then((response) => {
-                    //console.log(response.data);
+                   //console.log(response.data);
                     this.friends = [];
                     for (var key in response.data) {
                             //alert(response.data[key]);

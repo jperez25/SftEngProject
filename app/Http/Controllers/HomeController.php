@@ -135,6 +135,7 @@ class HomeController extends Controller
     }
     public function getFriends()
     {
+        $group_id = request('group_id');        
         /* Alternative query
         select * from users, (
             SELECT user1_id, user2_id FROM friends
@@ -143,7 +144,7 @@ class HomeController extends Controller
         $group_id = request('group_id');
         $friends = DB::select(DB::raw("SELECT DISTINCT users.* FROM friends 
         JOIN users ON friends.user1_id = users.id OR friends.user2_id = users.id 
-                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id . " AND NOT IN (SELECT user_id FROM group_user WHERE group_user.group_id = " . $group_id . ");"
+                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id." AND users.id NOT IN (SELECT user_id FROM group_user WHERE group_user.group_id = {$group_id});"
         ));
         
          return $friends;
