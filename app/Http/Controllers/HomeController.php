@@ -135,8 +135,7 @@ class HomeController extends Controller
     }
     public function getFriends()
     {
-        $group_id = request('group_id');
-        dd($group_id);
+        $group_id = request('group_id');        
         /* Alternative query
         select * from users, (
             SELECT user1_id, user2_id FROM friends
