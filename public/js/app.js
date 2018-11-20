@@ -60547,7 +60547,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getFriends: function getFriends() {
             var _this = this;
 
+<<<<<<< HEAD
+            axios.get('/getFriends', { group_id: this.group_id }).then(function (response) {
+=======
             axios.get('/getFriends?', { params: { group_id: this.group_id } }).then(function (response) {
+>>>>>>> 1323c0ddeaa47ace588a7973e75f6ee5b0660c1d
                 //console.log(response.data);
                 _this.friends = [];
                 for (var key in response.data) {
