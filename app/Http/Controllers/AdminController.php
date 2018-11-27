@@ -8,12 +8,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
 use Auth;
-
+use App\User;
 class AdminController extends Controller
 {
     public function index()
     { 
-        return view('admin.index');
+        $users = User::where('flag', 'LIKE' , 1)->get();
+        return view('admin.index', compact('users'));
     }
 
     /**
