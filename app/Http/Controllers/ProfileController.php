@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use Auth;
 use DB;
-
+use Redirect;
 class ProfileController extends Controller
 {
     /**
@@ -38,8 +38,27 @@ class ProfileController extends Controller
     }
 
     public function update($id, Request $request)
-    {                
-        $user = User::find(Auth::user()->getId());          
+    {   
+        $user = User::find(Auth::user()->getId());
+
+        if($request->input('flag') == 'flag') {
+        DB::table('users')->where('id', $id)->update(
+                [
+                    'flag' => 1
+                ]
+            );
+        Redirect::to('/profile/'.$user->id);
+        }
+
+        if($request->input('unflag') == 'unflag') {
+        DB::table('users')->where('id', $id)->update(
+                [
+                    'flag' => 0
+                ]
+            );
+        Redirect::to('/profile/'.$user->id);
+        }
+                  
 
         $request->validate([
                 'name' => 'required',
