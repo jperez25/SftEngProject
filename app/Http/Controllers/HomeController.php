@@ -181,4 +181,8 @@ class HomeController extends Controller
     {
         return Auth::user();
     }
+    public function leave_group()
+    {
+        
+    }
 }

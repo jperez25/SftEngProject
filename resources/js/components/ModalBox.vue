@@ -50,6 +50,7 @@
                 <button v-if="action === 'delete_group'" type="submit"  @click.prevent="deleteGroup()" class="btn btn-primary">Yes!</button>
                 <button v-if="action === 'add_members'" type="submit"  @click.prevent="add_members()" class="btn btn-primary">Save Changes</button>
                 <button v-if="action === 'delete_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Confirm</button>
+                <button v-if="action === 'leave_group'" type="submit"  @click.prevent="leave_group()" class="btn btn-primary">Confirm</button>
             </slot>
           </div>
         </div>
@@ -65,6 +66,7 @@
             return {
                 friends: [],
                 membersOfGroup: [],
+                user_id: '',
 
                 selected_friends: [],
             }              
@@ -78,7 +80,7 @@
 
         methods: {
             getFriends() {
-                axios.get('/getFriends?', {params: {group_id: this.group_id}})
+                axios.get('/getFriends/', {params: {group_id: this.group_id}})
                 .then((response) => {
                    //console.log(response.data);
                     this.friends = [];
@@ -87,6 +89,12 @@
                             console.log(response.data[key]);
                             this.friends.push(response.data[key]);
                     } 
+                });
+            },
+            getUser() {
+                axios.get('/getCurrentUser' )
+                .then((response) => {                    
+                    this.user_id = response.data.id;                    
                 });
             },
             getMembersOfGroup() {
@@ -124,6 +132,12 @@
                     location.reload(true);          
                 });
             },
+            leave_group(){
+                axios.post('/leave_group', {group_id: this.group_id, user_id: this.user_id})
+                .then((response) => {
+                    
+                });
+            }
             
         }
     }
