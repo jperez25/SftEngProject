@@ -135,7 +135,7 @@
             leave_group(){
                 axios.post('/leave_group', {group_id: this.group_id, user_id: this.user_id})
                 .then((response) => {
-                    
+                    location.reload(true); 
                 });
             }
             
