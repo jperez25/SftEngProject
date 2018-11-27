@@ -182,4 +182,10 @@ class HomeController extends Controller
     {
         return Auth::user();
     }
+    public function leave_group()
+    {
+        $group_id = request('group_id');
+        $user_id = request('user_id');
+        DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$user_id};"));
+    }
 }

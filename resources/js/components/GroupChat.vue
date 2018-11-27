@@ -18,7 +18,7 @@
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', false, 'Are you sure you want to delete this group?', 'delete_group')">Delete group</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Add more friends', true, '', 'add_members')">Add more members</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Members', true, '', 'delete_members')">Delete members</a></li>
-                    <li v-if= "group_owner != current_user"><a>Leave</a></li>
+                    <li v-if= "group_owner != current_user"><a @click="showModal = true" @click.prevent="setValues('Leave Group', true, 'Are you sure you want leave this group?', 'leave_group')">Leave</a></li>
                 </ul>
             </div>
 
