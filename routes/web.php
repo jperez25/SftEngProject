@@ -22,7 +22,7 @@ Route::get('/profile', 'ProfileController@index')->middleware('auth')->name('pro
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::resource('profile', 'ProfileController')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
-
+Route::get('/profile/{userID}', 'ProfileController@update')->middleware('auth');
 #Ratings Routes
 Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
 Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
