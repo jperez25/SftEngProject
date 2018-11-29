@@ -59876,7 +59876,30 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.group_owner != _vm.current_user
-                ? _c("li", [_c("a", [_vm._v("Leave")])])
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: [
+                            function($event) {
+                              _vm.showModal = true
+                            },
+                            function($event) {
+                              $event.preventDefault()
+                              _vm.setValues(
+                                "Leave Group",
+                                true,
+                                "Are you sure you want leave this group?",
+                                "leave_group"
+                              )
+                            }
+                          ]
+                        }
+                      },
+                      [_vm._v("Leave")]
+                    )
+                  ])
                 : _vm._e()
             ])
           ]
@@ -60524,6 +60547,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group_id', 'title', 'displaySelect', 'body_text', 'action'],
@@ -60532,6 +60556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             friends: [],
             membersOfGroup: [],
+            user_id: '',
 
             selected_friends: []
         };
@@ -60547,7 +60572,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getFriends: function getFriends() {
             var _this = this;
 
-            axios.get('/getFriends').then(function (response) {
+            axios.get('/getFriends/', { params: { group_id: this.group_id } }).then(function (response) {
                 //console.log(response.data);
                 _this.friends = [];
                 for (var key in response.data) {
@@ -60557,15 +60582,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
-        getMembersOfGroup: function getMembersOfGroup() {
+        getUser: function getUser() {
             var _this2 = this;
+
+            axios.get('/getCurrentUser').then(function (response) {
+                _this2.user_id = response.data.id;
+            });
+        },
+        getMembersOfGroup: function getMembersOfGroup() {
+            var _this3 = this;
 
             axios.get('/getMembersOfGroup/' + this.group_id).then(function (response) {
                 //console.log(response.data);
-                _this2.membersOfGroup = [];
+                _this3.membersOfGroup = [];
                 for (var key in response.data) {
                     //alert(response.data[key]);                            
-                    _this2.membersOfGroup.push(response.data[key]);
+                    _this3.membersOfGroup.push(response.data[key]);
                 }
             });
         },
@@ -60589,6 +60621,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //console.log(response.data);
                 location.reload(true);
             });
+        },
+        leave_group: function leave_group() {
+            axios.post('/leave_group', { group_id: this.group_id, user_id: this.user_id }).then(function (response) {});
         }
     }
 });
@@ -60850,6 +60885,23 @@ var render = function() {
                         click: function($event) {
                           $event.preventDefault()
                           _vm.deleteGroupMembers()
+                        }
+                      }
+                    },
+                    [_vm._v("Confirm")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.action === "leave_group"
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.leave_group()
                         }
                       }
                     },

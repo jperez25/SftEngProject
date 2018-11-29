@@ -135,14 +135,16 @@ class HomeController extends Controller
     }
     public function getFriends()
     {
+        $group_id = request('group_id');        
         /* Alternative query
         select * from users, (
             SELECT user1_id, user2_id FROM friends
                 WHERE accepted = 1 AND (user1_id = 1 or user2_id = 1)) as frienships where (id = frienships.user1_id or id = frienships.user2_id) and id <> 1;
         */
+        $group_id = request('group_id');
         $friends = DB::select(DB::raw("SELECT DISTINCT users.* FROM friends 
         JOIN users ON friends.user1_id = users.id OR friends.user2_id = users.id 
-                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id.";"
+                where friends.accepted = 1 AND (friends.user1_id = ". Auth::user()->id." OR friends.user2_id =". Auth::user()->id.") AND users.id <>  ". Auth::user()->id." AND users.id NOT IN (SELECT user_id FROM group_user WHERE group_user.group_id = {$group_id});"
         ));
         
          return $friends;
@@ -179,5 +181,11 @@ class HomeController extends Controller
     public function getCurrentUser()
     {
         return Auth::user();
+    }
+    public function leave_group()
+    {
+        $group_id = request('group_id');
+        $user_id = request('user_id');
+        DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$user_id};"));
     }
 }
