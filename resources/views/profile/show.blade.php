@@ -14,20 +14,24 @@
 <div>Child Age: {{$user->child_age}}</div>
 <div>City: {{$user->city}}</div>
 <div>State: {{$user->state}}</div>
+<br />
+<td><a href="/ratings/{{$user->id}}"><button type="button" class="btn btn-primary">View Users Ratings</button></a></td>
+<br />
+<br />
  {{Form::open(array('action' => array('ProfileController@update', $user->id), 'method' => 'PATCH'))}}
   {{ csrf_field() }}
  <input type="hidden" value = "{{$user->id}}" id = "id" name = "id">
  <input type="hidden" value = "flag" id = "flag" name = "flag">
-<button type="submit" class="btn btn-primary">Report User</button>
+<button type="submit" class="btn btn-danger">Report User</button>
 {{Form::close()}}
 @if(Auth::user()->level == 2)
-	<br />
 	<br />
 	{!! Form::model($user, ['method' => 'DELETE','route' => ['profile.destroy', $user->id]]) !!}
 	{{ csrf_field() }}
                       <button type="submit" class="btn btn-danger">Ban User</button>
      {{Form::close()}}
 	@if($user->flag == 1)
+	<br />
 	 {{Form::open(array('action' => array('ProfileController@update', $user->id), 'method' => 'PATCH'))}}
   	 {{ csrf_field() }}
  		<input type="hidden" value = "{{$user->id}}" id = "id" name = "id">

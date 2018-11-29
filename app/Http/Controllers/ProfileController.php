@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use DB;
 use Redirect;
+use App\Review;
 class ProfileController extends Controller
 {
     /**
@@ -56,7 +57,8 @@ class ProfileController extends Controller
                     'flag' => 0
                 ]
             );
-        Redirect::to('/profile/'.$user->id);
+        $users = User::where('flag', 'LIKE' , 1)->get();
+        return view('admin.index', compact('users'));
         }
                   
 
@@ -114,7 +116,6 @@ class ProfileController extends Controller
             ]
         ); 
        return redirect('/profile');
-
     }
 
     public function show($userID)
@@ -122,4 +123,19 @@ class ProfileController extends Controller
         $user = User::find($userID);
         return view('profile.show',compact('user'));
     }
+    public function destroy($userID)
+    {
+
+        $user = User::find($userID);
+        $reviews = Review::where('user2_id', 'LIKE' , $userID)->get();
+            while (count($reviews) > 0) {
+              foreach ($reviews as $review) {
+                $review->delete();
+            }
+        }
+        $user->delete(); 
+        $users = User::where('flag', 'LIKE' , 1)->get();
+        return view('admin.index', compact('users'));
+    }
 }
+
