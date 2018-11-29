@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use App\Review;
 use DB;
+use Redirect;
 class ReviewController extends Controller
 {
     /**
@@ -52,7 +53,7 @@ class ReviewController extends Controller
         $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
         $user = User::find($request->input('user2_id'));
         
-        return view('ratings.show',compact('user', 'reviews'));
+        return Redirect::to('/ratings/'.$request->input('user2_id'))->with('user', 'reviews');
     }
 
     /**
