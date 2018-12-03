@@ -36,12 +36,12 @@
           <li class="list-group-item">City: {{$user->city}}, {{$user->state}}</li>
         </ul>
         <div class="card-body">
-          <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-success">View Profile</button></a>
-          <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-success">Add friend</button></a>
+          <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-primary">View Profile</button></a>
+          <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-primary">Add friend</button></a>
           @foreach($friends as $friend)                      
             @if(in_array($user->id,(array)$friend, true))
               @if($user->id == $friend->user2_id and $friend->accepted == 0)
-                <a href="#" id="pendingBtn"><button type="button" class="btn btn-success">Pending</button></a>
+                <a href="#" id="pendingBtn"><button type="button" class="btn btn-primary">Pending</button></a>
                 @break
               @elseif($user->id == $friend->user2_id and $friend->accepted == 1)
                 <a href="#" id="pendingBtn"><button type="button" class="btn btn-success">You are friends</button></a>

@@ -10,6 +10,8 @@ use Auth;
 use DB;
 use Redirect;
 use App\Review;
+use App\Friend;
+use App\Group_user;
 class ProfileController extends Controller
 {
     /**
@@ -133,6 +135,18 @@ class ProfileController extends Controller
                 $review->delete();
             }
         }
+        
+        DB::table('friends')->where('user1_id', '=', $userID)
+                ->delete(); 
+        DB::table('friends')->where('user2_id', '=', $userID)
+                ->delete(); 
+
+        DB::table('group_user')->where('user_id', '=', $userID)
+                ->delete();
+        
+        DB::table('conversations')->where('user_id', '=', $userID)
+                ->delete(); 
+       
         $user->delete(); 
         $users = User::where('flag', 'LIKE' , 1)->get();
         return view('admin.index', compact('users'));
