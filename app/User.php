@@ -6,6 +6,8 @@ use App\Group;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
+use Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,6 +24,26 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function isAdmin()    {        
         return $this->level === self::ADMIN_TYPE;    
+    }
+
+    public function isReqSent($id)
+    {
+        $user_id = Auth::user()->id;
+        $friend = DB::select(DB::raw("select * from friends where user1_id = {$user_id} and user2_id = {$id};"
+         ));
+
+
+         return !empty($friend);
+    }
+
+    public function isFriend($id)
+    {
+        $user_id = Auth::user()->id;
+        $friend = DB::select(DB::raw("select * from friends where user1_id = {$user_id} and user2_id = {$id};"
+         ));
+
+
+         return $friend[0]->accepted;
     }
 
     public function verifyUser()

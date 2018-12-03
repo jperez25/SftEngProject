@@ -186,6 +186,13 @@
     font:16px/26px Georgia, Garamond, Serif;
     overflow:auto
 }
+.scroll-name{
+    height: 1.5em;
+    width:100%;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, Serif;
+    overflow:auto
+}
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
