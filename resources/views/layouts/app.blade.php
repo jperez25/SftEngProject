@@ -15,7 +15,7 @@
                 @yield('content')
             </div>
             
-            <div style="align:center;">
+            <div >
                 @include('layouts.footer')
             </div>
             
