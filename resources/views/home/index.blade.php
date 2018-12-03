@@ -25,7 +25,7 @@
             <img class="card-img-top" src="{{ URL::to('/') }}/images/blankProfile.png" height="100" width="100" alt="Card image cap">
         @endif
         <div class="card-body">
-          <h5 class="card-title">{{$user->name}}</h5>
+          <h5 class="card-title scroll-name">{{$user->name}}</h5>
           <div class = "cad-text scroll">
               {{$user->bio}}
           </div>
@@ -37,14 +37,16 @@
         </ul>
         <div class="card-body">
           <a href="/profile/{{$user->id}}"><button type="button" class="btn btn-primary">View Profile</button></a>
-          <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-primary">Add friend</button></a>
+          @if(!Auth::user()->isReqSent($user->id))
+            <a href="friendrequest/{{$user->id}}" id="addFriendBtn"><button type="button" class="btn btn-primary">Add friend</button></a>
+          @endif
           @foreach($friends as $friend)                      
             @if(in_array($user->id,(array)$friend, true))
               @if($user->id == $friend->user2_id and $friend->accepted == 0)
-                <a href="#" id="pendingBtn"><button type="button" class="btn btn-primary">Pending</button></a>
+                <label for="Pending" class="btn btn-warning">Pending</label>
                 @break
               @elseif($user->id == $friend->user2_id and $friend->accepted == 1)
-                <a href="#" id="pendingBtn"><button type="button" class="btn btn-success">You are friends</button></a>
+                <label for="Pending" class="btn btn-success">You are friends</label>
                 @break
               @endif
             @else

@@ -34,7 +34,7 @@
 
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-              @if(Auth::user()->isAdmin())
+              @if(Auth::user()->level == 2 )
                 <li>
                   <a class="dropdown-item" href="{{route('admin')}}">
                           {{ __('Admin') }}

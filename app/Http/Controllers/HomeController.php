@@ -46,7 +46,7 @@ class HomeController extends Controller
                                         (SELECT id FROM `users` as user WHERE user.id = {$user_id})
         HAVING distance <= {$radius}
         ORDER BY distance ASC"));       
-                
+        
         $friends = DB::select(DB::raw(
             "select user1_id, user2_id, accepted from friends where user1_id = {$user_id} or user2_id = {$user_id}"
         ));
