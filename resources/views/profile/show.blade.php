@@ -27,8 +27,10 @@
 
 		@if(Auth::user()->isFriend($user->id) == 0)
 			<label for="Pending" class="btn btn-warning">Pending</label>
-		@else
+		@elseif(Auth::user()->isFriend($user->id) == 1)
 			<label for="Pending" class="btn btn-success">You are friends</label>
+		@else
+			
 		@endif
 	</div>
 </div>

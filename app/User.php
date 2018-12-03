@@ -42,8 +42,13 @@ class User extends Authenticatable implements MustVerifyEmail
         $friend = DB::select(DB::raw("select * from friends where user1_id = {$user_id} and user2_id = {$id};"
          ));
 
+         if (!empty($friend)) {
+            return $friend[0]->accepted;
+         }
+         else{
+             return -1;
+         }
 
-         return $friend[0]->accepted;
     }
 
     public function verifyUser()
