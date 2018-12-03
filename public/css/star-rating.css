@@ -294,3 +294,21 @@
     padding-top: 10px;
     overflow: hidden;
   }
+
+  /* Friend Requests */
+  .req_container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+  @media (min-width:768px){.req_container{width:375px}}
+  @media (min-width:992px){.req_container{width:375px}}
+  @media (min-width:1200px){.req_container{width: 375px}}
+
+  .reqs_pad{
+      padding-top: 1.5em;
+      padding-bottom: 1.5em;
+  }
+
+  .text{
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+  }
