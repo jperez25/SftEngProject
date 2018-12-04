@@ -25,7 +25,7 @@
               <form method="POST" action="/ratings/create">
               		{{ csrf_field() }}
                     <input type="hidden" id="userid" name="userid" value="{{$user->id}}">
-                    <a href="/ratings/create"><button type="submit" class="btn btn-primary">Add a review</button></a>
+                    <button type="submit" class="btn btn-primary">Add a review</button>
                     </form>
                  <a href="/profile/{{$user->id}}"><button type="submit" class="btn btn-primary">Back to Users Profile</button></a>
 @endsection

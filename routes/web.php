@@ -25,7 +25,8 @@ Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@update')->middleware('auth');
 #Ratings Routes
 Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
-Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
+Route::post('/ratings/create', 'ReviewController@create')->middleware('auth');
+Route::post('/ratings/{userID}', 'ReviewController@store')->middleware('auth');
 Route::resource('/ratings', 'ReviewController')->middleware('auth');
 
 #Search Users and others Routes

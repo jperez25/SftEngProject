@@ -2,7 +2,7 @@
 
 @section ('content')
 <h3>Rating for: {{$user->name}}</h3>
-<form method="POST" action="/ratings/">
+<form method="POST" action="/ratings/{{$user->id}}">
 	{{ csrf_field() }}
     <div class="wrapper container">
     <input type="hidden" name="_method" value="POST">
