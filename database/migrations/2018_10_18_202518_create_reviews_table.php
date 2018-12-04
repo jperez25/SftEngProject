@@ -21,7 +21,7 @@ class CreateReviewsTable extends Migration
             //User 2 = User being reviewed
             $table->integer('user2_id')->unsigned();
             $table->foreign('user2_id')->references('id')->on('users');
-            $table->integer('rating');
+            $table->decimal('rating', 2, 1);
             $table->string('description');
             $table->timestamps();
         });
