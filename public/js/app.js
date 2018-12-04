@@ -60265,6 +60265,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reqs'],
@@ -60340,55 +60342,61 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.friendReqs.length
-      ? _c(
-          "ul",
-          { staticClass: "dropdown-menu" },
-          _vm._l(_vm.friendReqs, function(friendReq) {
-            return _c("li", { key: friendReq.id }, [
-              _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(friendReq.name) +
-                      "\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-4" }, [
-                  _c(
-                    "a",
-                    { attrs: { href: "acceptFriendReq/" + friendReq.id } },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("Add friend")]
-                      )
-                    ]
-                  ),
+      ? _c("ul", { staticClass: "dropdown-menu" }, [
+          _c(
+            "div",
+            { staticClass: "req_container" },
+            _vm._l(_vm.friendReqs, function(friendReq) {
+              return _c(
+                "li",
+                { key: friendReq.id, staticClass: "dropdown-item " },
+                [
+                  _c("div", { staticClass: "col-sm-3 text" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(friendReq.name) +
+                        "\n                "
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "a",
-                    { attrs: { href: "deleteFriendReq/" + friendReq.id } },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("Decline")]
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ])
-          })
-        )
+                  _c("div", { staticClass: "col-sm-4" }, [
+                    _c(
+                      "a",
+                      { attrs: { href: "acceptFriendReq/" + friendReq.id } },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" }
+                          },
+                          [_vm._v("Add friend")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-3" }, [
+                    _c(
+                      "a",
+                      { attrs: { href: "deleteFriendReq/" + friendReq.id } },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" }
+                          },
+                          [_vm._v("Decline")]
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            })
+          )
+        ])
       : _c("ul", { staticClass: "dropdown-menu" }, [_vm._m(0)]),
     _vm._v(" "),
     _vm._m(1)
@@ -60399,8 +60407,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("div", { staticClass: "container" }, [
+    return _c("div", { staticClass: "req_container" }, [
+      _c("li", { staticClass: "dropdown-item" }, [
         _c("div", { staticClass: "col-sm-6" }, [
           _vm._v("\n                    Nothing to show\n                ")
         ])
@@ -60623,7 +60631,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         leave_group: function leave_group() {
-            axios.post('/leave_group', { group_id: this.group_id, user_id: this.user_id }).then(function (response) {});
+            axios.post('/leave_group', { group_id: this.group_id, user_id: this.user_id }).then(function (response) {
+                location.reload(true);
+            });
         }
     }
 });

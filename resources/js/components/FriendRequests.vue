@@ -7,26 +7,28 @@
         </a>
 
         <ul class="dropdown-menu" v-if="friendReqs.length">
-            <li v-for="friendReq in friendReqs" :key="friendReq.id">
-                <div class="container">
-                    <div class="col-sm-6" >
+            <div class="req_container">
+                <li class="dropdown-item "  v-for="friendReq in friendReqs" :key="friendReq.id">
+                    <div class="col-sm-3 text" >
                         {{ friendReq.name}}
                     </div>
                     <div class="col-sm-4">
                         <a :href="'acceptFriendReq/' + friendReq.id" ><button type="button" class="btn btn-success">Add friend</button></a> 
+                    </div> 
+                    <div class="col-sm-3">                        
                         <a :href="'deleteFriendReq/' + friendReq.id" ><button type="button" class="btn btn-success">Decline</button></a> 
-                    </div>             
-                </div>
-            </li>
+                    </div>          
+                </li>
+            </div>
         </ul>
         <ul class="dropdown-menu" v-else>
-            <li>
-                <div class="container">
+            <div class="req_container">
+                <li class="dropdown-item">
                     <div class="col-sm-6" >
                         Nothing to show
-                    </div>
-                </div>
-            </li>
+                    </div>                
+                </li>
+            </div>
         </ul>
         <audio id="myAudio">
             <source src="sounds/exquisite.ogg" type="audio/mpeg">
