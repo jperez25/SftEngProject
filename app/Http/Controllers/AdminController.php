@@ -13,7 +13,11 @@ class AdminController extends Controller
 {
     public function index()
     { 
+        if (Auth::user() == null) {
+            return redirect()->intended("/");
+        }
         $users = User::where('flag', 'LIKE' , 1)->get();
+        
         return view('admin.index', compact('users'));
     }
 
