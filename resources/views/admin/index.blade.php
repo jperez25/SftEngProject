@@ -1,6 +1,8 @@
 @extends ('layouts.app')
 
+
 @section ('content')
+@if(Auth::user()->level == 2)
 <h3>Flagged Users</h3>
 <table class="table table-striped table-sm">
               <thead>
@@ -24,4 +26,7 @@
               @endforeach
               @endif
 </table>
+@else
+    <h4>No admin rights</h4>
+@endif
 @endsection
