@@ -163,6 +163,7 @@ class HomeController extends Controller
     {
         $group_id = request('group_id');
         $friends = request('friends');
+        //broadcast(new GroupMemberDeleted($friends))->toOthers();
 
         foreach ($friends as $array => $id) {
             DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$id};"
