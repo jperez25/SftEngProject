@@ -12,6 +12,7 @@
                   <th></th>
                 </tr>
                 </thead>
+              @if(!$users->isEmpty())
               @foreach($users as $user)
                   <tr>
                     <td></td>
@@ -21,5 +22,6 @@
                     <td></td>
                   </tr>
               @endforeach
+              @endif
 </table>
 @endsection
