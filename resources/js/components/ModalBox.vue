@@ -39,6 +39,10 @@
                             </p>
                         </div>
                     </div>
+                    <div v-if="action === 'change_name'" class="form-group">
+                        <p>{{body_text}}</p>
+                        <input type="text" value="" v-model="group_name">
+                    </div>
                 </form>
                 <p v-else>{{body_text}}</p>
             </slot>
@@ -47,6 +51,7 @@
           <div class="modal-footer">
             <slot name="footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$emit('close')">Close</button>
+                <button v-if="action === 'change_name'" type="submit"  @click.prevent="change_group_name()" class="btn btn-primary">Change Name</button>
                 <button v-if="action === 'delete_group'" type="submit"  @click.prevent="deleteGroup()" class="btn btn-primary">Yes!</button>
                 <button v-if="action === 'add_members'" type="submit"  @click.prevent="add_members()" class="btn btn-primary">Save Changes</button>
                 <button v-if="action === 'delete_members'" type="submit"  @click.prevent="deleteGroupMembers()" class="btn btn-primary">Confirm</button>
@@ -60,7 +65,7 @@
 
 <script>
     export default {
-        props: ['group_id', 'title', 'displaySelect', 'body_text', 'action'],
+        props: ['group_id', 'title', 'displaySelect', 'body_text', 'action', 'group_name'],
 
         data() {
             return {
@@ -122,6 +127,14 @@
                 .then((response) => {
                         //console.log(response);
                         location.reload(true);
+                });
+            },
+            change_group_name(){
+                axios.post('/change_group_name/', {group_id: this.group_id, name: this.group_name} )
+                .then((response) => {
+                    //console.log(this.group_id); 
+                    //console.log(response.data);
+                    location.reload(true);          
                 });
             },
             deleteGroup() {

@@ -59622,6 +59622,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group'],
@@ -59791,6 +59792,34 @@ var render = function() {
           },
           [
             _c("ul", { staticStyle: { "list-style-type": "none" } }, [
+              _vm.group_owner == _vm.current_user
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { id: "show-modal" },
+                        on: {
+                          click: [
+                            function($event) {
+                              _vm.showModal = true
+                            },
+                            function($event) {
+                              $event.preventDefault()
+                              _vm.setValues(
+                                "Change Group Name",
+                                true,
+                                "What name do you want for this group?",
+                                "change_name"
+                              )
+                            }
+                          ]
+                        }
+                      },
+                      [_vm._v("Change Name")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _vm.group_owner == _vm.current_user
                 ? _c("li", [
                     _c(
@@ -60556,9 +60585,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['group_id', 'title', 'displaySelect', 'body_text', 'action'],
+    props: ['group_id', 'title', 'displaySelect', 'body_text', 'action', 'group_name'],
 
     data: function data() {
         return {
@@ -60620,6 +60654,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteGroupMembers: function deleteGroupMembers() {
             axios.post('/deleteGroupMembers', { group_id: this.group_id, friends: this.selected_friends }).then(function (response) {
                 //console.log(response);
+                location.reload(true);
+            });
+        },
+        change_group_name: function change_group_name() {
+            axios.post('/change_group_name/', { group_id: this.group_id, name: this.group_name }).then(function (response) {
+                //console.log(this.group_id); 
+                //console.log(response.data);
                 location.reload(true);
             });
         },
@@ -60824,6 +60865,33 @@ var render = function() {
                                 ])
                               ])
                         ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.action === "change_name"
+                      ? _c("div", { staticClass: "form-group" }, [
+                          _c("p", [_vm._v(_vm._s(_vm.body_text))]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.group_name,
+                                expression: "group_name"
+                              }
+                            ],
+                            attrs: { type: "text", value: "" },
+                            domProps: { value: _vm.group_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.group_name = $event.target.value
+                              }
+                            }
+                          })
+                        ])
                       : _vm._e()
                   ])
                 : _c("p", [_vm._v(_vm._s(_vm.body_text))])
@@ -60850,6 +60918,23 @@ var render = function() {
                 },
                 [_vm._v("Close")]
               ),
+              _vm._v(" "),
+              _vm.action === "change_name"
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.change_group_name()
+                        }
+                      }
+                    },
+                    [_vm._v("Change Name")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _vm.action === "delete_group"
                 ? _c(
