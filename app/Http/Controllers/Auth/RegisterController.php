@@ -67,9 +67,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $city = $data['city'];
+        $state = $data['state'];
+        $geocoder = new \OpenCage\Geocoder\Geocoder('8c0bbd03698f4bdaa4e35fe38c30fbd1');
+        $result = $geocoder->geocode($city . ' ' . $state);
+        $first = $result['results'][0];
+        $lat = $first['geometry']['lat'];
+        $lng = $first['geometry']['lng'];
+
         $user = User::create([
             'name' => $data['name'],            
             'email' => $data['email'],
+            'city' => $city,
+            'state' => $state,
+            'lat' => $lat,
+            'lng' => $lng,
             //comment line below out after email verification works
             'verified' => 0,
             'password' => Hash::make($data['password']),
