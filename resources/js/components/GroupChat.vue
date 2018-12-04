@@ -15,6 +15,7 @@
             
             <div class="panel-collapse collapse" :id="'menu-' + group.id">
                 <ul style="list-style-type:none">
+                    <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Change Group Name', true, 'What name do you want for this group?', 'change_name')">Change Name</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Group', false, 'Are you sure you want to delete this group?', 'delete_group')">Delete group</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Add more friends', true, '', 'add_members')">Add more members</a></li>
                     <li v-if= "group_owner == current_user"><a id="show-modal" @click="showModal = true" @click.prevent="setValues('Delete Members', true, '', 'delete_members')">Delete members</a></li>
