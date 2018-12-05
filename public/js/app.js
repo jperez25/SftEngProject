@@ -60658,9 +60658,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         change_group_name: function change_group_name() {
-            axios.post('/change_group_name/', { group_id: this.group_id, name: this.group_name }).then(function (response) {
+            axios.post('/change_group_name', { group_id: this.group_id, name: this.group_name }).then(function (response) {
                 //console.log(this.group_id); 
-                //console.log(response.data);
+                console.log(response.data);
                 location.reload(true);
             });
         },
