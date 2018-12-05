@@ -18,7 +18,18 @@
                     <td>{{$review->created_at}}</td>
                     <td>{{$review->rating}}</td>
                     <td>{{$review->description}}</td>
-                    <td></td>
+                    <td>
+                      @if($review->user1_id == Auth::user()->id)
+                      <form action = "/ratings/edit" method = "POST">
+                        {{ csrf_field() }}
+                       
+                        <input type="hidden" name="_method" value="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="userid" value="{{$user->id}}" id = "userid">
+                     <button type="submit" class="btn btn-primary">Edit Your Review</button>
+                   </form>
+                      @endif
+                    </td>
                   </tr>
               @endforeach
 </table>
