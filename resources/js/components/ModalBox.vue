@@ -81,6 +81,8 @@
             this.getFriends();
 
             this.getMembersOfGroup();
+
+            this.getUser();
         },
 
         methods: {

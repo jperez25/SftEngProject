@@ -60607,6 +60607,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getFriends();
 
         this.getMembersOfGroup();
+
+        this.getUser();
     },
 
 
