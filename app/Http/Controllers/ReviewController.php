@@ -42,18 +42,32 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+
          $this->validate($request, [
             'rating' => 'required',
             'description' => 'required',
             'user2_id' => 'required',
             'user1_id' => 'required',
         ]);
-        $input = $request->all();
-        Review::create($input);
-        $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
-        $user = User::find($request->input('user2_id'));
+
+        $user1_id = $request->input('user1_id');
+        $user2_id = $request->input('user2_id');
+        $reviews = DB::select(DB::raw("SELECT * FROM reviews WHERE user1_id = {$user1_id} AND user2_id = {$user2_id}"));
+       
+        if(empty($reviews)){
         
-        return Redirect::to('/ratings/'.$request->input('user2_id'))->with('user', 'reviews');
+            $input = $request->all();
+            Review::create($input);
+            
+            $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
+            $user = User::find($request->input('user2_id'));
+        
+            return Redirect::to('/ratings/'.$request->input('user2_id'))->with('user', 'reviews');
+        }
+        else{
+            return Redirect::to('/ratings/'.$request->input('user2_id'))->with('user', 'reviews')->with('error', ['You already left a review for this user']);
+        }
+
     }
 
     /**
@@ -62,6 +76,26 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function update(Request $request)
+    {             
+        $this->validate($request, [
+            'rating' => 'required',
+            'description' => 'required',
+            'review_id' => 'required',
+            'user2_id' => 'required',
+        ]);
+
+        DB::table('reviews')->where('id', $request->input('review_id'))->update(
+            [
+                'rating' => $request->input('rating'),
+                'description' => $request->input('description'),
+                    
+            ]
+        ); 
+        $reviews = Review::where('user2_id', 'LIKE' , $request->input('user2_id'))->get();
+        $user = User::find($request->input('user2_id'));
+        return Redirect::to('/ratings/'.$request->input('user2_id'))->with('user', 'reviews');
+    }
     public function show($userID)
     {
         $reviews = Review::where('user2_id', 'LIKE' , $userID)->get();
@@ -77,9 +111,19 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'userid' => 'required',
+        ]);
+        $user1_id = Auth::User()->id;
+        $user2_id = $request->input('userid');
+        $user = User::find($request->input('userid'));
+        $reviews = DB::select(DB::raw("SELECT * FROM reviews WHERE user1_id = {$user1_id} AND user2_id = {$user2_id}"));
+        $review = $reviews[0];
+
+        return view('ratings.edit', compact('user', 'review'));
     }
 
     /**
@@ -89,11 +133,7 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *

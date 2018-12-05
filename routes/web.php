@@ -17,19 +17,20 @@ Route::get('/', 'Controller@index')->name('index');
 Auth::routes(['verify' => true]);
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-#Profile Routes
+#Profile RouteServiceProvider
 Route::get('/profile', 'ProfileController@index')->middleware('auth')->name('profile.index');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::resource('profile', 'ProfileController')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@show')->middleware('auth');
 Route::get('/profile/{userID}', 'ProfileController@update')->middleware('auth');
-
 #Ratings Routes
-Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
-Route::post('/ratings/create', 'ReviewController@create')->middleware('auth');
-Route::post('/ratings/{userID}', 'ReviewController@store')->middleware('auth');
-Route::resource('/ratings', 'ReviewController')->middleware('auth');
 
+Route::post('/ratings/edit/', 'ReviewController@edit')->middleware('auth');
+Route::post('/ratings/create/', 'ReviewController@create')->middleware('auth');
+Route::get('/ratings/{userID}', 'ReviewController@show')->middleware('auth');
+Route::post('/ratings/{userID}', 'ReviewController@update')->middleware('auth');
+Route::post('/ratings/{userID}/', 'ReviewController@store')->middleware('auth');
+Route::resource('ratings', 'ReviewController')->middleware('auth');
 #Search Users and others Routes
 #Route::resource('home', 'HomeController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -41,11 +42,10 @@ Route::get('/getOwner/{group_id}', 'HomeController@getOwner')->middleware('auth'
 Route::get('/getFriends', 'HomeController@getFriends')->middleware('auth');
 Route::post('/addFriends', 'HomeController@addFriends')->middleware('auth');
 Route::post('/deleteGroupMembers', 'HomeController@deleteGroupMembers')->middleware('auth');
-Route::get('/getMembersOfGroup/{group_id}', 'HomeController@getMembersOfGroup')->middleware('auth');
+Route::get('//getMembersOfGroup/{group_id}', 'HomeController@getMembersOfGroup')->middleware('auth');
 Route::post('/delete_group/{group_id}', 'GroupController@delete_group')->middleware('auth');
 Route::get('/getCurrentUser', 'HomeController@getCurrentUser')->middleware('auth');
 Route::post('/leave_group', 'HomeController@leave_group')->middleware('auth');
-Route::post('/groupName/', 'HomeController@change_group_name')->middleware('auth');
 
 
 #Friend Request Routes
@@ -69,4 +69,4 @@ Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('con
 
 
 #Admin Routes
-Route::get('/admin', 'AdminController@index')->middleware('auth')->name('admin');
+Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
