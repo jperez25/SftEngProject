@@ -39,6 +39,9 @@
                             </p>
                         </div>
                     </div>
+                    <div v-if="action === 'leave_group'" class="form-group">
+                        <p>{{body_text}}</p>                        
+                    </div>
                     <div v-if="action === 'change_name'" class="form-group">
                         <p>{{body_text}}</p>
                         <input type="text" value="" v-model="group_name">
@@ -132,10 +135,11 @@
                 });
             },
             change_group_name(){
-                axios.post('/change_group_name/', {group_id: this.group_id, name: this.group_name} )
+                axios.post('/groupName/', {group_id: this.group_id, name: this.group_name} )
                 .then((response) => {
                     //console.log(this.group_id); 
                     //console.log(response.data);
+                    //window.location.href = "http://playdatesrus.com/group";
                     location.reload(true);          
                 });
             },

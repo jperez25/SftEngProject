@@ -60590,6 +60590,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['group_id', 'title', 'displaySelect', 'body_text', 'action', 'group_name'],
@@ -60660,9 +60663,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         change_group_name: function change_group_name() {
-            axios.post('/change_group_name/', { group_id: this.group_id, name: this.group_name }).then(function (response) {
+            axios.post('/groupName/', { group_id: this.group_id, name: this.group_name }).then(function (response) {
                 //console.log(this.group_id); 
                 //console.log(response.data);
+                //window.location.href = "http://playdatesrus.com/group";
                 location.reload(true);
             });
         },
@@ -60866,6 +60870,12 @@ var render = function() {
                                   )
                                 ])
                               ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.action === "leave_group"
+                      ? _c("div", { staticClass: "form-group" }, [
+                          _c("p", [_vm._v(_vm._s(_vm.body_text))])
                         ])
                       : _vm._e(),
                     _vm._v(" "),
