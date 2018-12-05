@@ -59228,7 +59228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             Echo.private('users.' + this.user.id).listen('GroupDeleted', function (e) {
-                console.log(e);
+                //console.log(e);
                 _this3.groups.splice(e, 1);
             });
         }
@@ -60619,7 +60619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.friends = [];
                 for (var key in response.data) {
                     //alert(response.data[key]);
-                    console.log(response.data[key]);
+                    //console.log(response.data[key]);
                     _this.friends.push(response.data[key]);
                 }
             });
@@ -60658,9 +60658,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         change_group_name: function change_group_name() {
-            axios.post('/change_group_name', { group_id: this.group_id, name: this.group_name }).then(function (response) {
+            axios.post('/change_group_name/', { group_id: this.group_id, name: this.group_name }).then(function (response) {
                 //console.log(this.group_id); 
-                console.log(response.data);
+                //console.log(response.data);
                 location.reload(true);
             });
         },

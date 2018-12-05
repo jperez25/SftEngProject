@@ -40,7 +40,7 @@
             listenForDeletedGroups() {
                 Echo.private('users.' + this.user.id)
                     .listen('GroupDeleted', (e) => {
-                        console.log(e);
+                        //console.log(e);
                         this.groups.splice(e, 1);
                     });
             },
