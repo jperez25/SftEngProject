@@ -130,10 +130,10 @@
                 });
             },
             change_group_name(){
-                axios.post('/change_group_name/', {group_id: this.group_id, name: this.group_name} )
+                axios.post('/change_group_name', {group_id: this.group_id, name: this.group_name} )
                 .then((response) => {
                     //console.log(this.group_id); 
-                    //console.log(response.data);
+                    console.log(response.data);
                     location.reload(true);          
                 });
             },
