@@ -69,4 +69,4 @@ Route::get('/conversation/{id}', 'ConversationController@getMessage')->name('con
 
 
 #Admin Routes
-Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
+Route::get('/admin', 'AdminController@index')->middleware('auth');
