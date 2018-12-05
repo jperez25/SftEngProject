@@ -188,15 +188,14 @@ class HomeController extends Controller
     {
         $group_id = request('group_id');
         $user_id = request('user_id');
-        $group = DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$user_id};"));
-        return $group;
+        DB::statement(DB::raw(" DELETE FROM group_user WHERE group_id = {$group_id} and user_id = {$user_id};"));
+        
     }
 
     public function change_group_name()
     {
         $group_id = request('group_id');
         $name = request('name');
-        $group = DB::statement(DB::raw("UPDATE groups SET name = '{$name}' WHERE id = {$group_id};"));
-        return $group;
+        DB::statement(DB::raw("UPDATE groups SET name = '{$name}' WHERE id = {$group_id};"));
     }
 }
