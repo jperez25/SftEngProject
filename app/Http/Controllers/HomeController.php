@@ -197,5 +197,7 @@ class HomeController extends Controller
         $group_id = request('group_id');
         $name = request('name');
         DB::statement(DB::raw("UPDATE groups SET name = '{$name}' WHERE id = {$group_id};"));
+
+        dd('Name');
     }
 }
